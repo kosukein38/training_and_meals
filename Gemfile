@@ -64,3 +64,5 @@ group :development do
   # gem "spring"
 end
 
+#UI
+gem 'tailwindcss-rails'
