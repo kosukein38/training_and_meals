@@ -1,0 +1,59 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
+
+AllCops:
+  Exclude:
+    - "vendor/**/*"
+    - "db/**/*"
+    - "config/**/*"
+    - "bin/*"
+    - "node_modules/**/*"
+
+  NewCops: enable
+
+Layout/LineLength:
+  Max: 130
+  Exclude: #除外ディレクトリ
+    - "**/Rakefile"
+    - "spec/rails_helper.rb"
+    - "spec/spec_helper.rb"
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*" #RSpecは1つのブロックあたりの行数が多くなるため、チェックから除外
+
+Metrics/AbcSize:
+  Max: 50
+
+Metrics/PerceivedComplexity:
+  Max: 8
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/MethodLength:
+  Max: 30
+
+Metrics/BlockNesting:
+  Max: 5
+
+# クラスの行数チェック（無効）
+Metrics/ClassLength:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+
+# 日本語でコメントできるようにする
+Style/Documentation:
+  Enabled: false
+
+#文字列リテラルをfreezeするコメントがあるかチェック（無効）
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# メソッドパラメータ名の最小文字数を設定
+Naming/MethodParameterName:
+  MinNameLength: 1
