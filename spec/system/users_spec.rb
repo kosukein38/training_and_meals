@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe "Users", type: :system do
+RSpec.describe 'Users' do
   before do
     driven_by(:rack_test)
   end
-  
+
   let(:user) { create(:user) }
 
   describe 'ユーザー新規登録' do
@@ -16,9 +16,10 @@ RSpec.describe "Users", type: :system do
         fill_in 'Password', with: 'password'
         fill_in 'Password confirmation', with: 'password'
         click_button '登録する'
-        expect(current_path).to eq root_path
+        expect(page).to have_current_path root_path, ignore_query: true
       end
     end
+
     context 'メールアドレスが未入力' do
       it 'ユーザーの新規作成が失敗する' do
         visit new_user_path
@@ -27,9 +28,10 @@ RSpec.describe "Users", type: :system do
         fill_in 'Password', with: 'password'
         fill_in 'Password confirmation', with: 'password'
         click_button '登録する'
-        expect(current_path).to eq users_path
+        expect(page).to have_current_path users_path, ignore_query: true
       end
     end
+
     context '登録済のメールアドレスを使用' do
       it 'ユーザーの新規作成が失敗する' do
         existed_user = create(:user)
@@ -39,7 +41,7 @@ RSpec.describe "Users", type: :system do
         fill_in 'Password', with: 'password'
         fill_in 'Password confirmation', with: 'password'
         click_button '登録する'
-        expect(current_path).to eq users_path
+        expect(page).to have_current_path users_path, ignore_query: true
       end
     end
   end
