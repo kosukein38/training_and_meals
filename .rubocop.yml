@@ -67,3 +67,11 @@ Style/BlockComments:
   Exclude:
     - "spec/rails_helper.rb"
     - "spec/spec_helper.rb"
+
+RSpec/ContextWording:
+  Exclude:
+    - "spec/**/*"
+
+RSpec/ExampleLength:
+  Exclude:
+    - "spec/**/*"
