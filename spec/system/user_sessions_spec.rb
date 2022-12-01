@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'UserSessions' do
-  before do
-    driven_by(:rack_test)
-  end
-
   let(:user) { create(:user) }
 
   describe 'ログイン前' do
