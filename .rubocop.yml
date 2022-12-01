@@ -75,3 +75,7 @@ RSpec/ContextWording:
 RSpec/ExampleLength:
   Exclude:
     - "spec/**/*"
+
+RSpec/MultipleExpectations:
+  Exclude:
+    - "spec/**/*"

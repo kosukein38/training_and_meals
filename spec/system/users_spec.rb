@@ -16,7 +16,7 @@ RSpec.describe 'Users' do
         fill_in 'Password', with: 'password'
         fill_in 'Password confirmation', with: 'password'
         click_button '登録する'
-        expect(page).to have_current_path root_path, ignore_query: true
+        expect(page).to have_current_path login_path, ignore_query: true
       end
     end
 

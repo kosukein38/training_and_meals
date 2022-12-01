@@ -1,11 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe "UserSessions", type: :system do
+RSpec.describe 'UserSessions' do
   before do
     driven_by(:rack_test)
   end
 
   let(:user) { create(:user) }
+
   describe 'ログイン前' do
     context 'フォームの入力値が正常' do
       it 'ログイン処理が成功する' do
@@ -14,7 +15,7 @@ RSpec.describe "UserSessions", type: :system do
         fill_in 'Password', with: 'password'
         click_button 'ログイン'
         expect(page).to have_content 'ログインしました'
-        expect(current_path).to eq root_path
+        expect(page).to have_current_path root_path, ignore_query: true
       end
     end
 
@@ -25,7 +26,7 @@ RSpec.describe "UserSessions", type: :system do
         fill_in 'Password', with: 'password'
         click_button 'ログイン'
         expect(page).to have_content 'emailかパスワードが間違っています'
-        expect(current_path).to eq login_path
+        expect(page).to have_current_path login_path, ignore_query: true
       end
     end
   end
@@ -37,7 +38,7 @@ RSpec.describe "UserSessions", type: :system do
         find('.avatar').click
         click_link 'ログアウト'
         expect(page).to have_content 'ログアウトしました'
-        expect(current_path).to eq root_path
+        expect(page).to have_current_path root_path, ignore_query: true
       end
     end
   end
