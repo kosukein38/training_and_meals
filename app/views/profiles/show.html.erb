@@ -1,0 +1,25 @@
+<%# tailwindcss例1 %>
+<h1 class="text-4xl font-bold underline">
+  Hello world!
+</h1>
+
+<%# tailwindcss例2 %>
+<button class="inline-block cursor-pointer rounded-md bg-gray-800 px-4 py-3 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-900">Button</button> <br />
+
+<%# daisyUIコンポーネントクラス例 %>
+<button class="btn btn-primary">Button</button>
+
+
+<div class="hero min-h-screen bg-base-200">
+  <div class="hero-content text-center">
+    <div class="max-w-md">
+      <div class="card w-96 bg-base-100 shadow-xl">
+        <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+        <div class="card-body">
+          <h2 class="card-title">profile</h2>
+          <p>My name is <%=current_user.name%> </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
