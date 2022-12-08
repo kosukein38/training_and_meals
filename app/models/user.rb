@@ -6,4 +6,7 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
+
+  enum sex: { male: 0, female: 1 }
+  enum active_level: { level1: 1, level2: 2, level3: 3, level4: 4, level5: 5 }
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_26_011411) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_05_123321) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_26_011411) do
     t.string "salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "introduction"
+    t.float "height"
+    t.float "body_weight"
+    t.integer "age"
+    t.integer "sex"
+    t.integer "active_level"
+    t.float "target_weight"
+    t.datetime "target_date"
+    t.integer "maintenance_calorie"
+    t.integer "adjustment_calorie"
+    t.integer "target_calorie"
+    t.string "twitter_link"
+    t.string "facebook_link"
+    t.string "instagram_link"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
