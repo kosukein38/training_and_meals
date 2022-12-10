@@ -37,5 +37,40 @@ RSpec.describe User do
       another_user.valid?
       expect(another_user.errors[:email]).to include('has already been taken')
     end
+
+    it '身長が未入力では更新できないこと' do
+      user = create(:user)
+      user.height = ''
+      user.valid?
+      expect(user.errors[:height]).to include("can't be blank")
+    end
+
+    it '体重が未入力では更新できないこと' do
+      user = create(:user)
+      user.body_weight = ''
+      user.valid?
+      expect(user.errors[:body_weight]).to include("can't be blank")
+    end
+
+    it '年齢が未入力では更新できないこと' do
+      user = create(:user)
+      user.age = ''
+      user.valid?
+      expect(user.errors[:age]).to include("can't be blank")
+    end
+
+    it '性別が未入力では更新できないこと' do
+      user = create(:user)
+      user.sex = ''
+      user.valid?
+      expect(user.errors[:sex]).to include("can't be blank")
+    end
+
+    it '活動レベルが未入力では更新できないこと' do
+      user = create(:user)
+      user.active_level = ''
+      user.valid?
+      expect(user.errors[:active_level]).to include("can't be blank")
+    end
   end
 end

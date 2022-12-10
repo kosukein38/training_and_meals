@@ -11,7 +11,7 @@ RSpec.describe 'UserSessions' do
         fill_in 'Password', with: 'password'
         click_button 'ログイン'
         expect(page).to have_content 'ログインしました'
-        expect(page).to have_current_path root_path, ignore_query: true
+        expect(page).to have_current_path profile_path, ignore_query: true
       end
     end
 
