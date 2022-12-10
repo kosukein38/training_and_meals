@@ -7,6 +7,7 @@
     <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
       <div class="card-body">
         <%= form_with model: @user, local: true do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
           <div class="form-control">
             <%= f.label :name %>
             <%= f.text_field :name, class: "input input-bordered" %>
