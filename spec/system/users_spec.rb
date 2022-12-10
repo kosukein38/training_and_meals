@@ -16,6 +16,7 @@ RSpec.describe 'Users' do
         fill_in 'Password', with: 'password'
         fill_in 'Password confirmation', with: 'password'
         click_button '登録する'
+        expect(page).to have_content '登録しました'
         expect(page).to have_current_path login_path, ignore_query: true
       end
     end
@@ -28,6 +29,8 @@ RSpec.describe 'Users' do
         fill_in 'Password', with: 'password'
         fill_in 'Password confirmation', with: 'password'
         click_button '登録する'
+        expect(page).to have_content '登録できませんでした'
+        expect(page).to have_content "Email can't be blank"
         expect(page).to have_current_path users_path, ignore_query: true
       end
     end
@@ -41,6 +44,23 @@ RSpec.describe 'Users' do
         fill_in 'Password', with: 'password'
         fill_in 'Password confirmation', with: 'password'
         click_button '登録する'
+        expect(page).to have_content '登録できませんでした'
+        expect(page).to have_content 'Email has already been taken'
+        expect(page).to have_current_path users_path, ignore_query: true
+      end
+    end
+
+    context 'パスワードが不一致' do
+      it 'ユーザーの新規作成が失敗する' do
+        existed_user = create(:user)
+        visit new_user_path
+        fill_in 'Name', with: 'Example'
+        fill_in 'Email', with: existed_user.email
+        fill_in 'Password', with: 'password'
+        fill_in 'Password confirmation', with: 'foobar'
+        click_button '登録する'
+        expect(page).to have_content '登録できませんでした'
+        expect(page).to have_content "Password confirmation doesn't match Password"
         expect(page).to have_current_path users_path, ignore_query: true
       end
     end
