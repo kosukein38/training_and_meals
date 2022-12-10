@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Profiles", type: :system do
+RSpec.describe 'Profiles' do
   let(:user) { create(:user) }
 
   it 'プロフィール登録するすると、メンテナンスカロリーと目標カロリーが登録され、表示されること' do
