@@ -1,0 +1,35 @@
+ja:
+  activerecord:
+    models:
+      user: "ユーザー"
+    attributes:
+      user:
+        name: 名前
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード（確認用）"
+        introduction: "自己紹介"
+        height: "身長"
+        body_weight: "体重"
+        age: "年齢"
+        sex: "生まれた時の性別"
+        active_level: "活動量"
+        target_weight: "目標体重"
+        target_date: "目標達成日"
+        maintenance_calorie: "メンテナンスカロリー"
+        adjustment_calorie: "調整カロリー"
+        target_calorie: "目標摂取カロリー"
+        twitter_link: "Twitterリンク"
+        facebook_link: "Facebookリンク"
+        instagram_link: "Instagramリンク"
+  enums:
+    user:
+      sex:
+        male: "男性"
+        female: "女性"
+      active_level:
+        level1: "レベル1"
+        level2: "レベル2"
+        level3: "レベル3"
+        level4: "レベル4"
+        level5: "レベル5"

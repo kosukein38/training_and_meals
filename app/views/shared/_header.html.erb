@@ -21,7 +21,7 @@
             </a>
           </li>
           <li><a>Settings</a></li>
-          <li><%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete } %></li>
+          <li><%= link_to (t 'defaults.logout'), logout_path, data: { turbo_method: :delete } %></li>
         </ul>
       </div>
     </div>
