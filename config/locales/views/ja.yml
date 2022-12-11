@@ -5,15 +5,25 @@ ja:
     register: "登録"
     logout: "ログアウト"
     about: "このアプリについて"
+    message:
+      require_login: "ログインしてください"
   users:
     new:
       title: "ユーザー登録"
       to_login_page: "ログインページへ"
+    create:
+      success: "ユーザー登録が完了しました"
+      fail: "ユーザー登録に失敗しました"
   user_sessions:
     new:
       title: "ログイン"
       to_register_page: "登録ページへ"
       password_forget: "パスワードをお忘れの方はこちら"
+    create:
+      success: "ログインしました"
+      fail: "ログインに失敗しました（メールアドレスかパスワードが間違っています）"
+    destroy:
+      success: "ログアウトしました"
   profiles:
     edit:
       title: "プロフィール編集"
