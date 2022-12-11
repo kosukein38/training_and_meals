@@ -15,4 +15,39 @@ RSpec.describe 'Profiles' do
     expect(page).to have_content 'あなたの目標摂取カロリーは１日あたり'
     expect(page).to have_current_path edit_profile_path, ignore_query: true
   end
+
+  it 'サイドバーの投稿一覧をクリックすると投稿一覧画面に遷移すること' do
+    login_as(user)
+    visit profile_path
+    click_link '投稿一覧'
+    expect(page).to have_current_path user_path(user), ignore_query: true
+  end
+
+  it 'サイドバーのタイムラインをクリックするとタイムライン一覧画面に遷移すること' do
+    login_as(user)
+    visit profile_path
+    click_link 'タイムライン'
+    expect(page).to have_current_path posts_path, ignore_query: true
+  end
+
+  it 'サイドバーの下書きをクリックすると下書き一覧画面に遷移すること' do
+    login_as(user)
+    visit profile_path
+    click_link '下書き'
+    expect(page).to have_current_path drafts_path, ignore_query: true
+  end
+
+  it 'サイドバーのフォロー/フォロワーをクリックするとフォロー一覧画面に遷移すること' do
+    login_as(user)
+    visit profile_path
+    click_link 'フォロー/フォロワー'
+    expect(page).to have_current_path following_user_path(user), ignore_query: true
+  end
+
+  it 'サイドバーのお気に入りをクリックするとブックマークに遷移すること' do
+    login_as(user)
+    visit profile_path
+    click_link 'お気に入り'
+    expect(page).to have_current_path bookmarks_posts_path, ignore_query: true
+  end
 end
