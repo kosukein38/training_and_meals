@@ -12,7 +12,7 @@ RSpec.describe 'Users' do
         fill_in 'パスワード', with: 'password'
         fill_in 'パスワード（確認用）', with: 'password'
         click_button '登録'
-        expect(page).to have_content '登録しました'
+        expect(page).to have_content 'ユーザー登録が完了しました'
         expect(page).to have_current_path login_path, ignore_query: true
       end
     end
@@ -25,7 +25,7 @@ RSpec.describe 'Users' do
         fill_in 'パスワード', with: 'password'
         fill_in 'パスワード（確認用）', with: 'password'
         click_button '登録'
-        expect(page).to have_content '登録できませんでした'
+        expect(page).to have_content 'ユーザー登録に失敗しました'
         expect(page).to have_content '名前を入力してください'
         expect(page).to have_current_path users_path, ignore_query: true
       end
@@ -39,7 +39,7 @@ RSpec.describe 'Users' do
         fill_in 'パスワード', with: 'password'
         fill_in 'パスワード（確認用）', with: 'password'
         click_button '登録'
-        expect(page).to have_content '登録できませんでした'
+        expect(page).to have_content 'ユーザー登録に失敗しました'
         expect(page).to have_content 'メールアドレスを入力してください'
         expect(page).to have_current_path users_path, ignore_query: true
       end
@@ -53,7 +53,7 @@ RSpec.describe 'Users' do
         fill_in 'パスワード', with: ''
         fill_in 'パスワード（確認用）', with: 'password'
         click_button '登録'
-        expect(page).to have_content '登録できませんでした'
+        expect(page).to have_content 'ユーザー登録に失敗しました'
         expect(page).to have_content 'パスワードは3文字以上で入力してください'
         expect(page).to have_current_path users_path, ignore_query: true
       end
@@ -67,7 +67,7 @@ RSpec.describe 'Users' do
         fill_in 'パスワード', with: 'password'
         fill_in 'パスワード（確認用）', with: ''
         click_button '登録'
-        expect(page).to have_content '登録できませんでした'
+        expect(page).to have_content 'ユーザー登録に失敗しました'
         expect(page).to have_content 'パスワード（確認用）を入力してください'
         expect(page).to have_current_path users_path, ignore_query: true
       end
@@ -82,7 +82,7 @@ RSpec.describe 'Users' do
         fill_in 'パスワード', with: 'password'
         fill_in 'パスワード（確認用）', with: 'password'
         click_button '登録'
-        expect(page).to have_content '登録できませんでした'
+        expect(page).to have_content 'ユーザー登録に失敗しました'
         expect(page).to have_content 'メールアドレスはすでに存在します'
         expect(page).to have_current_path users_path, ignore_query: true
       end
@@ -97,7 +97,7 @@ RSpec.describe 'Users' do
         fill_in 'パスワード', with: 'password'
         fill_in 'パスワード（確認用）', with: 'foobar'
         click_button '登録'
-        expect(page).to have_content '登録できませんでした'
+        expect(page).to have_content 'ユーザー登録に失敗しました'
         expect(page).to have_content 'パスワード（確認用）とパスワードの入力が一致しません'
         expect(page).to have_current_path users_path, ignore_query: true
       end

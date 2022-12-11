@@ -21,7 +21,7 @@ RSpec.describe 'UserSessions' do
         fill_in 'メールアドレス', with: ''
         fill_in 'パスワード', with: 'password'
         click_button 'ログイン'
-        expect(page).to have_content 'emailかパスワードが間違っています'
+        expect(page).to have_content 'ログインに失敗しました（メールアドレスかパスワードが間違っています）'
         expect(page).to have_current_path login_path, ignore_query: true
       end
     end
