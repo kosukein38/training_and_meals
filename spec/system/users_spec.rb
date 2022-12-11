@@ -54,10 +54,10 @@ RSpec.describe 'Users' do
       it 'ユーザーの新規作成が失敗する' do
         existed_user = create(:user)
         visit new_user_path
-        fill_in 'Name', with: 'Example'
+        fill_in '名前', with: 'Example'
         fill_in 'Email', with: existed_user.email
-        fill_in 'Password', with: 'password'
-        fill_in 'Password confirmation', with: 'foobar'
+        fill_in 'パスワード', with: 'password'
+        fill_in 'パスワード（確認用）', with: 'foobar'
         click_button '登録する'
         expect(page).to have_content '登録できませんでした'
         expect(page).to have_content "Password confirmation doesn't match Password"
