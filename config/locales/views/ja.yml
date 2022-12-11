@@ -1,0 +1,19 @@
+ja:
+  defaults:
+    signup: "新規登録"
+    login: "ログイン"
+    register: "登録"
+    logout: "ログアウト"
+    about: "このアプリについて"
+  users:
+    new:
+      title: "ユーザー登録"
+      to_login_page: "ログインページへ"
+  user_sessions:
+    new:
+      title: "ログイン"
+      to_register_page: "登録ページへ"
+      password_forget: "パスワードをお忘れの方はこちら"
+  profiles:
+    edit:
+      title: "プロフィール編集"

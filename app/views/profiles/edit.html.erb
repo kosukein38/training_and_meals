@@ -1,4 +1,5 @@
 <div class="container mx-auto px-8 w-full">
+  <h1 class="text-5xl font-bold"><%= t '.title' %></h1>
   <%= form_with model: @user, url: profile_path, local: true do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
     <h2 class="mt-5">名前</h2>
@@ -35,11 +36,11 @@
     </div>
     <div class="form-control">
       <%= f.label :sex %>
-      <%= f.select :sex, User.sexes.keys.map {|k| [k, k]}, class: "form-control input input-bordered" %>
+      <%= f.select :sex, User.sexes_i18n.invert.map{|key, value| [key, value]}, class: "form-control input input-bordered" %>
     </div>
     <div class="form-control">
       <%= f.label :active_level%>
-      <%= f.select :active_level, User.active_levels.keys.map {|k| [k, k]}, class: "form-control input input-bordered" %>
+      <%= f.select :active_level, User.active_levels_i18n.invert.map{|key, value| [key, value]}, class: "form-control input input-bordered" %>
     </div>
     <div class="form-control">
       <%= f.label :target_weight%>
