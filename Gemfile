@@ -49,10 +49,10 @@ gem 'bootsnap', require: false
 # gem "image_processing", "~> 1.2"
 
 gem 'cssbundling-rails'
-gem 'jsbundling-rails'
-gem 'sorcery'
-gem 'rails-i18n', '~> 7.0.0' 
 gem 'enum_help'
+gem 'jsbundling-rails'
+gem 'rails-i18n', '~> 7.0.0'
+gem 'sorcery'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
