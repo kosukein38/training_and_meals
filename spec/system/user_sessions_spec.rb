@@ -31,10 +31,42 @@ RSpec.describe 'UserSessions' do
     context 'ログアウトボタンをクリック' do
       it 'ログアウト処理が成功する' do
         login_as(user)
-        find('.avatar').click
+        find('.dropdown').click
         click_link 'ログアウト'
         expect(page).to have_content 'ログアウトしました'
         expect(page).to have_current_path root_path, ignore_query: true
+      end
+    end
+
+    context 'サイドバーが表示される' do
+      it 'ログイン後サイドバーが表示され、マイページへのリンクがあること' do
+        login_as(user)
+        visit profile_path
+        expect(page).to have_link 'マイページ'
+      end
+
+      it 'ログイン後サイドバーが表示され、タイムラインのリンクがあること' do
+        login_as(user)
+        visit profile_path
+        expect(page).to have_link 'タイムライン'
+      end
+
+      it 'ログイン後サイドバーが表示され、お気に入りのリンクがあること' do
+        login_as(user)
+        visit profile_path
+        expect(page).to have_link 'お気に入り'
+      end
+
+      it 'ログイン後サイドバーが表示され、下書き一覧のリンクがあること' do
+        login_as(user)
+        visit profile_path
+        expect(page).to have_link '下書き一覧'
+      end
+
+      it 'ログイン後サイドバーが表示され、フォロー/フォロワーのリンクがあること' do
+        login_as(user)
+        visit profile_path
+        expect(page).to have_link 'フォロー/フォロワー'
       end
     end
   end

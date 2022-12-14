@@ -18,7 +18,18 @@
       <%= render 'shared/before_login_header' %>
     <% end %>
     <%= render 'shared/flash_message' %>
-    <%= yield %>
+    <% if logged_in? %>
+      <div class="container mx-auto flex justify-between w-full">
+        <div class="container mx-auto w-1/6">
+          <%= render 'shared/sidebar' %>
+        </div>
+        <div class="container mx-auto w-5/6">
+          <%= yield %>
+        </div>
+      </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
     <%= render 'shared/footer' %>
   </body>
 </html>
