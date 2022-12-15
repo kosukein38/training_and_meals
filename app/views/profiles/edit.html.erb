@@ -51,23 +51,12 @@
       <%= f.date_field :target_date, class: "form-control input input-bordered" %>
     </div>
     <div class="form-control mt-6">
-      <%= f.submit '計算する', class: "btn btn-primary"%>
-    </div>
-  <% end %>
-  <div>
-    <div>
-      <p class="font-bold">あなたの目標摂取カロリーは１日あたり </p>
-      <p class="font-bold text-3xl text-center"><%= @current_user.target_calorie%> <p>
-      <p class="font-bold text-right">kcalです</p>
-    </div>
-    <%= form_with model: current_user, url: profile_path, local: true do |f| %>
-    <div class="form-control mt-6">
       <p>カロリーを調整できます</p>
       <%= f.label :adjustment_calorie%>
       <%= f.number_field :adjustment_calorie, class: "form-control input input-bordered" %>
     </div>
     <div class="form-control mt-6">
-      <%= f.submit '調整する', class: "btn btn-primary"%>
+      <%= f.submit '更新する', class: "btn btn-primary"%>
     </div>
     <% end %>
   </div>
