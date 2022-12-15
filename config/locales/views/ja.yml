@@ -7,6 +7,7 @@ ja:
     about: "このアプリについて"
     message:
       require_login: "ログインしてください"
+    profile: "プロフィール"
   users:
     new:
       title: "ユーザー登録"
@@ -27,3 +28,6 @@ ja:
   profiles:
     edit:
       title: "プロフィール編集"
+    update:
+      success: "プロフィールを更新しました"
+      fail: "更新できませんでした"

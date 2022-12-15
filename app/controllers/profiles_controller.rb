@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_user, only: %i[edit update]
+  before_action :set_user, only: %i[edit update show]
 
   def show; end
   def edit; end
@@ -14,9 +14,9 @@ class ProfilesController < ApplicationController
                                   end
       @user.target_calorie = (@user.maintenance_calorie + user_params[:adjustment_calorie].to_i + 500)
       @user.save!
-      redirect_to edit_profile_path, success: '情報を更新しました'
+      redirect_to profile_path, success: t('.success')
     else
-      flash.now['danger'] = '更新できませんでした'
+      flash.now['danger'] = t('.fail')
       render :edit, status: :unprocessable_entity
     end
   end

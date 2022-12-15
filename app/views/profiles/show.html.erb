@@ -1,25 +1,45 @@
-<%# tailwindcss例1 %>
-<h1 class="text-4xl font-bold underline">
-  Hello world!
-</h1>
-
-<%# tailwindcss例2 %>
-<button class="inline-block cursor-pointer rounded-md bg-gray-800 px-4 py-3 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-900">Button</button> <br />
-
-<%# daisyUIコンポーネントクラス例 %>
-<button class="btn btn-primary">Button</button>
-
-
-<div class="hero min-h-screen bg-base-200">
-  <div class="hero-content text-center">
-    <div class="max-w-md">
-      <div class="card w-96 bg-base-100 shadow-xl">
-        <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
-        <div class="card-body">
-          <h2 class="card-title">profile</h2>
-          <p>My name is <%=current_user.name%> </p>
-        </div>
-      </div>
-    </div>
+<div class="container mx-auto px-8 w-full flex flex-row justify-between">
+  <div>
+    <h2 class="text-xl pt-4 font-bold">名前</h2>
+    <p><%=@user.name%></p>
+    <h2 class="text-xl pt-4 font-bold">メールアドレス</h2>
+    <p><%=@user.email%></p>
+    <h2 class="text-xl pt-4 font-bold">自己紹介</h2>
+    <p><%=@user.introduction%></p>
+    <h2 class="text-xl pt-4 font-bold">Twitter</h2>
+    <p><%=@user.twitter_link%></p>
+    <h2 class="text-xl pt-4 font-bold">Facebook</h2>
+    <p><%=@user.facebook_link%></p>
+    <h2 class="text-xl pt-4 font-bold">Instagram</h2>
+    <p><%=@user.instagram_link%></p>
   </div>
+  <div>
+    <h2 class="text-xl pt-4 font-bold">身長</h2>
+    <p><%=@user.height%></p>
+    <h2 class="text-xl pt-4 font-bold">体重</h2>
+    <p><%=@user.body_weight%></p>
+    <h2 class="text-xl pt-4 font-bold">年齢</h2>
+    <p><%=@user.age%></p>
+    <h2 class="text-xl pt-4 font-bold">生まれた時の性別</h2>
+    <p><%=@user.sex%></p>
+    <h2 class="text-xl pt-4 font-bold">活動レベル</h2>
+    <p><%=@user.active_level%></p>
+  </div>
+  <div>
+    <h2 class="text-xl pt-4 font-bold">目標体重</h2>
+    <p><%=@user.target_weight%></p>
+    <h2 class="text-xl pt-4 font-bold">目標期日</h2>
+    <p><%=@user.target_date%></p>
+    <h2 class="text-xl pt-4 font-bold">メンテナンスカロリー</h2>
+    <p><%=@user.maintenance_calorie%></p>
+    <h2 class="text-xl pt-4 font-bold">調整カロリー</h2>
+    <p><%=@user.adjustment_calorie%></p>
+  </div>
+</div>
+<div class="text-xl text-center py-6 font-bold">
+  <h2 >あなたの目標摂取カロリーは１日あたり</h2>
+  <p class="text-amber-700"><%=@user.target_calorie%>kcalです</p>
+</div>
+<div class="btn btn-primary flex justify-center">
+  <%= link_to '編集する', edit_profile_path %>
 </div>
