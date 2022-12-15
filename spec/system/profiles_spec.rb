@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Profiles' do
   let(:user) { create(:user) }
+
   it 'プロフィール登録すると、プロフィール表示画面に遷移し、情報が表示されること' do
     login_as(user)
     visit edit_profile_path
