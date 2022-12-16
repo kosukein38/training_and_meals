@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_user, only: %i[edit update show]
+  before_action :set_user, only: %i[edit update show destroy]
 
   def show; end
   def edit; end
@@ -19,6 +19,11 @@ class ProfilesController < ApplicationController
       flash.now['danger'] = t('.fail')
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @user.destroy!
+    redirect_to root_path, success: t('.success'), status: :see_other
   end
 
   private

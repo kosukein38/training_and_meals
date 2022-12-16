@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Profiles' do
+RSpec.describe 'Profiles', js: true do
   let(:user) { create(:user) }
 
   it 'プロフィール登録すると、プロフィール表示画面に遷移し、情報が表示されること' do
@@ -14,5 +14,16 @@ RSpec.describe 'Profiles' do
     click_button '更新する'
     expect(page).to have_content 'プロフィールを更新しました'
     expect(page).to have_current_path profile_path, ignore_query: true
+  end
+
+  it 'プロフィールの退会するボタンをクリックすると確認メッセージが表示されてからユーザーが削除されること' do
+    login_as(user)
+    visit profile_path
+    page.accept_confirm do
+      click_on '退会する'
+    end
+    expect(page).to have_content '退会しました'
+    expect(page).to have_content 'ログイン'
+    expect(page).to have_current_path root_path, ignore_query: true
   end
 end

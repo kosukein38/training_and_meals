@@ -31,3 +31,6 @@ ja:
     update:
       success: "プロフィールを更新しました"
       fail: "更新できませんでした"
+    destroy:
+      success: "退会しました"
+      delete_an_account: "退会する"
