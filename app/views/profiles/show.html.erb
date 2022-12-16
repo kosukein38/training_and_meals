@@ -44,6 +44,6 @@
   <%= link_to '編集する', edit_profile_path %>
 </div>
 <div class="btn btn-secondary flex justify-center">
-  <%= link_to '退会する', profile_path, data: { turbo_method: :delete, turbo_confirm: '本当に退会しますか?' } %>
+  <%= link_to (t 'profiles.destroy.delete_an_account'), profile_path, data: { turbo_method: :delete, turbo_confirm: '本当に退会しますか?' } %>
 </div>
 

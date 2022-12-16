@@ -23,7 +23,7 @@ class ProfilesController < ApplicationController
 
   def destroy
     @user.destroy!
-    redirect_to root_path, success: '退会しました', status: :see_other
+    redirect_to root_path, success: t('.success'), status: :see_other
   end
 
   private
