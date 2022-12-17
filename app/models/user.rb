@@ -1,5 +1,10 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
+
+  has_one_attached :avatar do |attachable|
+    attachable.variant :thumb, resize_to_limit: [200, 200]
+  end
+
   validates :email, presence: true, uniqueness: true
   validates :name, length: { maximum: 30 }, presence: true
 
