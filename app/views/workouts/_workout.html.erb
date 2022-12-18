@@ -1,0 +1,11 @@
+<div id="workout-id-<%= workout.id %>">
+  <div class="card w-96 bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h4 class="card-title">
+        <%= link_to workout.workout_title, workout_path(workout.id) %>
+      </h4>
+      <p><%= workout.workout_date %></p>
+    </div>
+  </div>
+</div>
+

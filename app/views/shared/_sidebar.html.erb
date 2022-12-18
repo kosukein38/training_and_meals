@@ -1,11 +1,11 @@
 <div class="flex flex-wrap w-full justify-center border-r-8 border-primary-content">
   <ul class="menu bg-base-100">
-    <li><%= link_to 'マイページ', '#' %><li>
+    <li><%= link_to 'マイページ', user_path(@user.id) %><li>
     <li><%= link_to 'タイムライン', '#' %></li>
     <li><%= link_to 'お気に入り', '#' %></li>
   </ul>
   <ul class="menu bg-base-100 my-8">
-    <li><%= link_to '新規投稿作成', '#' %><li>
+    <li><%= link_to '新規投稿作成', new_workout_path %><li>
     <li><%= link_to '下書き一覧', '#' %></li>
   </ul>
   <div class="avatar">

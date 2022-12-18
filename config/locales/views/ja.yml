@@ -7,6 +7,8 @@ ja:
     about: "このアプリについて"
     message:
       require_login: "ログインしてください"
+      created: "%{item}を作成しました"
+      not_created: "%{item}を作成できませんでした"
     profile: "プロフィール"
   users:
     new:
@@ -15,6 +17,9 @@ ja:
     create:
       success: "ユーザー登録が完了しました"
       fail: "ユーザー登録に失敗しました"
+    show:
+      title: "マイページ"
+      no_result: "投稿がありません"
   user_sessions:
     new:
       title: "ログイン"
@@ -34,3 +39,6 @@ ja:
     destroy:
       success: "退会しました"
       delete_an_account: "退会する"
+  workouts:
+    new:
+      title: "筋トレ新規投稿"
