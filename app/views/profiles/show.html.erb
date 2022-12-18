@@ -40,6 +40,10 @@
   <h2 >あなたの目標摂取カロリーは１日あたり</h2>
   <p class="text-amber-700"><%=@user.target_calorie%>kcalです</p>
 </div>
+<div class="px-8">
+  <h2 class="text-xl py-6 font-bold">プロフィール画像</h2>
+  <%= image_tag @user.avatar.variant(:thumb) if @user.avatar.attached? %>
+</div>
 <div class="btn btn-primary flex justify-center">
   <%= link_to '編集する', edit_profile_path %>
 </div>

@@ -55,6 +55,10 @@
       <%= f.label :adjustment_calorie%>
       <%= f.number_field :adjustment_calorie, class: "form-control input input-bordered" %>
     </div>
+    <span class="image">
+      <%= f.label :avatar %>
+      <%= f.file_field :avatar %>
+    </span>
     <div class="form-control mt-6">
       <%= f.submit '更新する', class: "btn btn-primary"%>
     </div>

@@ -6,6 +6,7 @@ class ProfilesController < ApplicationController
 
   def update
     if @user.update(user_params)
+      @user.avatar.attach(params[:user][:avatar])
       set_coefficient
       @user.maintenance_calorie = if @user.male?
                                     ((13.397 * @user.body_weight) + (4.799 * @user.height) - (5.677 * @user.age) + 88.362) * @coefficient
@@ -52,6 +53,6 @@ class ProfilesController < ApplicationController
   def user_params
     params.require(:user).permit(:email, :name, :introduction, :height, :body_weight,
                                  :age, :sex, :active_level, :target_weight,
-                                 :target_date, :adjustment_calorie, :twitter_link, :facebook_link, :instagram_link)
+                                 :target_date, :adjustment_calorie, :twitter_link, :facebook_link, :instagram_link, :avatar)
   end
 end
