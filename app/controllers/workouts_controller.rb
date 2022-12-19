@@ -1,17 +1,18 @@
 class WorkoutsController < ApplicationController
-  before_action :set_user, only: %i[new show]
+  before_action :set_user, only: %i[new show create]
   before_action :set_workout, only: %i[show]
 
   def show ;end
 
   def new
-    @workout = Workout.new
+    @workout_form = WorkoutForm.new
+    @body_part_names = BodyPart.pluck(:body_part_name)
   end
 
   def create
-    @workout = current_user.workouts.build(workout_params)
-    if @workout.save
-      redirect_to user_path(@workout.user_id), success: t('defaults.message.created', item: Workout.model_name.human)
+    @workout_form = WorkoutForm.new(workout_form_params)
+    if @workout_form.save
+      redirect_to user_path(@user.id), success: t('defaults.message.created', item: Workout.model_name.human)
     else
       flash.now['danger'] = t('defaults.message.not_created', item: Workout.model_name.human)
       render :new
@@ -20,8 +21,8 @@ class WorkoutsController < ApplicationController
 
   private
 
-  def workout_params
-    params.require(:workout).permit(:workout_date, :workout_title, :workout_time, :workout_weight, :repetition_count, :set_count, :workout_memo)
+  def workout_form_params
+    params.require(:workout_form).permit(:workout_date, :workout_title, :workout_time, :workout_weight, :repetition_count, :set_count, :workout_memo, :body_part_name).merge(user_id: current_user.id)
   end
 
   def set_user
