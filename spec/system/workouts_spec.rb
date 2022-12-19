@@ -6,6 +6,7 @@ RSpec.describe "Workouts", type: :system do
   it '新規筋トレ投稿画面から筋トレの記録（種目名、トレーニング時間、重量、回数、セット数）を登録できること' do
     login_as(user)
     visit new_workout_path
+    select '胸', from: '筋トレ部位'
     fill_in '種目名', with: 'ベンチプレス'
     fill_in 'トレーニーング時間(分)', with: '30'
     fill_in '重量', with: '80.5'
