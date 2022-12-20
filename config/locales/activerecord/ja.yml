@@ -41,7 +41,7 @@ ja:
         repetition_count: "回数"
         set_count: "セット数"
         workout_memo: "メモ"
-        body_part_name: "筋トレ部位"
+        body_part_ids: "筋トレ部位"
   enums:
     user:
       sex:

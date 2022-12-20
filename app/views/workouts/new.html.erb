@@ -11,8 +11,10 @@
       <%= f.text_field :workout_title, class: "input input-bordered" %>
     </div>
     <div class="form-control">
-      <%= f.label :body_part_name %>
-      <%= f.select :body_part_name, BodyPart.pluck(:body_part_name), {include_blank: '選択してください'}, class: "input input-bordered" %>
+      <%= f.label :body_part_ids %>
+      <%= f.collection_check_boxes(:body_part_ids, BodyPart.all, :id, :body_part_name, {include_hidden: false}, {class: "checkbox"}) do |body_part| %>
+        <%= body_part.label { body_part.check_box + body_part.text }%>
+      <% end%>
     </div>
     <div class="form-control">
       <%= f.label :workout_time %>
