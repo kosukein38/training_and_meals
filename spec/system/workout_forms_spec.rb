@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Workouts", type: :system do
+RSpec.describe "WorkoutForms", type: :system do
   let(:user) { create(:user) }
 
   xit '新規筋トレ投稿画面から筋トレの記録（種目名、トレーニング時間、重量、回数、セット数）を登録できること' do

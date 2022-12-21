@@ -7,6 +7,6 @@ FactoryBot.define do
     repetition_count { 1 }
     set_count { 1 }
     workout_memo { "MyText" }
-    user { nil }
+    association :user
   end
 end
