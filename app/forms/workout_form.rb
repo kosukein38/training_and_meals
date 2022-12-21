@@ -13,7 +13,14 @@ class WorkoutForm
   attribute :user_id, :integer
   attribute :workout_id, :integer
 
+  validates :workout_date, presence: true
+  validates :workout_title, presence: true
   validates :body_part_ids, presence: true
+  validates :workout_time, presence: true
+  validates :workout_weight, presence: true
+  validates :repetition_count, presence: true
+  validates :set_count, presence: true
+
 
   def save
     return false if invalid?
