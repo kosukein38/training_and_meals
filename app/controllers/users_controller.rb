@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
 
+  def show
+    @user = User.find(current_user.id)
+    @workouts = Workout.includes(:user).order(created_at: :desc)
+  end
+
   def new
     @user = User.new
   end
@@ -19,5 +24,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def set_workout
+    @board = current_user.workouts.find(params[:id])
   end
 end

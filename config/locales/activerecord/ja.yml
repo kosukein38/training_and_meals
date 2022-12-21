@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       user: "ユーザー"
+      workout: "筋トレ投稿"
     attributes:
       user:
         name: 名前
@@ -22,6 +23,25 @@ ja:
         twitter_link: "Twitterリンク"
         facebook_link: "Facebookリンク"
         instagram_link: "Instagramリンク"
+      workout:
+        workout_date: "筋トレ日"
+        workout_title: "種目名"
+        workout_time: "トレーニーング時間(分)"
+        workout_weight: "重量"
+        repetition_count: "回数"
+        set_count: "セット数"
+        workout_memo: "メモ"
+  activemodel:
+    attributes:
+      workout_form:
+        workout_date: "筋トレ日"
+        workout_title: "種目名"
+        workout_time: "トレーニーング時間(分)"
+        workout_weight: "重量"
+        repetition_count: "回数"
+        set_count: "セット数"
+        workout_memo: "メモ"
+        body_part_ids: "筋トレ部位"
   enums:
     user:
       sex:
