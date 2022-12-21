@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
 
+  def show
+    @user = User.find(current_user.id)
+    @workouts = Workout.includes(:user).order(created_at: :desc)
+  end
+
   def new
     @user = User.new
   end
@@ -13,11 +18,6 @@ class UsersController < ApplicationController
       flash.now['danger'] = t('.fail')
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def show
-    @user = User.find(current_user.id)
-    @workouts = Workout.includes(:user).order(created_at: :desc)
   end
 
   private

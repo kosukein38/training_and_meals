@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Workouts", type: :system do
+RSpec.describe 'Workouts' do
   let(:user) { create(:user) }
 
   xit '新規筋トレ投稿画面から筋トレの記録（種目名、トレーニング時間、重量、回数、セット数）を登録できること' do
@@ -8,7 +8,7 @@ RSpec.describe "Workouts", type: :system do
     visit new_workout_path
     fill_in '筋トレ日', with: '2022-12-18 14:33:52'
     fill_in '種目名', with: 'ベンチプレス'
-    check "胸"
+    check '胸'
     fill_in 'トレーニーング時間(分)', with: '30'
     fill_in '重量', with: '80.5'
     fill_in '回数', with: '10'

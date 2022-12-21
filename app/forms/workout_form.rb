@@ -1,5 +1,5 @@
 class WorkoutForm
-  include ActiveModel::Model 
+  include ActiveModel::Model
   include ActiveModel::Attributes
 
   attribute :workout_date, :datetime
@@ -21,12 +21,13 @@ class WorkoutForm
   validates :repetition_count, presence: true
   validates :set_count, presence: true
 
-
   def save
     return false if invalid?
-    workout = Workout.create(workout_date: workout_date, workout_title: workout_title, workout_time: workout_time, workout_weight: workout_weight, repetition_count: repetition_count, set_count: set_count, workout_memo: workout_memo, user_id: user_id)
+
+    workout = Workout.create(workout_date:, workout_title:, workout_time:,
+                             workout_weight:, repetition_count:, set_count:, workout_memo:, user_id:)
     body_part_ids.map(&:to_i).each do |body_part_id|
-      WorkoutBodyPart.create(workout_id: workout.id, body_part_id: body_part_id)
+      WorkoutBodyPart.create(workout_id: workout.id, body_part_id:)
     end
   end
 end
