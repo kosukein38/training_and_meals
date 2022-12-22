@@ -5,3 +5,18 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+BodyPart.create!(
+  body_part_name: "胸"
+)
+BodyPart.create!(
+  body_part_name: "肩"
+)
+BodyPart.create!(
+  body_part_name: "背中"
+)
+BodyPart.create!(
+  body_part_name: "腕"
+)
+BodyPart.create!(
+  body_part_name: "脚"
+)
