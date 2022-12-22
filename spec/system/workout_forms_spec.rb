@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'WorkoutForms' do
   let(:user) { create(:user) }
 
-  xit '新規筋トレ投稿画面から筋トレの記録（種目名、トレーニング時間、重量、回数、セット数）を登録できること' do
+  it '新規筋トレ投稿画面から筋トレの記録（種目名、トレーニング時間、重量、回数、セット数）を登録できること' do
     login_as(user)
     visit new_workout_path
     fill_in '筋トレ日', with: '2022-12-18 14:33:52'

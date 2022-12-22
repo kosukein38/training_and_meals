@@ -1,4 +1,7 @@
-#require 'active_model/type'
-Rails.application.config.to_prepare do
-  ActiveModel::Type.register(:array, TypeArray)
+class TypeArray < ActiveModel::Type::Value
+  def cast_value(value)
+    value
+  end
 end
+
+ActiveModel::Type.register(:array, TypeArray)
