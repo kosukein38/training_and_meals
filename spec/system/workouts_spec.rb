@@ -64,4 +64,17 @@ RSpec.describe 'Workouts' do
     expect(page).to have_content '筋トレ投稿を更新しました'
     expect(page).to have_current_path user_path(user), ignore_query: true
   end
+
+  it '筋トレ編集画面で削除をクリックすると削除できること' do
+    login_as(user)
+    visit user_path(user)
+    click_on 'ベンチプレス'
+    click_button '編集'
+    page.accept_confirm do
+      click_on '削除する'
+    end
+    expect(page).to have_content '筋トレ投稿を削除しました'
+    expect(page).not_to have_content '筋トレ投稿を削除しました'
+    expect(page).to have_current_path user_path(user), ignore_query: true
+  end
 end
