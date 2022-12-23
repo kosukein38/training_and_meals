@@ -35,6 +35,7 @@ RSpec.describe 'Workouts' do
     visit user_path(user)
     click_on 'ベンチプレス'
     expect(page).to have_content '筋トレ詳細'
+    # current_pathのチェック追加
   end
 
   it '筋トレ詳細画面の編集ボタンをクリックすると編集画面に遷移すること' do
@@ -43,5 +44,24 @@ RSpec.describe 'Workouts' do
     click_on 'ベンチプレス'
     click_button '編集'
     expect(page).to have_content '筋トレ編集'
+    # current_pathのチェック追加
+  end
+
+  it '筋トレ編集から項目を入力して更新をクリックすると更新できること' do
+    login_as(user)
+    visit user_path(user)
+    click_on 'ベンチプレス'
+    click_button '編集'
+    fill_in '筋トレ日', with: Time.current
+    fill_in '種目名', with: 'ベンチプレス'
+    check '胸'
+    check '肩'
+    fill_in 'トレーニーング時間(分)', with: 40
+    fill_in '重量', with: 90.4
+    fill_in '回数', with: 10
+    fill_in 'セット数', with: 3
+    click_button '更新する'
+    expect(page).to have_content '筋トレ投稿を更新しました'
+    expect(page).to have_current_path user_path(user), ignore_query: true
   end
 end
