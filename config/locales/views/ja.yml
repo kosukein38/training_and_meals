@@ -42,3 +42,5 @@ ja:
   workouts:
     new:
       title: "筋トレ新規投稿"
+    show:
+      title: "筋トレ詳細"
