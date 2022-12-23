@@ -44,3 +44,7 @@ ja:
       title: "筋トレ新規投稿"
     show:
       title: "筋トレ詳細"
+      to_edit_page: "編集"
+    edit:
+      title: "筋トレ編集"
+      submit: "更新"

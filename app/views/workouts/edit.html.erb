@@ -1,0 +1,44 @@
+<div class="container mx-auto px-8 w-full">
+  <h1 class="text-5xl font-bold"><%= t '.title' %></h1>
+  <%= form_with model: @workout_form, url: edit_workout_path(@workout_form), local: true do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+    <div class="form-control">
+      <%= f.label :workout_date %>
+      <%= f.date_field :workout_date, class: "input input-bordered" %>
+    </div>
+    <div class="form-control">
+      <%= f.label :workout_title %>
+      <%= f.text_field :workout_title, class: "input input-bordered" %>
+    </div>
+    <div class="form-control">
+      <%= f.label :body_part_ids %>
+      <%= f.collection_check_boxes(:body_part_ids, BodyPart.all, :id, :body_part_name, {include_hidden: false}, {class: "checkbox"}) do |body_part| %>
+        <%= body_part.label { body_part.check_box + body_part.text }%>
+      <% end%>
+    </div>
+    <div class="form-control">
+      <%= f.label :workout_time %>
+      <%= f.number_field :workout_time, class: "input input-bordered" %>
+    </div>
+    <div class="form-control">
+      <%= f.label :workout_weight %>
+      <%= f.number_field :workout_weight, step: "0.1", class: "input input-bordered" %>
+    </div>
+    <div class="form-control">
+      <%= f.label :repetition_count %>
+      <%= f.number_field :repetition_count, class: "input input-bordered" %>
+    </div>
+    <div class="form-control">
+      <%= f.label :set_count %>
+      <%= f.number_field :set_count, class: "input input-bordered" %>
+    </div>
+    <div class="form-control">
+      <%= f.label :workout_memo %>
+      <%= f.text_area :workout_memo, class: "input input-bordered" %>
+    </div>
+    <div class="form-control mt-6">
+      <%= f.submit class: "btn btn-primary"%>
+    </div>
+    <% end %>
+  </div>
+</div>

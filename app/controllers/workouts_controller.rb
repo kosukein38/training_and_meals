@@ -1,11 +1,11 @@
 class WorkoutsController < ApplicationController
-  before_action :set_user, only: %i[new show create]
-  before_action :set_workout, only: %i[show]
+  before_action :set_user, only: %i[new show create, edit]
+  before_action :set_workout, only: %i[show edit]
 
   def show; end
 
   def new
-    @workout_form = WorkoutForm.new
+    @workout_form = WorkoutForm.new(@workout)
   end
 
   def create
@@ -16,6 +16,10 @@ class WorkoutsController < ApplicationController
       flash.now['danger'] = t('defaults.message.not_created', item: Workout.model_name.human)
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def edit
+    @workout_form = Workout.find(params[:id])
   end
 
   private
