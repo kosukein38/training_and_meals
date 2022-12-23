@@ -9,6 +9,8 @@ ja:
       require_login: "ログインしてください"
       created: "%{item}を作成しました"
       not_created: "%{item}を作成できませんでした"
+      updated: "%{item}を更新しました"
+      not_updated: "%{item}を更新できませんでした"
     profile: "プロフィール"
   users:
     new:
