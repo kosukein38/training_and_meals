@@ -1,6 +1,6 @@
 class WorkoutsController < ApplicationController
-  before_action :set_user, only: %i[new show create edit update]
-  before_action :set_workout, only: %i[show edit]
+  before_action :set_user, only: %i[new show create edit update destroy]
+  before_action :set_workout, only: %i[show edit destroy]
 
   def show; end
 
@@ -30,6 +30,11 @@ class WorkoutsController < ApplicationController
       flash.now['danger'] = t('defaults.message.not_updated', item: Workout.model_name.human)
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @workout.destroy!
+    redirect_to user_path(@user.id), success: t('defaults.message.deleted', item: Workout.model_name.human)
   end
 
   private

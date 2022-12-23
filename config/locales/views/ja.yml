@@ -11,6 +11,7 @@ ja:
       not_created: "%{item}を作成できませんでした"
       updated: "%{item}を更新しました"
       not_updated: "%{item}を更新できませんでした"
+      deleted: "%{item}を削除しました"
     profile: "プロフィール"
   users:
     new:
@@ -50,3 +51,6 @@ ja:
     edit:
       title: "筋トレ編集"
       submit: "更新"
+    destroy:
+      success: "削除しました"
+      delete_a_workout: "削除する"
