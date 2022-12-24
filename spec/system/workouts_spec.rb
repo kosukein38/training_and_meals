@@ -1,8 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe 'Workouts' do
+RSpec.describe 'Workouts', js: true do
   let(:user) { create(:user) }
-  let!(:workout) do
+
+  before do
     WorkoutForm.new(
       workout_date: Time.current,
       workout_title: 'ベンチプレス',
@@ -74,7 +75,6 @@ RSpec.describe 'Workouts' do
       click_on '削除する'
     end
     expect(page).to have_content '筋トレ投稿を削除しました'
-    expect(page).not_to have_content '筋トレ投稿を削除しました'
     expect(page).to have_current_path user_path(user), ignore_query: true
   end
 end

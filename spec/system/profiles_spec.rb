@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Profiles', js: true do
-  let(:user) { create(:user) }
+  let!(:user) { create(:user) }
 
   it 'プロフィール登録すると、プロフィール表示画面に遷移し、情報が表示されること' do
     login_as(user)
