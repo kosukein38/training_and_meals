@@ -1,6 +1,6 @@
 <div class="container mx-auto px-8 w-full">
   <h1 class="text-5xl font-bold"><%= t '.title' %></h1>
-  <%= form_with model: @workout_form, url: workouts_path, local: true do |f| %>
+  <%= form_with model: @workout_form, url: workout_path, local: true do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
     <div class="form-control">
       <%= f.label :workout_date %>
@@ -37,8 +37,11 @@
       <%= f.text_area :workout_memo, class: "input input-bordered" %>
     </div>
     <div class="form-control mt-6">
-      <%= f.submit '投稿する', class: "btn btn-primary"%>
+      <%= f.submit class: "btn btn-primary"%>
     </div>
     <% end %>
+    <div class="btn btn-secondary flex justify-center">
+      <%= link_to (t 'workouts.destroy.delete_a_workout'), workout_path(@workout), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか?' } %>
+    </div>
   </div>
 </div>

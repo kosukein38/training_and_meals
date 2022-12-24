@@ -1,4 +1,8 @@
+<h1 class="text-5xl font-bold"><%= t '.title' %></h1>
 <h1 class="text-5xl font-bold"><%= @workout.workout_date.strftime("%Y年%m月%d日") %></h1>
 <h1 class="text-5xl font-bold"><%= @workout.workout_title %></h1>
 <h1 class="text-5xl font-bold"><%= @workout.body_parts.pluck(:body_part_name) %></h1>
 <h1 class="text-5xl font-bold">id <%= params[:id] %></h1>
+<button class="btn btn-active btn-primary">
+  <%= link_to (t '.to_edit_page'), edit_workout_path(@workout) %>
+</button>

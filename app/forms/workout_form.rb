@@ -30,4 +30,17 @@ class WorkoutForm
       WorkoutBodyPart.create(workout_id: workout.id, body_part_id:)
     end
   end
+
+  def update
+    return false if invalid?
+
+    workout = Workout.find(workout_id)
+    workout.update!(workout_date:, workout_title:, workout_time:, workout_weight:, repetition_count:, set_count:, workout_memo:,
+                    user_id:)
+    body_part_ids.map(&:to_i).each do |body_part_id|
+      next if WorkoutBodyPart.find_by(workout_id:, body_part_id:)
+
+      WorkoutBodyPart.create(workout_id:, body_part_id:)
+    end
+  end
 end

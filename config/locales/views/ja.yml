@@ -9,6 +9,9 @@ ja:
       require_login: "ログインしてください"
       created: "%{item}を作成しました"
       not_created: "%{item}を作成できませんでした"
+      updated: "%{item}を更新しました"
+      not_updated: "%{item}を更新できませんでした"
+      deleted: "%{item}を削除しました"
     profile: "プロフィール"
   users:
     new:
@@ -42,3 +45,12 @@ ja:
   workouts:
     new:
       title: "筋トレ新規投稿"
+    show:
+      title: "筋トレ詳細"
+      to_edit_page: "編集"
+    edit:
+      title: "筋トレ編集"
+      submit: "更新"
+    destroy:
+      success: "削除しました"
+      delete_a_workout: "削除する"
