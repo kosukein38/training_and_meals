@@ -1,0 +1,34 @@
+<div class="container mx-auto px-8 w-full">
+  <h1 class="text-5xl font-bold"><%= t '.title' %></h1>
+  <%= form_with model: @meal_form, url: meals_path, local: true do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+    <div class="form-control">
+      <%= f.label :meal_period %>
+      <%= f.select :meal_period, Meal.meal_periods_i18n.invert.map{|key, value| [key, value]}, class: "input input-bordered" %>
+    </div>
+    <div class="form-control">
+      <%= f.label :meal_type %>
+      <%= f.select :meal_type, Meal.meal_types_i18n.invert.map{|key, value| [key, value]}, class: "input input-bordered" %>
+    </div>
+    <div class="form-control mt-6">
+      <%= f.label :meal_title %>
+      <%= f.text_field :meal_title, class: "input input-bordered" %>
+    </div>
+    <div class="form-control">
+      <%= f.label :meal_weight %>
+      <%= f.number_field :meal_weight, class: "input input-bordered" %>
+    </div>
+    <div class="form-control">
+      <%= f.label :meal_calorie %>
+      <%= f.number_field :meal_calorie, class: "input input-bordered" %>
+    </div>
+    <div class="form-control mt-10">
+      <%= f.label :meal_memo %>
+      <%= f.text_area :meal_memo, class: "input input-bordered" %>
+    </div>
+    <div class="form-control mt-6">
+      <%= f.submit '投稿する', class: "btn btn-primary"%>
+    </div>
+    <% end %>
+  </div>
+</div>

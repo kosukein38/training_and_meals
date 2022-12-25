@@ -32,6 +32,10 @@ ja:
         set_count: "セット数"
         workout_memo: "メモ"
         body_part_ids: "筋トレ部位"
+      meal:
+        meal_period: "食事タイミング"
+        meal_type: "食事タイプ"
+        meal_memo: "メモ"
   activemodel:
     attributes:
       workout_form:

@@ -54,3 +54,6 @@ ja:
     destroy:
       success: "削除しました"
       delete_a_workout: "削除する"
+  meals:
+    new:
+      title: "食事新規投稿"
