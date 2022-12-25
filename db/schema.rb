@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_18_095639) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_25_032543) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,6 +46,26 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_18_095639) do
     t.string "body_part_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "meal_details", force: :cascade do |t|
+    t.string "meal_title", null: false
+    t.integer "meal_weight", null: false
+    t.integer "meal_calorie", null: false
+    t.bigint "meal_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["meal_id"], name: "index_meal_details_on_meal_id"
+  end
+
+  create_table "meals", force: :cascade do |t|
+    t.integer "meal_period"
+    t.integer "meal_type"
+    t.text "meal_memo"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_meals_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -97,6 +117,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_18_095639) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "meal_details", "meals"
+  add_foreign_key "meals", "users"
   add_foreign_key "workout_body_parts", "body_parts"
   add_foreign_key "workout_body_parts", "workouts"
   add_foreign_key "workouts", "users"
