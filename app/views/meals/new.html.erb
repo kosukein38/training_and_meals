@@ -4,11 +4,11 @@
   <%= render 'shared/error_messages', object: f.object %>
     <div class="form-control">
       <%= f.label :meal_period %>
-      <%= f.select :meal_period, Meal.meal_periods_i18n.invert.map{|key, value| [key, value]}, class: "input input-bordered" %>
+      <%= f.select :meal_period, Meal.meal_periods_i18n.invert.map{|key, value| [key, Meal.meal_periods[value]]}, class: "input input-bordered" %>
     </div>
     <div class="form-control">
       <%= f.label :meal_type %>
-      <%= f.select :meal_type, Meal.meal_types_i18n.invert.map{|key, value| [key, value]}, class: "input input-bordered" %>
+      <%= f.select :meal_type, Meal.meal_types_i18n.invert.map{|key, value| [key, Meal.meal_types[value]]}, class: "input input-bordered" %>
     </div>
     <div class="form-control mt-6">
       <%= f.label :meal_title %>

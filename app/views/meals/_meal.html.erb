@@ -2,7 +2,7 @@
   <div class="card w-96 bg-base-100 shadow-xl">
     <div class="card-body">
       <h4 class="card-title">
-        <%= meal.meal_period %>
+        <%= meal.meal_period_i18n %>
       </h4>
       <h4><%= link_to meal.meal_details.find(meal.id).meal_title, "#" %></h4>
       <p><%= meal.meal_details.find(meal.id).meal_calorie %>kcal</p>
