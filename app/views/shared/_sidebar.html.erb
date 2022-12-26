@@ -4,16 +4,28 @@
     <li><%= link_to 'タイムライン', '#' %></li>
     <li><%= link_to 'お気に入り', '#' %></li>
   </ul>
-  <ul class="menu bg-base-100 my-8">
-    <li><%= link_to '新規投稿作成', new_workout_path %><li>
-    <li><%= link_to '下書き一覧', '#' %></li>
-  </ul>
-  <div class="avatar">
+
+  <div class="dropdown dropdown-right my-8">
+    <label tabindex="0" class="btn btn-ghost">新規投稿作成</label>
+    <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+      <li><%= link_to '筋トレ投稿作成', new_workout_path %></li>
+      <li><%= link_to '食事投稿作成', new_meal_path %></li>
+    </ul>
+  </div>
+
+  <div>
+    <ul class="menu bg-base-100">
+      <li><%= link_to '下書き一覧', '#' %></li>
+    </ul>
+  </div>
+
+  <div class="avatar my-8">
     <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
       <%= image_tag @user.avatar.variant(:thumb) if @user.avatar.attached? %>
     </div>
   </div>
-    <ul class="menu bg-base-100 my-8">
+
+  <ul class="menu bg-base-100 my-8">
     <li><%= link_to 'フォロー/フォロワー', '#' %><li>
   </ul>
 </div>
