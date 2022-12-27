@@ -8,7 +8,7 @@
         <input type="text" placeholder="Search" class="input input-bordered" />
       </div>
       <div class="dropdown dropdown-end">
-        <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+        <label tabindex="0" class="btn btn-ghost btn-circle avatar" id="header-avatar">
           <div class="w-10 rounded-full">
             <%= image_tag @user.avatar.variant(:thumb) if @user.avatar.attached? %>
           </div>
