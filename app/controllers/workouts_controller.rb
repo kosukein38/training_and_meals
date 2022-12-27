@@ -40,7 +40,7 @@ class WorkoutsController < ApplicationController
   private
 
   def workout_form_params
-    params.require(:workout_form).permit(:workout_date, :workout_title, :workout_time, 
+    params.require(:workout_form).permit(:workout_date, :workout_title, :workout_time,
                                          :workout_weight, :repetition_count,
                                          :set_count, :workout_memo, body_part_ids: []).merge(user_id: current_user.id)
   end

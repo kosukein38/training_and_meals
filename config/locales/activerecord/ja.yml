@@ -3,6 +3,7 @@ ja:
     models:
       user: "ユーザー"
       workout: "筋トレ投稿"
+      meal: "食事投稿"
     attributes:
       user:
         name: 名前
@@ -32,6 +33,10 @@ ja:
         set_count: "セット数"
         workout_memo: "メモ"
         body_part_ids: "筋トレ部位"
+      meal:
+        meal_period: "食事タイミング"
+        meal_type: "食事タイプ"
+        meal_memo: "メモ"
   activemodel:
     attributes:
       workout_form:
@@ -43,6 +48,23 @@ ja:
         set_count: "セット数"
         workout_memo: "メモ"
         body_part_ids: "筋トレ部位"
+      meal_form:
+        meal_period: "食事タイミング"
+        meal_type: "食事タイプ"
+        meal_memo: "メモ"
+        meal_title_first: "メニューその1"
+        meal_weight_first: "量(g)"
+        meal_calorie_first: "カロリー"
+        meal_title_second: "メニューその2"
+        meal_weight_second: "量(g)"
+        meal_calorie_second: "カロリー"
+        meal_title_third: "メニューその3"
+        meal_weight_third: "量(g)"
+        meal_calorie_third: "カロリー"
+        meal_title: "献立名"
+        meal_weight: "量(g)"
+        meal_calorie: "カロリー"
+
   enums:
     user:
       sex:
@@ -54,3 +76,14 @@ ja:
         level3: "レベル3"
         level4: "レベル4"
         level5: "レベル5"
+    meal:
+      meal_period:
+        breakfast: "朝食"
+        lunch: "昼食"
+        dinner: "夕食"
+        nosh: "間食"
+      meal_type:
+        self_catering: "自炊"
+        eating_out: "外食"
+        to_go: "テイクアウト"
+        convenience_store: "コンビニ飯"

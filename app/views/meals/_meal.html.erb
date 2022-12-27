@@ -1,0 +1,11 @@
+<div id="meal-id-<%= meal.id %>">
+  <div class="card w-96 bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h4 class="card-title">
+        <%= meal.meal_period_i18n %>
+      </h4>
+      <h4><%= link_to meal.meal_details.pluck(:meal_title).join(','), "#" %></h4>
+      <p><%= meal.meal_details.pluck(:meal_calorie).sum %>kcal</p>
+    </div>
+  </div>
+</div>

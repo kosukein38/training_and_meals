@@ -2,6 +2,8 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
 
   has_many :workouts, dependent: :destroy
+  has_many :meals, dependent: :destroy
+  has_many :meal_details, through: :meals
 
   has_one_attached :avatar do |attachable|
     attachable.variant :thumb, resize_to_limit: [200, 200]

@@ -1,8 +1,22 @@
+<h1 class="text-5xl font-bold"><%= @user.name %>さんの<%= t '.title' %></h1>
+<h1 class="text-5xl font-bold text-amber-700">
+  <% if @user.target_calorie.present? %>
+    今日のノルマはあと <%= @user.target_calorie - @user.meal_details.pluck(:meal_calorie).sum %> kcalです
+  <% else %>
+    プロフィール設定して、目標カロリーを設定してください。
+  <% end%>
+</h1>
 <div class="container mx-auto px-8 w-full flex flex-row justify-between">
   <div>
-    <h1 class="text-5xl font-bold"><%= @user.name %>さんの<%= t '.title' %></h1>
     <% if @workouts.present? %>
       <%= render @workouts %>
+    <% else %>
+      <p><%= t('.no_result') %></p>
+    <% end %>
+  </div>
+  <div>
+    <% if @meals.present? %>
+      <%= render @meals %>
     <% else %>
       <p><%= t('.no_result') %></p>
     <% end %>
