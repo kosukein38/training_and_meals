@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Meals", type: :system do
+RSpec.describe 'Meals' do
   let(:user) { create(:user) }
 
   before do
@@ -39,5 +39,4 @@ RSpec.describe "Meals", type: :system do
     expect(page).to have_content '食事投稿を作成しました'
     expect(page).to have_current_path user_path(user), ignore_query: true
   end
-
 end

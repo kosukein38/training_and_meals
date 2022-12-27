@@ -18,18 +18,25 @@ class MealForm
   attribute :meal_calorie_third, :integer
 
   attribute :meal_id, :big_integer
-  
+
   validates :meal_title_first, presence: true
   validates :meal_weight_first, presence: true
   validates :meal_calorie_first, presence: true
 
   def save
     return false if invalid?
+
     meal = Meal.create(meal_period:, meal_type:, meal_memo:, user_id:)
     meal.meal_details.build(meal_title: meal_title_first, meal_weight: meal_weight_first, meal_calorie: meal_calorie_first).save
-    meal.meal_details.build(meal_title: meal_title_second, meal_weight: meal_weight_second, meal_calorie: meal_calorie_second).save if meal_title_second.present?
-    meal.meal_details.build(meal_title: meal_title_third, meal_weight: meal_weight_third, meal_calorie: meal_calorie_third).save if meal_title_third.present?
-    return meal
-    #MealDetail.create(meal_title:, meal_weight:, meal_calorie:, meal_id: meal.id)
+    if meal_title_second.present?
+      meal.meal_details.build(meal_title: meal_title_second, meal_weight: meal_weight_second,
+                              meal_calorie: meal_calorie_second).save
+    end
+    if meal_title_third.present?
+      meal.meal_details.build(meal_title: meal_title_third, meal_weight: meal_weight_third,
+                              meal_calorie: meal_calorie_third).save
+    end
+    meal
+    # MealDetail.create(meal_title:, meal_weight:, meal_calorie:, meal_id: meal.id)
   end
 end
