@@ -10,17 +10,49 @@
       <%= f.label :meal_type %>
       <%= f.select :meal_type, Meal.meal_types_i18n.invert.map{|key, value| [key, Meal.meal_types[value]]}, class: "input input-bordered" %>
     </div>
-    <div class="form-control mt-6">
-      <%= f.label :meal_title %>
-      <%= f.text_field :meal_title, class: "input input-bordered" %>
-    </div>
-    <div class="form-control">
-      <%= f.label :meal_weight %>
-      <%= f.number_field :meal_weight, class: "input input-bordered" %>
-    </div>
-    <div class="form-control">
-      <%= f.label :meal_calorie %>
-      <%= f.number_field :meal_calorie, class: "input input-bordered" %>
+    <div class="flex">
+      <div class="flex-col">
+        <div class="form-control">
+          <%= f.label :meal_title_first %>
+          <%= f.text_field :meal_title_first, class: "input input-bordered" %>
+        </div>
+        <div class="form-control">
+          <%= f.label :meal_weight_first %>
+          <%= f.number_field :meal_weight_first, class: "input input-bordered" %>
+        </div>
+        <div class="form-control">
+          <%= f.label :meal_calorie_first %>
+          <%= f.number_field :meal_calorie_first, class: "input input-bordered" %>
+        </div>
+      </div>
+      <div class="flex-col">
+        <div class="form-control mt-6">
+          <%= f.label :meal_title_second %>
+          <%= f.text_field :meal_title_second, class: "input input-bordered" %>
+        </div>
+        <div class="form-control">
+          <%= f.label :meal_weight_second %>
+          <%= f.number_field :meal_weight_second, class: "input input-bordered" %>
+        </div>
+        <div class="form-control">
+          <%= f.label :meal_calorie_second %>
+          <%= f.number_field :meal_calorie_second, class: "input input-bordered" %>
+        </div>
+      </div>
+      <div class="flex-col">
+        <div class="form-control mt-6">
+          <%= f.label :meal_title_third %>
+          <%= f.text_field :meal_title_third, class: "input input-bordered" %>
+        </div>
+        <div class="form-control">
+          <%= f.label :meal_weight_third %>
+          <%= f.number_field :meal_weight_third, class: "input input-bordered" %>
+        </div>
+        <div class="form-control">
+          <%= f.label :meal_calorie_third %>
+          <%= f.number_field :meal_calorie_third, class: "input input-bordered" %>
+        </div>
+      </div>
     </div>
     <div class="form-control mt-10">
       <%= f.label :meal_memo %>

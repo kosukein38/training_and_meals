@@ -4,8 +4,8 @@
       <h4 class="card-title">
         <%= meal.meal_period_i18n %>
       </h4>
-      <h4><%= link_to meal.meal_details.find(meal.id).meal_title, "#" %></h4>
-      <p><%= meal.meal_details.find(meal.id).meal_calorie %>kcal</p>
+      <h4><%= link_to meal.meal_details.pluck(:meal_title).join(','), "#" %></h4>
+      <p><%= meal.meal_details.pluck(:meal_calorie).sum %>kcal</p>
     </div>
   </div>
 </div>
