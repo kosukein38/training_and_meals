@@ -3,8 +3,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(current_user.id)
-    @workouts = Workout.includes(:user).order(created_at: :desc)
-    @meals = Meal.includes(:user).order(created_at: :desc)
+    @workouts = @user.workouts.order(created_at: :desc)
+    @meals = @user.meals.includes(:meal_details).order(created_at: :desc)
   end
 
   def new
@@ -25,9 +25,5 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
-  end
-
-  def set_workout
-    @board = current_user.workouts.find(params[:id])
   end
 end

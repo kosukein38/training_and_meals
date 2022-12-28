@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resource :profile, only: %i[show edit update destroy]
   resources :workouts, only: %i[show new create edit update destroy]
   resources :meals, only: %i[show new create edit update destroy]
+  get 'home/workouts', to: 'home#workouts'
+  get 'home/meals', to: 'home#meals'
 end
