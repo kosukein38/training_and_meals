@@ -28,6 +28,7 @@ class MealsController < ApplicationController
     if @meal_form.update
       redirect_to user_path(@user.id), success: t('defaults.message.updated', item: Meal.model_name.human)
     else
+      debugger
       flash.now['danger'] = t('defaults.message.not_updated', item: Meal.model_name.human)
       render :edit, status: :unprocessable_entity
     end
