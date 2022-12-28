@@ -3,8 +3,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(current_user.id)
-    @workouts = Workout.includes(:user).order(created_at: :desc)
-    @meals = Meal.includes(:user).order(created_at: :desc)
+    @workouts = @user.workouts.order(created_at: :desc)
+    @meals = @user.meals.includes(:meal_details).order(created_at: :desc)
   end
 
   def new
