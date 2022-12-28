@@ -2,9 +2,6 @@ require 'rails_helper'
 
 RSpec.describe 'Users' do
   describe 'GET /new' do
-    xit 'returns http success' do
-      get '/users/new'
-      expect(response).to have_http_status(:success)
-    end
+    pending "add some examples (or delete) #{__FILE__}"
   end
 end
