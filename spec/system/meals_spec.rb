@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe 'Meals' do
+RSpec.describe 'Meals', js: true do
   let(:user) { create(:user) }
 
   before do
     MealForm.new(
-      meal_period: 'breakfast',
-      meal_type: 'self_catering',
+      meal_period: 1,
+      meal_type: 1,
       meal_title_first: '唐揚げ',
       meal_weight_first: 200,
       meal_calorie_first: 500,
@@ -37,6 +37,57 @@ RSpec.describe 'Meals' do
     fill_in 'メモ', with: '唐揚げおいしい'
     click_button '投稿する'
     expect(page).to have_content '食事投稿を作成しました'
+    expect(page).to have_current_path user_path(user), ignore_query: true
+  end
+
+  it 'マイページの食事投稿をクリックすると食事詳細画面が表示されること' do
+    login_as(user)
+    visit user_path(user)
+    click_on '昼食'
+    expect(page).to have_content '食事詳細'
+    # current_pathのチェック追加
+  end
+
+  it '食事詳細画面の編集ボタンをクリックすると編集画面に遷移すること' do
+    login_as(user)
+    visit user_path(user)
+    click_on '昼食'
+    click_button '編集'
+    expect(page).to have_content '食事編集'
+    # current_pathのチェック追加
+  end
+
+  it '食事編集から項目を入力して更新をクリックすると更新できること' do
+    login_as(user)
+    visit user_path(user)
+    click_on '昼食'
+    click_button '編集'
+    select '昼食', from: '食事タイミング'
+    select '自炊', from: '食事タイプ'
+    fill_in 'メニューその1', with: 'お弁当'
+    fill_in 'meal_meal_weight_first', with: 200
+    fill_in 'meal_meal_calorie_first', with: 500
+    fill_in 'メニューその2', with: '味噌汁'
+    fill_in 'meal_meal_weight_second', with: 120
+    fill_in 'meal_meal_calorie_second', with: 100
+    fill_in 'メニューその3', with: 'ジュース'
+    fill_in 'meal_meal_weight_third', with: 100
+    fill_in 'meal_meal_calorie_third', with: 80
+    fill_in 'メモ', with: 'お弁当おいしい'
+    click_button '更新する'
+    expect(page).to have_content '食事投稿を更新しました'
+    expect(page).to have_current_path user_path(user), ignore_query: true
+  end
+
+  it '食事編集画面で削除をクリックすると削除できること' do
+    login_as(user)
+    visit user_path(user)
+    click_on '昼食'
+    click_button '編集'
+    page.accept_confirm do
+      click_on '削除する'
+    end
+    expect(page).to have_content '食事投稿を削除しました'
     expect(page).to have_current_path user_path(user), ignore_query: true
   end
 end

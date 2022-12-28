@@ -37,6 +37,23 @@ class MealForm
                               meal_calorie: meal_calorie_third).save
     end
     meal
-    # MealDetail.create(meal_title:, meal_weight:, meal_calorie:, meal_id: meal.id)
+  end
+
+  def update
+    return false if invalid?
+
+    meal = Meal.find(meal_id)
+    meal.update!(meal_period:, meal_type:, meal_memo:, user_id:)
+    MealDetail.where(meal_id: meal.id).delete_all
+    meal.meal_details.build(meal_title: meal_title_first, meal_weight: meal_weight_first, meal_calorie: meal_calorie_first).save
+    if meal_title_second.present?
+      meal.meal_details.build(meal_title: meal_title_second, meal_weight: meal_weight_second,
+                              meal_calorie: meal_calorie_second).save
+    end
+    if meal_title_third.present?
+      meal.meal_details.build(meal_title: meal_title_third, meal_weight: meal_weight_third,
+                              meal_calorie: meal_calorie_third).save
+    end
+    meal
   end
 end

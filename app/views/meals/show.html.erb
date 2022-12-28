@@ -1,0 +1,10 @@
+<h1 class="text-5xl font-bold"><%= t '.title' %></h1>
+<h1 class="text-5xl font-bold"><%= @meal.meal_period_i18n %></h1>
+<h1 class="text-5xl font-bold"><%= @meal.meal_type_i18n %></h1>
+<h1 class="text-5xl font-bold"><%= @meal.meal_details.pluck(:meal_title) %></h1>
+<h1 class="text-5xl font-bold"><%= @meal.meal_details.pluck(:meal_calorie) %></h1>
+<h1 class="text-5xl font-bold"><%= @meal.meal_details.pluck(:meal_weight) %></h1>
+<h1 class="text-5xl font-bold">id <%= params[:id] %></h1>
+<button class="btn btn-active btn-primary">
+  <%= link_to (t '.to_edit_page'), edit_meal_path(@meal) %>
+</button>
