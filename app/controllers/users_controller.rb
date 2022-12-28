@@ -26,8 +26,4 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
-
-  def set_workout
-    @board = current_user.workouts.find(params[:id])
-  end
 end

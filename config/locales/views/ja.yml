@@ -66,3 +66,10 @@ ja:
     destroy:
       success: "削除しました"
       delete_a_meal: "削除する"
+  home:
+    workouts:
+      title: "タイムライン -筋トレ-"
+      to_meals_page: "食事のタイムラインへ"
+    meals:
+      title: "タイムライン -食事-"
+      to_workouts_page: "筋トレのタイムラインへ"
