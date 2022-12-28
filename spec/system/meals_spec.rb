@@ -39,4 +39,55 @@ RSpec.describe 'Meals' do
     expect(page).to have_content '食事投稿を作成しました'
     expect(page).to have_current_path user_path(user), ignore_query: true
   end
+
+  it 'マイページの食事投稿をクリックすると食事詳細画面が表示されること' do
+    login_as(user)
+    visit user_path(user)
+    click_on '昼食'
+    expect(page).to have_content '食事詳細'
+    # current_pathのチェック追加
+  end
+
+  it '食事詳細画面の編集ボタンをクリックすると編集画面に遷移すること' do
+    login_as(user)
+    visit user_path(user)
+    click_on '昼食'
+    click_button '編集'
+    expect(page).to have_content '食事編集'
+    # current_pathのチェック追加
+  end
+
+  it '食事編集から項目を入力して更新をクリックすると更新できること' do
+    login_as(user)
+    visit user_path(user)
+    click_on '忠直'
+    click_button '編集'
+    select '昼食', from: '食事タイミング'
+    select '自炊', from: '食事タイプ'
+    fill_in 'メニューその1', with: 'お弁当'
+    fill_in 'meal_form_meal_weight_first', with: 200
+    fill_in 'meal_form_meal_calorie_first', with: 500
+    fill_in 'メニューその2', with: '味噌汁'
+    fill_in 'meal_form_meal_weight_second', with: 120
+    fill_in 'meal_form_meal_calorie_second', with: 100
+    fill_in 'メニューその3', with: 'ジュース'
+    fill_in 'meal_form_meal_weight_third', with: 100
+    fill_in 'meal_form_meal_calorie_third', with: 80
+    fill_in 'メモ', with: 'お弁当おいしい'
+    click_button '投稿する'
+    expect(page).to have_content '筋トレ投稿を更新しました'
+    expect(page).to have_current_path user_path(user), ignore_query: true
+  end
+
+  it '食事編集画面で削除をクリックすると削除できること' do
+    login_as(user)
+    visit user_path(user)
+    click_on '昼食'
+    click_button '編集'
+    page.accept_confirm do
+      click_on '削除する'
+    end
+    expect(page).to have_content '食事投稿を削除しました'
+    expect(page).to have_current_path user_path(user), ignore_query: true
+  end
 end
