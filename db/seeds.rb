@@ -1,22 +1,8 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
-BodyPart.create!(
-  body_part_name: "胸"
-)
-BodyPart.create!(
-  body_part_name: "肩"
-)
-BodyPart.create!(
-  body_part_name: "背中"
-)
-BodyPart.create!(
-  body_part_name: "腕"
-)
-BodyPart.create!(
-  body_part_name: "脚"
-)
+#筋トレ部位のデータ
+body_part_names = [ "胸", "肩", "背中", "腕", "脚"]
+body_part_names.each do |body_part_name|
+  BodyPart.create!(body_part_name: body_part_name)
+end
+
+#環境別のseedファイル読み込み
+load(Rails.root.join("db", "seeds", "#{Rails.env.downcase}.rb"))
