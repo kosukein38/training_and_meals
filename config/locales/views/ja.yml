@@ -57,3 +57,12 @@ ja:
   meals:
     new:
       title: "食事新規投稿"
+    show:
+      title: "食事詳細"
+      to_edit_page: "編集"
+    edit:
+      title: "食事編集"
+      submit: "更新"
+    destroy:
+      success: "削除しました"
+      delete_a_meal: "削除する"

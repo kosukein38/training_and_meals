@@ -2,9 +2,9 @@
   <div class="card w-96 bg-base-100 shadow-xl">
     <div class="card-body">
       <h4 class="card-title">
-        <%= meal.meal_period_i18n %>
+        <%= link_to meal.meal_period_i18n, meal_path(meal.id) %>
       </h4>
-      <h4><%= link_to meal.meal_details.pluck(:meal_title).join(','), "#" %></h4>
+      <h4><%= meal.meal_details.pluck(:meal_title).join(',')%></h4>
       <p><%= meal.meal_details.pluck(:meal_calorie).sum %>kcal</p>
     </div>
   </div>
