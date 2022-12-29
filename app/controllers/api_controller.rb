@@ -22,7 +22,6 @@ class ApiController < ApplicationController
     response = Net::HTTP.post_form(deepl_api_url, req_params)
     result = JSON.parse(response.body)
     translated_text = result["translations"][0]["text"]
-    debugger
     #translated_textをクエリに含ませ、Nutrition by API-NinjasのAPIを叩く
     nutrition_url = URI("https://nutrition-by-api-ninjas.p.rapidapi.com/v1/nutrition?query=#{translated_text}")
 
@@ -36,7 +35,6 @@ class ApiController < ApplicationController
 
     response = http.request(request)
     results = JSON.parse(response.body)
-    debugger
     final_results = []
     results.each do |result|
       final_results << "メニュー：#{result["name"]}"
