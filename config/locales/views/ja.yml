@@ -5,6 +5,7 @@ ja:
     register: "登録"
     logout: "ログアウト"
     about: "このアプリについて"
+    calorie_search: "カロリー検索したいメニューを入力してください"
     message:
       require_login: "ログインしてください"
       created: "%{item}を作成しました"

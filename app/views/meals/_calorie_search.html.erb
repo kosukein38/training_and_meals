@@ -1,0 +1,20 @@
+<h2 class="text-xl font-bold mt-6">カロリー検索</h2>
+<div class="mt-3">
+  <%= form_with url: calorie_search_path, method: :get, local: true do |f| %>
+    <div class="form-control">
+      <%= f.label :calorie_search, (t 'defaults.calorie_search') %>
+      <%= f.text_field :calorie_search, class: "input input-bordered" %>
+    </div>
+    <div class="form-control mt-3">
+      <%= f.submit '検索する', class: "btn btn-primary"%>
+    </div>
+  <% end %>
+</div>
+
+<div class="flex flex-col border-4 border-yellow-500 items-center">
+  <% response.each do |val| %>
+    <div class="text-xl font-bold">
+      <%= val %>
+    </div>
+  <% end %>
+</div>

@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :meals, only: %i[show new create edit update destroy]
   get 'home/workouts', to: 'home#workouts'
   get 'home/meals', to: 'home#meals'
+  get 'calorie_search', to: 'meals#calorie_search'
 end
