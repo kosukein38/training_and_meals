@@ -1,10 +1,11 @@
 <div id="workout-id-<%= workout.id %>">
-  <div class="card w-96 bg-base-100 shadow-xl">
+  <div class="card w-200 bg-base-100 shadow-xl">
     <div class="card-body">
-      <h4 class="card-title">
-        <%= link_to workout.workout_title, workout_path(workout.id) %>
-      </h4>
-      <p><%= workout.workout_date %></p>
+      <h4 class="card-title"><%= link_to workout.workout_title, workout_path(workout.id) %></h4>
+      <h5><%= workout.workout_date %></h5>
+      <div>
+        <%= image_tag workout.workout_images.last.variant(:thumb) if workout.workout_images.attached? %>
+      </div>
     </div>
   </div>
 </div>

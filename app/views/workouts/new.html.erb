@@ -36,6 +36,10 @@
       <%= f.label :workout_memo %>
       <%= f.text_area :workout_memo, class: "input input-bordered" %>
     </div>
+    <div class="form-control mt-10">
+      <%= f.label :workout_images %>
+      <%= f.file_field :workout_images, class: "input input-bordered", multiple: true %>
+    </div>
     <div class="form-control mt-6">
       <%= f.submit '投稿する', class: "btn btn-primary"%>
     </div>
