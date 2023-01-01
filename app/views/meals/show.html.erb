@@ -5,6 +5,14 @@
 <h1 class="text-5xl font-bold"><%= @meal.meal_details.pluck(:meal_calorie) %></h1>
 <h1 class="text-5xl font-bold"><%= @meal.meal_details.pluck(:meal_weight) %></h1>
 <h1 class="text-5xl font-bold">id <%= params[:id] %></h1>
+<% if @meal.meal_images.attached? %>
+  <% @meal.meal_images.each do |meal_image|%>
+  <div class="px-8">
+    <h2 class="text-xl py-6 font-bold">食事画像</h2>
+    <%= image_tag meal_image.variant(:thumb) if meal_image.representable? %>
+  </div>
+  <% end %>
+<% end %>
 <button class="btn btn-active btn-primary">
   <%= link_to (t '.to_edit_page'), edit_meal_path(@meal) %>
 </button>
