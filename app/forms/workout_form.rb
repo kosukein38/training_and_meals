@@ -34,6 +34,7 @@ class WorkoutForm
 
   def update
     return false if invalid?
+
     workout = Workout.find(workout_id)
     workout.update!(workout_date:, workout_title:, workout_time:, workout_weight:, repetition_count:, set_count:, workout_memo:,
                     workout_images:, user_id:)
