@@ -1,7 +1,7 @@
-class TypeArray < ActiveModel::Type::Value
-  def cast_value(value)
-    value
-  end
-end
+# class TypeArray < ActiveModel::Type::Value
+#   def cast_value(value)
+#     value
+#   end
+# end
 
-ActiveModel::Type.register(:array, TypeArray)
+# ActiveModel::Type.register(:array, TypeArray)
