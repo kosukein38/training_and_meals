@@ -58,6 +58,10 @@
       <%= f.label :meal_memo %>
       <%= f.text_area :meal_memo, class: "input input-bordered" %>
     </div>
+    <div class="form-control mt-10">
+      <%= f.label :meal_images %>
+      <%= f.file_field :meal_images, class: "input input-bordered", multiple: true %>
+    </div>
     <div class="form-control mt-6">
       <%= f.submit class: "btn btn-primary"%>
     </div>

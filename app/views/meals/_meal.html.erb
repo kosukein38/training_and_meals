@@ -6,6 +6,9 @@
       </h4>
       <h4><%= meal.meal_details.pluck(:meal_title).join(',')%></h4>
       <p><%= meal.meal_details.pluck(:meal_calorie).sum %>kcal</p>
+      <div>
+        <%= image_tag meal.meal_images.last.variant(:thumb) if meal.meal_images.attached? %>
+      </div>
     </div>
   </div>
 </div>

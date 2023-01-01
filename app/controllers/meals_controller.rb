@@ -88,14 +88,16 @@ class MealsController < ApplicationController
     params.require(:meal_form).permit(:meal_period, :meal_type, :meal_memo,
                                       :meal_title_first, :meal_weight_first, :meal_calorie_first,
                                       :meal_title_second, :meal_weight_second, :meal_calorie_second,
-                                      :meal_title_third, :meal_weight_third, :meal_calorie_third).merge(user_id: current_user.id)
+                                      :meal_title_third, :meal_weight_third, :meal_calorie_third,
+                                      meal_images: []).merge(user_id: current_user.id)
   end
 
   def meal_params
     params.require(:meal).permit(:meal_period, :meal_type, :meal_memo,
                                  :meal_title_first, :meal_weight_first, :meal_calorie_first,
                                  :meal_title_second, :meal_weight_second, :meal_calorie_second,
-                                 :meal_title_third, :meal_weight_third, :meal_calorie_third).merge(user_id: current_user.id, meal_id: params[:id])
+                                 :meal_title_third, :meal_weight_third, :meal_calorie_third,
+                                 meal_images: []).merge(user_id: current_user.id, meal_id: params[:id])
   end
 
   def set_user
