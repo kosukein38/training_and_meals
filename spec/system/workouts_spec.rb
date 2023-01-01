@@ -26,8 +26,10 @@ RSpec.describe 'Workouts', js: true do
     fill_in '重量', with: 80.5
     fill_in '回数', with: 10
     fill_in 'セット数', with: 3
+    attach_file 'workout_form[workout_images][]', "#{Rails.root}/spec/fixtures/images/sample_man.png"
     click_button '投稿する'
     expect(page).to have_content '筋トレ投稿を作成しました'
+    expect(page).to have_selector("img[src$='sample_man.png']")
     expect(page).to have_current_path user_path(user), ignore_query: true
   end
 
@@ -75,6 +77,26 @@ RSpec.describe 'Workouts', js: true do
       click_on '削除する'
     end
     expect(page).to have_content '筋トレ投稿を削除しました'
+    expect(page).to have_current_path user_path(user), ignore_query: true
+  end
+
+  it '筋トレ投稿編集画面から画像を変更できること' do
+    login_as(user)
+    visit user_path(user)
+    click_on 'ベンチプレス'
+    click_button '編集'
+    fill_in '筋トレ日', with: Time.current
+    fill_in '種目名', with: 'ベンチプレス'
+    check '胸'
+    check '肩'
+    fill_in 'トレーニーング時間(分)', with: 40
+    fill_in '重量', with: 90.4
+    fill_in '回数', with: 10
+    fill_in 'セット数', with: 3
+    attach_file 'workout[workout_images][]', "#{Rails.root}/spec/fixtures/images/sample.png"
+    click_button '更新する'
+    expect(page).to have_content '筋トレ投稿を更新しました'
+    expect(page).to have_selector("img[src$='sample.png']")
     expect(page).to have_current_path user_path(user), ignore_query: true
   end
 end
