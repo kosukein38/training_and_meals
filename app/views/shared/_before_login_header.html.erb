@@ -5,18 +5,18 @@
 
   <div class="hidden md:flex md:justify-end">
     <ul class="menu menu-horizontal px-1">
-      <li><%= link_to (t 'defaults.signup'), new_user_path %></li>
-      <li><%= link_to (t 'defaults.login'), login_path %></li>
+      <li><%= link_to (t 'user_sessions.new.to_register_page'), new_user_path %></li>
+      <li><%= link_to (t 'users.new.to_login_page'), login_path %></li>
     </ul>
   </div>
 
   <div class="btm-nav md:hidden">
     <ul class="menu menu-horizontal px-1">
       <li class="px-4">
-        <button class="btn"><%= link_to (t 'defaults.signup'), new_user_path %></button>
+        <button class="btn"><%= link_to (t 'user_sessions.new.to_register_page'), new_user_path %></button>
       </li>
       <li class="px-4">
-        <button class="btn btn-primary"><%= link_to (t 'defaults.login'), login_path %></button>
+        <button class="btn btn-primary"><%= link_to (t 'users.new.to_login_page'), login_path %></button>
       </li>
     </ul>
   </div>
