@@ -1,14 +1,24 @@
-<header>
-  <div class="navbar bg-primary">
-    <div class="flex-1">
-      <a class="btn btn-ghost normal-case text-xl">トレミル</a>
-    </div>
-    <div class="flex-none">
-      <ul class="menu menu-horizontal p-0">
-        <li><%= link_to (t 'defaults.about'), "#" %></li>
-        <li><%= link_to (t 'defaults.signup'), new_user_path %></li>
-        <li><%= link_to (t 'defaults.login'), login_path %></li>
-      </ul>
-    </div>
+<header class="navbar bg-primary text-primary-content flex justify-between">
+  <div class="flex-1">
+    <%= link_to (t 'defaults.top'), root_path, class: "btn btn-ghost normal-case text-xl" %>
   </div>
+
+  <div class="hidden md:flex md:justify-end">
+    <ul class="menu menu-horizontal px-1">
+      <li><%= link_to (t 'user_sessions.new.to_register_page'), new_user_path %></li>
+      <li><%= link_to (t 'users.new.to_login_page'), login_path %></li>
+    </ul>
+  </div>
+
+  <div class="btm-nav md:hidden">
+    <ul class="menu menu-horizontal px-1">
+      <li class="px-4">
+        <button class="btn"><%= link_to (t 'user_sessions.new.to_register_page'), new_user_path %></button>
+      </li>
+      <li class="px-4">
+        <button class="btn btn-primary"><%= link_to (t 'users.new.to_login_page'), login_path %></button>
+      </li>
+    </ul>
+  </div>
+
 </header>
