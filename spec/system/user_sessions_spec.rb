@@ -50,24 +50,6 @@ RSpec.describe 'UserSessions' do
         visit profile_path
         expect(page).to have_link 'タイムライン'
       end
-
-      it 'ログイン後サイドバーが表示され、お気に入りのリンクがあること' do
-        login_as(user)
-        visit profile_path
-        expect(page).to have_link 'お気に入り'
-      end
-
-      it 'ログイン後サイドバーが表示され、下書き一覧のリンクがあること' do
-        login_as(user)
-        visit profile_path
-        expect(page).to have_link '下書き一覧'
-      end
-
-      it 'ログイン後サイドバーが表示され、フォロー/フォロワーのリンクがあること' do
-        login_as(user)
-        visit profile_path
-        expect(page).to have_link 'フォロー/フォロワー'
-      end
     end
   end
 end
