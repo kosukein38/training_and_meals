@@ -100,8 +100,7 @@ RSpec.describe 'Workouts', js: true do
     expect(page).to have_current_path user_path(user), ignore_query: true
   end
 
-
-  it '他人の投稿を編集できないこと' do #コントローラーレベルのテスト(認可外でedit/:id => root_pathへリダイレクトもテストしたい)
+  it '他人の投稿を編集できないこと' do # コントローラーレベルのテスト(認可外でedit/:id => root_pathへリダイレクトもテストしたい)
     another_user = create(:user)
     login_as(another_user)
     visit home_workouts_path

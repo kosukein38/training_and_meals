@@ -32,7 +32,7 @@ class WorkoutForm
     end
   end
 
-  def update 
+  def update
     return false if invalid?
 
     workout = Workout.find(workout_id)
