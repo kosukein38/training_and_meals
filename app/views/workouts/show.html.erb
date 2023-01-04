@@ -1,4 +1,5 @@
 <h1 class="text-5xl font-bold"><%= t '.title' %></h1>
+<h1 class="text-5xl font-bold text-red-600"><%= User.find(@workout.user_id).name %></h1>
 <h1 class="text-5xl font-bold"><%= @workout.workout_date.strftime("%Y年%m月%d日") %></h1>
 <h1 class="text-5xl font-bold"><%= @workout.workout_title %></h1>
 <h1 class="text-5xl font-bold"><%= @workout.body_parts.pluck(:body_part_name) %></h1>
@@ -11,6 +12,9 @@
   </div>
   <% end %>
 <% end %>
-<button class="btn btn-active btn-primary">
-  <%= link_to (t '.to_edit_page'), edit_workout_path(@workout) %>
-</button>
+<% if logged_in? && current_user.own?(@workout) %>
+  <button class="btn btn-active btn-primary">
+    <%= link_to (t '.to_edit_page'), edit_workout_path(@workout) %>
+  </button>
+<% end %>
+
