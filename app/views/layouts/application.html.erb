@@ -14,11 +14,7 @@
   <body class="min-h-screen">
     <% if logged_in? %>
       <%= render 'shared/header' %>
-    <% else %>
-      <%= render 'shared/before_login_header' %>
-    <% end %>
       <%= render 'shared/flash_message' %>
-    <% if logged_in? %>
       <div class="main-wrapper flex">
         <%= render 'shared/sidebar' %>
         <div class="main-content container mx-auto">
@@ -26,6 +22,8 @@
         </div>
       </div>
     <% else %>
+      <%= render 'shared/before_login_header' %>
+      <%= render 'shared/flash_message' %>
       <%= yield %>
     <% end %>
     <%= render 'shared/footer' %>
