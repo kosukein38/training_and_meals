@@ -99,4 +99,20 @@ RSpec.describe 'Workouts', js: true do
     expect(page).to have_selector("img[src$='sample.png']")
     expect(page).to have_current_path user_path(user), ignore_query: true
   end
+
+
+  it '他人の投稿を編集できないこと' do #コントローラーレベルのテスト(認可外でedit/:id => root_pathへリダイレクトもテストしたい)
+    another_user = create(:user)
+    login_as(another_user)
+    visit home_workouts_path
+    click_on 'ベンチプレス'
+    expect(page).not_to have_content '編集'
+  end
+
+  it '未ログインでも投稿の詳細表示できること' do
+    visit home_workouts_path
+    click_on 'ベンチプレス'
+    expect(page).to have_content '筋トレ詳細'
+    # current_pathのチェック追加
+  end
 end

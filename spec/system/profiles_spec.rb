@@ -41,4 +41,10 @@ RSpec.describe 'Profiles', js: true do
     expect(page).to have_selector("img[src$='sample_man.png']")
     expect(page).to have_current_path profile_path, ignore_query: true
   end
+
+  it '未ログインではプロフィールの編集ができないこと' do
+    visit edit_profile_path
+    expect(page).to have_content 'ログインしてください'
+    expect(page).to have_current_path login_path, ignore_query: true
+  end
 end
