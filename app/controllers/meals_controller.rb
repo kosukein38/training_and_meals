@@ -3,18 +3,20 @@ require 'net/http'
 require 'openssl'
 
 class MealsController < ApplicationController
-  before_action :set_user, only: %i[new create show edit update destroy calorie_search]
-  before_action :set_meal, only: %i[show edit destroy]
+  skip_before_action :require_login, only: %i[show]
   before_action :set_response, only: %i[new edit]
 
-  def show; end
+  def show
+    @meal = Meal.find(params[:id])
+  end
 
   def new
     @meal_form = MealForm.new
   end
 
   def edit
-    @meal_form = Meal.find(params[:id])
+    @meal_form = current_user.meals.find_by(id: params[:id])
+    redirect_to root_url, status: :see_other if @meal_form.nil?
   end
 
   def create
@@ -39,6 +41,8 @@ class MealsController < ApplicationController
   end
 
   def destroy
+    @meal = current_user.meals.find_by(id: params[:id])
+    redirect_to root_url, status: :see_other if @meal.nil?
     @meal.destroy!
     redirect_to user_path(@user.id), success: t('defaults.message.deleted', item: Meal.model_name.human)
   end
@@ -98,14 +102,6 @@ class MealsController < ApplicationController
                                  :meal_title_second, :meal_weight_second, :meal_calorie_second,
                                  :meal_title_third, :meal_weight_third, :meal_calorie_third,
                                  meal_images: []).merge(user_id: current_user.id, meal_id: params[:id])
-  end
-
-  def set_user
-    @user = User.find(current_user.id)
-  end
-
-  def set_meal
-    @meal = Meal.find(params[:id])
   end
 
   def set_response

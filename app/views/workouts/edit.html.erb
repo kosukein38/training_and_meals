@@ -45,7 +45,7 @@
     </div>
     <% end %>
     <div class="btn btn-secondary flex justify-center">
-      <%= link_to (t 'workouts.destroy.delete_a_workout'), workout_path(@workout), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか?' } %>
+      <%= link_to (t 'workouts.destroy.delete_a_workout'), workout_path(params[:id]), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか?' } %>
     </div>
   </div>
 </div>

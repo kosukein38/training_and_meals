@@ -1,15 +1,17 @@
 class WorkoutsController < ApplicationController
-  before_action :set_user, only: %i[new show create edit update destroy]
-  before_action :set_workout, only: %i[show edit destroy]
+  skip_before_action :require_login, only: %i[show]
 
-  def show; end
+  def show
+    @workout = Workout.find(params[:id])
+  end
 
   def new
-    @workout_form = WorkoutForm.new(@workout)
+    @workout_form = WorkoutForm.new
   end
 
   def edit
-    @workout_form = Workout.find(params[:id])
+    @workout_form = current_user.workouts.find_by(id: params[:id])
+    redirect_to root_url, status: :see_other if @workout_form.nil?
   end
 
   def create
@@ -33,6 +35,8 @@ class WorkoutsController < ApplicationController
   end
 
   def destroy
+    @workout = current_user.workouts.find_by(id: params[:id])
+    redirect_to root_url, status: :see_other if @workout.nil?
     @workout.destroy!
     redirect_to user_path(@user.id), success: t('defaults.message.deleted', item: Workout.model_name.human)
   end
@@ -49,13 +53,5 @@ class WorkoutsController < ApplicationController
     params.require(:workout).permit(:workout_date, :workout_title, :workout_time,
                                     :workout_weight, :repetition_count,
                                     :set_count, :workout_memo, body_part_ids: [], workout_images: []).merge(user_id: current_user.id, workout_id: params[:id])
-  end
-
-  def set_user
-    @user = User.find(current_user.id)
-  end
-
-  def set_workout
-    @workout = Workout.find(params[:id])
   end
 end

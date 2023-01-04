@@ -94,4 +94,19 @@ RSpec.describe 'Meals', js: true do
     expect(page).to have_content '食事投稿を削除しました'
     expect(page).to have_current_path user_path(user), ignore_query: true
   end
+
+  it '他人の投稿を編集できないこと' do # コントローラーレベルのテスト(認可外でedit/:id => root_pathへリダイレクトもテストしたい)
+    another_user = create(:user)
+    login_as(another_user)
+    visit home_meals_path
+    click_on '昼食'
+    expect(page).not_to have_content '編集'
+  end
+
+  it '未ログインでも投稿の詳細表示できること' do
+    visit home_meals_path
+    click_on '昼食'
+    expect(page).to have_content '食事詳細'
+    # current_pathのチェック追加
+  end
 end
