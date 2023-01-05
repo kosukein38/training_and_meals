@@ -1,7 +1,7 @@
 <div class="sidebar hidden md:flex md:flex-col md:min-w-max md:p-4 md:bg-base-300">
   <nav class="text-center">
     <ul class="menu">
-      <li><%= link_to 'マイページ', user_path(@user.id) %><li>
+      <li><%= link_to 'マイページ', user_path(current_user.id) %><li>
       <li><%= link_to 'タイムライン', home_workouts_path %></li>
     </ul>
     <div class="menu dropdown dropdown-right my-4">
@@ -15,20 +15,20 @@
   <div class="side-profile text-center my-8 w-36">
     <div class="avatar">
       <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-        <%= image_tag @user.avatar.variant(:thumb) if @user.avatar.attached? %>
+        <%= image_tag current_user.avatar.variant(:thumb) if current_user.avatar.attached? %>
       </div>
     </div>
     <div class="user-info">
       <h2 class="mt-4 font-bold text-lg">ユーザー名</h2>
-      <p><%= @user.name %><p>
+      <p><%= current_user.name %><p>
       <h2 class="mt-4 font-bold text-lg ">自己紹介</h2>
-      <p class="text-left"><%= @user.introduction %><p>
+      <p class="text-left"><%= current_user.introduction %><p>
     </div>
   </div>
 </div>
 
 <div class="btm-nav z-50 md:hidden bg-base-300">
-  <%= link_to user_path(@user.id) do %>
+  <%= link_to user_path(current_user.id) do %>
     <button>
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
       <span class="btm-nav-label">マイページ</span>

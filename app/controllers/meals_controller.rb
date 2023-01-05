@@ -22,7 +22,7 @@ class MealsController < ApplicationController
   def create
     @meal_form = MealForm.new(meal_form_params)
     if @meal_form.save
-      redirect_to user_path(@user.id), success: t('defaults.message.created', item: Meal.model_name.human)
+      redirect_to user_path(current_user.id), success: t('defaults.message.created', item: Meal.model_name.human)
     else
       flash.now['danger'] = t('defaults.message.not_created', item: Meal.model_name.human)
       render :new, status: :unprocessable_entity
@@ -33,7 +33,7 @@ class MealsController < ApplicationController
     @meal_form = MealForm.new(meal_params)
 
     if @meal_form.update
-      redirect_to user_path(@user.id), success: t('defaults.message.updated', item: Meal.model_name.human)
+      redirect_to user_path(current_user), success: t('defaults.message.updated', item: Meal.model_name.human)
     else
       flash.now['danger'] = t('defaults.message.not_updated', item: Meal.model_name.human)
       render :edit, status: :unprocessable_entity
@@ -44,7 +44,7 @@ class MealsController < ApplicationController
     @meal = current_user.meals.find_by(id: params[:id])
     redirect_to root_url, status: :see_other if @meal.nil?
     @meal.destroy!
-    redirect_to user_path(@user.id), success: t('defaults.message.deleted', item: Meal.model_name.human)
+    redirect_to user_path(current_user), success: t('defaults.message.deleted', item: Meal.model_name.human)
   end
 
   def calorie_search
