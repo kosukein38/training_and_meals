@@ -1,24 +1,65 @@
-<h1 class="text-5xl font-bold"><%= @user.name %>さんの<%= t '.title' %></h1>
-<h1 class="text-5xl font-bold text-amber-700">
-  <% if @user.target_calorie.present? %>
-    今日のノルマはあと <%= @user.target_calorie - @user.meal_details.pluck(:meal_calorie).sum %> kcalです
-  <% else %>
-    プロフィール設定して、目標カロリーを設定してください。
-  <% end%>
-</h1>
-<div class="container mx-auto px-8 w-full flex flex-row justify-between">
-  <div>
-    <% if @workouts.present? %>
-      <%= render @workouts %>
-    <% else %>
-      <p><%= t('.no_result') %></p>
-    <% end %>
+<div class="profile m-8 flex flex-col">
+  <h1 class="text-xl font-bold"><%= @user.name %>さんの<%= t '.title' %></h1>
+  
+  <div class="md:flex md:justify-around">
+    <div class="flex max-w-full">
+      <div class="avatar max-w-max my-8 mx-4">
+        <div class="w-24 h-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+          <%= image_tag @user.avatar.variant(:thumb) if @user.avatar.attached? %>
+        </div>
+      </div>
+      <div class="flex flex-col">
+        <div class="m-4">
+          <h2 class="font-bold text-lg">ユーザー名</h2>
+          <p><%= @user.name %><p>
+        </div>
+        <h1 class="text-xl font-bold text-amber-700 m-4">
+          <% if @user.target_calorie.present? %>
+            1日の目標カロリーは <%= @user.target_calorie %> kcalです
+          <% else %>
+            目標カロリー未設定です
+          <% end%>
+        </h1>
+      </div>
+    </div>
+
+    <div>
+      <div class="p-2">
+        <h2 class="font-bold text-lg">自己紹介</h2>
+        <p><%= @user.introduction %><p>
+      </div>
+      <div class="p-2">
+        <h2 class="font-bold text-lg">SNS</h2>
+        <p><%= @user.twitter_link if @user.twitter_link.present? %><p>
+        <p><%= @user.instagram_link if @user.instagram_link.present? %><p>
+        <p><%= @user.facebook_link if @user.facebook_link.present? %><p>
+      </div>
+    </div>
   </div>
-  <div>
-    <% if @meals.present? %>
-      <%= render @meals %>
-    <% else %>
-      <p><%= t('.no_result') %></p>
-    <% end %>
+</div>
+
+<div class="flex flex-col w-full">
+  <div class="grid card rounded-box">
+    <h1 class="text-xl font-bold mx-8 my-4">筋トレ投稿</h1>
+    <div class="md:flex md:flex-wrap md:justify-start justify-center">
+      <% if @workouts.present? %>
+        <%= render @workouts %>
+      <% else %>
+        <p><%= t('.no_result') %></p>
+      <% end %>
+    </div>
+  </div> 
+
+  <div class="divider"></div> 
+  
+  <div class="grid card rounded-box">
+    <h1 class="text-xl font-bold mx-8 my-4">食事投稿</h1>
+    <div class="md:flex md:flex-wrap md:justify-start justify-center">
+      <% if @meals.present? %>
+        <%= render @meals %>
+      <% else %>
+        <p><%= t('.no_result') %></p>
+      <% end %>
+    </div>
   </div>
 </div>

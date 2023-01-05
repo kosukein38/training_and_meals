@@ -1,10 +1,11 @@
-<div id="workout-id-<%= workout.id %>">
-  <div class="card w-200 bg-base-100 shadow-xl">
+<div id="workout-id-<%= workout.id %>" class="m-4 max-w-lg">
+  <div class="card card-side bg-base-100 shadow-xl border border-base-300">
+    <figure><%= image_tag workout.workout_images.last.variant(:thumb) if workout.workout_images.attached? %></figure>
     <div class="card-body">
-      <h4 class="card-title"><%= link_to workout.workout_title, workout_path(workout.id) %></h4>
-      <h5><%= workout.workout_date %></h5>
-      <div>
-        <%= image_tag workout.workout_images.last.variant(:thumb) if workout.workout_images.attached? %>
+      <h2 class="card-title"><%= workout.workout_title %></h2>
+      <p><%= workout.workout_date.strftime("%Y年%m月%d日") %></p>
+      <div class="card-actions justify-center">
+        <button class="btn btn-accent btn-wide"><%= link_to '詳細', workout_path(workout.id) %></button>
       </div>
     </div>
   </div>

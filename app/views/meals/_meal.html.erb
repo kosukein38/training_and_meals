@@ -1,13 +1,12 @@
-<div id="meal-id-<%= meal.id %>">
-  <div class="card w-96 bg-base-100 shadow-xl">
+<div iid="meal-id-<%= meal.id %>" class="m-4">
+  <div class="card card-side bg-base-100 shadow-xl  border border-base-300">
+    <figure><%= image_tag meal.meal_images.last.variant(:thumb) if meal.meal_images.attached? %></figure>
     <div class="card-body">
-      <h4 class="card-title">
-        <%= link_to meal.meal_period_i18n, meal_path(meal.id) %>
-      </h4>
-      <h4><%= meal.meal_details.pluck(:meal_title).join(',')%></h4>
+      <h2 class="card-title"><%= meal.meal_period_i18n %></h2>
+      <p><%=  meal.meal_details.pluck(:meal_title).join(',') %></p>
       <p><%= meal.meal_details.pluck(:meal_calorie).sum %>kcal</p>
-      <div>
-        <%= image_tag meal.meal_images.last.variant(:thumb) if meal.meal_images.attached? %>
+      <div class="card-actions justify-center">
+        <button class="btn btn-accent btn-wide"><%= link_to '詳細', meal_path(meal.id) %></button>
       </div>
     </div>
   </div>

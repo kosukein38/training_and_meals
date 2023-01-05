@@ -17,7 +17,7 @@ class WorkoutsController < ApplicationController
   def create
     @workout_form = WorkoutForm.new(workout_form_params)
     if @workout_form.save
-      redirect_to user_path(@user.id), success: t('defaults.message.created', item: Workout.model_name.human)
+      redirect_to user_path(current_user), success: t('defaults.message.created', item: Workout.model_name.human)
     else
       flash.now['danger'] = t('defaults.message.not_created', item: Workout.model_name.human)
       render :new, status: :unprocessable_entity
@@ -27,7 +27,7 @@ class WorkoutsController < ApplicationController
   def update
     @workout_form = WorkoutForm.new(workout_params)
     if @workout_form.update
-      redirect_to user_path(@user.id), success: t('defaults.message.updated', item: Workout.model_name.human)
+      redirect_to user_path(current_user), success: t('defaults.message.updated', item: Workout.model_name.human)
     else
       flash.now['danger'] = t('defaults.message.not_updated', item: Workout.model_name.human)
       render :edit, status: :unprocessable_entity
@@ -38,7 +38,7 @@ class WorkoutsController < ApplicationController
     @workout = current_user.workouts.find_by(id: params[:id])
     redirect_to root_url, status: :see_other if @workout.nil?
     @workout.destroy!
-    redirect_to user_path(@user.id), success: t('defaults.message.deleted', item: Workout.model_name.human)
+    redirect_to user_path(current_user), success: t('defaults.message.deleted', item: Workout.model_name.human)
   end
 
   private
