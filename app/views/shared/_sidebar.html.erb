@@ -12,19 +12,6 @@
       </ul>
     </div>
   </nav>
-  <div class="side-profile text-center my-8 w-36">
-    <div class="avatar">
-      <div class="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-        <%= image_tag current_user.avatar.variant(:thumb) if current_user.avatar.attached? %>
-      </div>
-    </div>
-    <div class="user-info">
-      <h2 class="mt-4 font-bold text-lg">ユーザー名</h2>
-      <p><%= current_user.name %><p>
-      <h2 class="mt-4 font-bold text-lg ">自己紹介</h2>
-      <p class="text-left"><%= current_user.introduction %><p>
-    </div>
-  </div>
 </div>
 
 <div class="btm-nav z-50 md:hidden bg-base-300">
