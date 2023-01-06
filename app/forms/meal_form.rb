@@ -6,7 +6,7 @@ class MealForm
   attribute :meal_type, :integer
   attribute :meal_memo, :string
   attribute :user_id
-  
+
   attribute :meal_title_first, :string
   attribute :meal_weight_first, :integer
   attribute :meal_calorie_first, :integer
