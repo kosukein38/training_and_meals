@@ -12,19 +12,20 @@
 
 ActiveRecord::Schema[7.0].define(version: 2022_12_25_032543) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
-  create_table "active_storage_attachments", force: :cascade do |t|
+  create_table "active_storage_attachments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
+    t.uuid "record_id", null: false
+    t.uuid "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", force: :cascade do |t|
+  create_table "active_storage_blobs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -36,39 +37,39 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_25_032543) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", force: :cascade do |t|
-    t.bigint "blob_id", null: false
+  create_table "active_storage_variant_records", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "body_parts", force: :cascade do |t|
+  create_table "body_parts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "body_part_name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "meal_details", force: :cascade do |t|
+  create_table "meal_details", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "meal_title", null: false
     t.integer "meal_weight", null: false
     t.integer "meal_calorie", null: false
-    t.bigint "meal_id", null: false
+    t.uuid "meal_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["meal_id"], name: "index_meal_details_on_meal_id"
   end
 
-  create_table "meals", force: :cascade do |t|
+  create_table "meals", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.integer "meal_period"
     t.integer "meal_type"
     t.text "meal_memo"
-    t.bigint "user_id", null: false
+    t.uuid "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_meals_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
     t.string "crypted_password"
@@ -92,16 +93,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_25_032543) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  create_table "workout_body_parts", force: :cascade do |t|
-    t.bigint "workout_id", null: false
-    t.bigint "body_part_id", null: false
+  create_table "workout_body_parts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "workout_id", null: false
+    t.uuid "body_part_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["body_part_id"], name: "index_workout_body_parts_on_body_part_id"
     t.index ["workout_id"], name: "index_workout_body_parts_on_workout_id"
   end
 
-  create_table "workouts", force: :cascade do |t|
+  create_table "workouts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "workout_date"
     t.string "workout_title"
     t.integer "workout_time"
@@ -109,7 +110,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_25_032543) do
     t.integer "repetition_count"
     t.integer "set_count"
     t.text "workout_memo"
-    t.bigint "user_id", null: false
+    t.uuid "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_workouts_on_user_id"
