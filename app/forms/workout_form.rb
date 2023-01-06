@@ -11,8 +11,8 @@ class WorkoutForm
   attribute :workout_memo, :string
   attribute :body_part_ids
   attribute :workout_images
-  attribute :user_id, :integer
-  attribute :workout_id, :integer
+  attribute :user_id
+  attribute :workout_id
 
   validates :workout_date, presence: true
   validates :workout_title, presence: true
@@ -26,7 +26,7 @@ class WorkoutForm
     return false if invalid?
 
     workout = Workout.create(workout_date:, workout_title:, workout_time:,
-                             workout_weight:, repetition_count:, set_count:, workout_memo:, workout_images:, user_id:)
+                             workout_weight:, repetition_count:, set_count:, workout_memo:, user_id:, workout_images:)
     body_part_ids.map(&:to_i).each do |body_part_id|
       WorkoutBodyPart.create(workout_id: workout.id, body_part_id:)
     end
