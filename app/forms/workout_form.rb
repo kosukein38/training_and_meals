@@ -27,7 +27,7 @@ class WorkoutForm
 
     workout = Workout.create(workout_date:, workout_title:, workout_time:,
                              workout_weight:, repetition_count:, set_count:, workout_memo:, user_id:, workout_images:)
-    body_part_ids.map(&:to_i).each do |body_part_id|
+    body_part_ids.each do |body_part_id|
       WorkoutBodyPart.create(workout_id: workout.id, body_part_id:)
     end
   end
