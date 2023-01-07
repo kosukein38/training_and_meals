@@ -74,7 +74,7 @@ end
   body_part = BodyPart.offset(rand(BodyPart.count)).first
 
   Workout.create!(
-    user: user,
+    user: first_user,
     workout_date: workout_date,
     workout_title: workout_title,
     workout_time: workout_time,
@@ -87,7 +87,7 @@ end
   ).save!
 
   Workout.create!(
-    user: first_user,
+    user: user,
     workout_date: workout_date,
     workout_title: workout_title,
     workout_time: workout_time,
@@ -104,6 +104,7 @@ end
 20.times do |n|
   first_user = User.first
   user = User.offset(rand(User.count)).first
+  meal_date = Time.now + 24 * 60 * 60 * n
   meal_period = 'lunch'
   meal_type = 'eating_out'
   meal_memo = Faker::Lorem.sentence
@@ -113,6 +114,7 @@ end
 
   Meal.create!(
     user: first_user,
+    meal_date: meal_date,
     meal_period: meal_period,
     meal_type: meal_type,
     meal_memo: meal_memo
@@ -124,6 +126,7 @@ end
 
   Meal.create!(
     user: user,
+    meal_date: meal_date,
     meal_period: meal_period,
     meal_type: meal_type,
     meal_memo: meal_memo
