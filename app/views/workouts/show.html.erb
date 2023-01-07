@@ -1,20 +1,78 @@
-<h1 class="text-5xl font-bold"><%= t '.title' %></h1>
-<h1 class="text-5xl font-bold text-red-600"><%= User.find(@workout.user_id).name %></h1>
-<h1 class="text-5xl font-bold"><%= @workout.workout_date.strftime("%Y年%m月%d日") %></h1>
-<h1 class="text-5xl font-bold"><%= @workout.workout_title %></h1>
-<h1 class="text-5xl font-bold"><%= @workout.body_parts.pluck(:body_part_name) %></h1>
-<h1 class="text-5xl font-bold">id <%= params[:id] %></h1>
-<% if @workout.workout_images.attached? %>
-  <% @workout.workout_images.each do |workout_image|%>
-  <div class="px-8">
-    <h2 class="text-xl py-6 font-bold">筋トレ画像</h2>
-    <%= image_tag workout_image.variant(:thumb) if workout_image.representable? %>
+<div class="profile m-8 flex flex-col w-full">
+  <h1 class="text-xl font-bold"><%= t '.title' %></h1>
+    <div class="grid card rounded-box place-items-center">
+      <div class="flex max-w-full">
+        <div class="avatar max-w-max my-8 mx-4">
+          <div class="w-24 h-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+            <%= image_tag @user.avatar.variant(:thumb) if @user.avatar.attached? %>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <div class="m-4">
+            <h2 class="font-bold text-lg">ユーザー名</h2>
+            <p><%= @user.name %><p>
+          </div>
+          <h1 class="text-xl font-bold text-amber-700 m-4">
+            <% if @user.target_calorie.present? %>
+              1日の目標カロリーは <%= @user.target_calorie %> kcalです
+            <% else %>
+              目標カロリー未設定です
+            <% end%>
+          </h1>
+        </div>
+      </div>
+    </div> 
+    <div class="divider"></div> 
+    <div class="grid card rounded-box">
+      <div class="flex justify-around">
+        <div class="w-2/5 flex flex-col align-center">
+          <h1 class="text-xl font-bold my-4 text-center"><%= @workout.workout_date.strftime("%Y年%m月%d日") %></h1>
+          <% if @workout.workout_images.attached? %>
+            <% @workout.workout_images.each do |workout_image|%>
+            <%# <div class="workout-images mx-8 my-4"> %>
+              <%= image_tag workout_image.variant(:thumb), class: "flex items-center mx-auto" if workout_image.representable? %>
+            <%# </div> %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="w-3/5 flex flex-col">
+          <div class="mx-8 mt-4">
+            <h1 class="text-xl font-bold">メニュー名</h1>
+            <p class="text-base"><%= @workout.workout_title %></p>
+          </div>
+          <div class="mx-8 mt-4">
+            <h1 class="text-xl font-bold">トレーニング部位</h1>
+            <p class="text-base"><%= @workout.body_parts.pluck(:body_part_name).join(' , ') %></p>
+          </div>
+          <div class="mx-8 mt-4">
+            <h1 class="text-xl font-bold">重量 / 回数 / セット数</h1>
+            <p class="text-base">
+            <%= @workout.workout_weight %> kg /
+            <%= @workout.repetition_count %> reps /
+            <%= @workout.set_count %> sets 
+            </p>
+          </div>
+          <div class="mx-8 mt-4">
+            <h1 class="text-xl font-bold">メモ</h1>
+            <p class="text-base md:w-96"><%= @workout.workout_memo %></p>
+          </div>
+          <div class="mx-8 mt-4">
+          <% if logged_in? && current_user.own?(@workout) %>
+            <%=link_to edit_workout_path(@workout), class: "btn btn-active btn-primary" do %>
+              <button><%= (t '.to_edit_page') %></button>
+            <% end %>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <% end %>
-<% end %>
-<% if logged_in? && current_user.own?(@workout) %>
-  <button class="btn btn-active btn-primary">
-    <%= link_to (t '.to_edit_page'), edit_workout_path(@workout) %>
-  </button>
-<% end %>
+</div>
+
+
+
+
+
+
+
 
