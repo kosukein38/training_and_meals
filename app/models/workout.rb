@@ -5,6 +5,6 @@ class Workout < ApplicationRecord
   has_many_attached :workout_images
 
   has_many_attached :workout_images do |attachable|
-    attachable.variant :thumb, resize_to_limit: [200, 200]
+    attachable.variant :thumb, resize_to_limit: [400, 400]
   end
 end

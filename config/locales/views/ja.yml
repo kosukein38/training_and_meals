@@ -15,6 +15,7 @@ ja:
       not_updated: "%{item}を更新できませんでした"
       deleted: "%{item}を削除しました"
     profile: "プロフィール"
+    to_show_page: "詳細"
   users:
     new:
       title: "ユーザー登録"

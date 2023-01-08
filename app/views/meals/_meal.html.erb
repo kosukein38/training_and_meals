@@ -1,12 +1,30 @@
-<div iid="meal-id-<%= meal.id %>" class="m-4">
-  <div class="card card-side bg-base-100 shadow-xl  border border-base-300">
-    <figure><%= image_tag meal.meal_images.last.variant(:thumb) if meal.meal_images.attached? %></figure>
+<div id="meal-id-<%= meal.id %>" class="m-4 max-w-lg">
+  <div class="card lg:card-side bg-base-100 shadow-xl border border-base-300">
+    <% if meal.meal_images.attached? %>
+      <figure><%= image_tag meal.meal_images.last.variant(:thumb) %></figure>
+    <% else %>
+      <figure><%= image_tag('meal_sample.jpg', size: "400x400") %></figure>
+    <% end %>
     <div class="card-body">
-      <h2 class="card-title"><%= meal.meal_period_i18n %></h2>
-      <p><%=  meal.meal_details.pluck(:meal_title).join(',') %></p>
-      <p><%= meal.meal_details.pluck(:meal_calorie).sum %>kcal</p>
+      <h2 class="card-title"><%= meal.meal_details.pluck(:meal_title).join(',') %></h2>
+      <p><%= meal.meal_details.pluck(:meal_calorie).sum %> kcal / <%= meal.meal_period_i18n %></p>
+      <p><%= meal.meal_date.strftime("%Y年%m月%d日") %></p>
+      <%=link_to user_path(meal.user) do%>
+      <div class="flex justify-end">
+        <div class="avatar">
+          <div class="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+            <%= image_tag meal.user.avatar.variant(:thumb) if meal.user.avatar.attached? %>
+          </div>
+        </div>
+        <div class="font-bold mx-2 items-center">
+          <p class="m-2"><%= meal.user.name %></p>
+        </div>
+      </div>
+      <% end %>
       <div class="card-actions justify-center">
-        <button class="btn btn-accent btn-wide"><%= link_to '詳細', meal_path(meal.id) %></button>
+        <%= link_to meal_path(meal.id) do %>
+          <button class= "btn btn-accent btn-wide my-4"><%= (t 'defaults.to_show_page') %><button>
+        <% end %>
       </div>
     </div>
   </div>

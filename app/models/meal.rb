@@ -3,7 +3,7 @@ class Meal < ApplicationRecord
   has_many :meal_details, dependent: :destroy
 
   has_many_attached :meal_images do |attachable|
-    attachable.variant :thumb, resize_to_limit: [200, 200]
+    attachable.variant :thumb, resize_to_limit: [400, 400]
   end
 
   enum meal_period: { breakfast: 0, lunch: 1, dinner: 2, nosh: 3 }

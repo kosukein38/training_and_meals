@@ -29,9 +29,7 @@
           <h1 class="text-xl font-bold my-4 text-center"><%= @workout.workout_date.strftime("%Y年%m月%d日") %></h1>
           <% if @workout.workout_images.attached? %>
             <% @workout.workout_images.each do |workout_image|%>
-            <%# <div class="workout-images mx-8 my-4"> %>
               <%= image_tag workout_image.variant(:thumb), class: "flex items-center mx-auto" if workout_image.representable? %>
-            <%# </div> %>
             <% end %>
           <% end %>
         </div>
