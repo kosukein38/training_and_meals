@@ -26,18 +26,19 @@ class UsersController < ApplicationController
   def date_search
     user_id = params[:user_id]
     @user = User.find(user_id)
-    if @input_date = params[:date_search].to_date
-      @workouts  = Workout.where(workout_date: @input_date.beginning_of_day...@input_date.end_of_day, user_id: user_id)
-      @meals  = Meal.where(meal_date: @input_date.beginning_of_day...@input_date.end_of_day, user_id: user_id)
+    @input_date = params[:date_search].to_date
+    if @input_date
+      @workouts = Workout.where(workout_date: @input_date.beginning_of_day...@input_date.end_of_day, user_id:)
+      @meals = Meal.where(meal_date: @input_date.beginning_of_day...@input_date.end_of_day, user_id:)
       @total_calorie = MealDetail.where(meal_id: @meals.pluck(:id)).pluck(:meal_calorie).sum
     else
-      flash[:fail] = t('.fail')
+      flash.now[:fail] = t('.fail')
       redirect_to user_path(@user)
     end
-    
-    if @workouts || @meals
-      render :show
-    end
+
+    return unless @workouts || @meals
+
+    render :show
   end
 
   private
