@@ -1,7 +1,7 @@
 class MealForm
   include ActiveModel::Model
   include ActiveModel::Attributes
-  
+
   attribute :meal_date, :datetime
   attribute :meal_period, :integer
   attribute :meal_type, :integer
