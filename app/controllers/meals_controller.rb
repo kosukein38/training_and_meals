@@ -8,6 +8,7 @@ class MealsController < ApplicationController
 
   def show
     @meal = Meal.find(params[:id])
+    @user = User.find(@meal.user_id)
   end
 
   def new
@@ -89,7 +90,7 @@ class MealsController < ApplicationController
   private
 
   def meal_form_params
-    params.require(:meal_form).permit(:meal_period, :meal_type, :meal_memo,
+    params.require(:meal_form).permit(:meal_date, :meal_period, :meal_type, :meal_memo,
                                       :meal_title_first, :meal_weight_first, :meal_calorie_first,
                                       :meal_title_second, :meal_weight_second, :meal_calorie_second,
                                       :meal_title_third, :meal_weight_third, :meal_calorie_third,
@@ -97,7 +98,7 @@ class MealsController < ApplicationController
   end
 
   def meal_params
-    params.require(:meal).permit(:meal_period, :meal_type, :meal_memo,
+    params.require(:meal).permit(:meal_date, :meal_period, :meal_type, :meal_memo,
                                  :meal_title_first, :meal_weight_first, :meal_calorie_first,
                                  :meal_title_second, :meal_weight_second, :meal_calorie_second,
                                  :meal_title_third, :meal_weight_third, :meal_calorie_third,

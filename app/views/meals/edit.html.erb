@@ -3,6 +3,10 @@
   <%= form_with model: @meal_form, url: meal_path, local: true do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
     <div class="form-control">
+      <%= f.label :meal_date %>
+      <%= f.date_field :meal_date, class: "input input-bordered" %>
+    </div>
+    <div class="form-control">
       <%= f.label :meal_period %>
       <%= f.select :meal_period, Meal.meal_periods_i18n.invert.map{|key, value| [key, Meal.meal_periods[value]]}, class: "input input-bordered" %>
     </div>

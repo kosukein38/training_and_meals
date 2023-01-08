@@ -60,6 +60,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_25_032543) do
   end
 
   create_table "meals", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "meal_date"
     t.integer "meal_period"
     t.integer "meal_type"
     t.text "meal_memo"

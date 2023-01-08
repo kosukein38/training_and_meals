@@ -5,6 +5,7 @@ RSpec.describe 'Meals', js: true do
 
   before do
     MealForm.new(
+      meal_date: Time.current,
       meal_period: 1,
       meal_type: 1,
       meal_title_first: '唐揚げ',
@@ -23,6 +24,7 @@ RSpec.describe 'Meals', js: true do
   it '新規食事投稿画面から食事の記録を登録できること' do
     login_as(user)
     visit new_meal_path
+    fill_in '日付', with: Time.current
     select '昼食', from: '食事タイミング'
     select '外食', from: '食事タイプ'
     fill_in 'メニューその1', with: '唐揚げ'
@@ -64,6 +66,7 @@ RSpec.describe 'Meals', js: true do
     visit user_path(user)
     click_button '詳細'
     click_button '編集'
+    fill_in '日付', with: Time.current
     select '昼食', from: '食事タイミング'
     select '自炊', from: '食事タイプ'
     fill_in 'メニューその1', with: 'お弁当'

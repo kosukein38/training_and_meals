@@ -1,21 +1,69 @@
-<h1 class="text-5xl font-bold"><%= t '.title' %></h1>
-<h1 class="text-5xl font-bold text-red-600"><%= User.find(@meal.user_id).name %></h1>
-<h1 class="text-5xl font-bold"><%= @meal.meal_period_i18n %></h1>
-<h1 class="text-5xl font-bold"><%= @meal.meal_type_i18n %></h1>
-<h1 class="text-5xl font-bold"><%= @meal.meal_details.pluck(:meal_title) %></h1>
-<h1 class="text-5xl font-bold"><%= @meal.meal_details.pluck(:meal_calorie) %></h1>
-<h1 class="text-5xl font-bold"><%= @meal.meal_details.pluck(:meal_weight) %></h1>
-<h1 class="text-5xl font-bold">id <%= params[:id] %></h1>
-<% if @meal.meal_images.attached? %>
-  <% @meal.meal_images.each do |meal_image|%>
-  <div class="px-8">
-    <h2 class="text-xl py-6 font-bold">食事画像</h2>
-    <%= image_tag meal_image.variant(:thumb) if meal_image.representable? %>
+<div class="profile m-8 flex flex-col w-full">
+  <h1 class="text-xl font-bold"><%= t '.title' %></h1>
+    <div class="grid card rounded-box place-items-center">
+      <div class="flex max-w-full">
+        <div class="avatar max-w-max my-8 mx-4">
+          <div class="w-24 h-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+            <%= image_tag @user.avatar.variant(:thumb) if @user.avatar.attached? %>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <div class="m-4">
+            <h2 class="font-bold text-lg">ユーザー名</h2>
+            <p><%= @user.name %><p>
+          </div>
+          <h1 class="text-xl font-bold text-amber-700 m-4">
+            <% if @user.target_calorie.present? %>
+              1日の目標カロリーは <%= @user.target_calorie %> kcalです
+            <% else %>
+              目標カロリー未設定です
+            <% end%>
+          </h1>
+        </div>
+      </div>
+    </div> 
+    <div class="divider"></div> 
+    <div class="grid card rounded-box">
+      <div class="flex justify-around">
+        <div class="w-2/5 flex flex-col align-center">
+          <h1 class="text-xl font-bold my-4 text-center"><%= @meal.meal_date.strftime("%Y年%m月%d日") %></h1>
+          <% if @meal.meal_images.attached? %>
+            <% @meal.meal_images.each do |meal_image|%>
+              <%= image_tag meal_image.variant(:thumb), class: "flex items-center mx-auto" if meal_image.representable? %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="w-3/5 flex flex-col">
+          <div class="mx-8 mt-4">
+            <h1 class="text-xl font-bold">メニュー名</h1>
+            <p class="text-base"><%= @meal.meal_details.pluck(:meal_title).join(' , ') %></p>
+          </div>
+          <div class="mx-8 mt-4">
+            <h1 class="text-xl font-bold">食事タイミング</h1>
+            <p class="text-base"><%= @meal.meal_period_i18n %></p>
+          </div>
+          <div class="mx-8 mt-4">
+            <h1 class="text-xl font-bold">食事タイプ</h1>
+            <p class="text-base"><%= @meal.meal_type_i18n %></p>
+          </div>
+          <div class="mx-8 mt-4">
+            <h1 class="text-xl font-bold">カロリー</h1>
+            <p class="text-base"><%= @meal.meal_details.pluck(:meal_calorie).sum %> kcal</p>
+          </div>
+          <div class="mx-8 mt-4">
+            <h1 class="text-xl font-bold">メモ</h1>
+            <p class="text-base md:w-96"><%= @meal.meal_memo %></p>
+          </div>
+          <div class="mx-8 mt-4">
+          <% if logged_in? && current_user.own?(@meal) %>
+            <%=link_to edit_meal_path(@meal), class: "btn btn-active btn-primary" do %>
+              <button><%= (t '.to_edit_page') %></button>
+            <% end %>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <% end %>
-<% end %>
-<% if logged_in? && current_user.own?(@meal)%>
-  <button class="btn btn-active btn-primary">
-    <%= link_to (t '.to_edit_page'), edit_meal_path(@meal) %>
-  </button>
-<% end %>
+</div>
+

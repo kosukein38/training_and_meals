@@ -35,6 +35,7 @@ ja:
         body_part_ids: "筋トレ部位"
         workout_images: "筋トレ画像（複数登録可）"
       meal:
+        meal_date: "日付"
         meal_period: "食事タイミング"
         meal_type: "食事タイプ"
         meal_memo: "メモ"
@@ -63,6 +64,7 @@ ja:
         body_part_ids: "筋トレ部位"
         workout_images: "筋トレ画像（複数登録可）"
       meal_form:
+        meal_date: "日付"
         meal_period: "食事タイミング"
         meal_type: "食事タイプ"
         meal_memo: "メモ"
