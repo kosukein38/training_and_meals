@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   get 'home/workouts', to: 'home#workouts'
   get 'home/meals', to: 'home#meals'
   get 'calorie_search', to: 'meals#calorie_search'
+  get 'date_search', to: 'users#date_search'
 end

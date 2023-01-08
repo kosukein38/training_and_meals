@@ -6,6 +6,7 @@ ja:
     register: "登録"
     logout: "ログアウト"
     calorie_search: "カロリー検索したいメニューを入力してください"
+    date_search: "日付を選択してください"
     message:
       require_login: "ログインしてください"
       created: "%{item}を作成しました"
@@ -24,6 +25,8 @@ ja:
     show:
       title: "マイページ"
       no_result: "投稿がありません"
+    date_search:
+      fail: "日付を選択してください"
   user_sessions:
     new:
       title: "ログイン"
