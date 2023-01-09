@@ -1,16 +1,16 @@
-<header class="navbar bg-primary text-primary-content flex justify-between">
+<header class="navbar bg-primary-focus text-primary-content flex justify-between">
   <div class="flex-1">
-    <%= link_to (t 'defaults.top'), root_path, class: "btn btn-ghost normal-case text-xl" %>
+    <%= link_to (t 'defaults.top'), root_path, class: "btn btn-ghost normal-case text-xl text-base-200" %>
   </div>
 
   <div class="hidden md:flex md:justify-end">
-    <ul class="menu menu-horizontal px-1">
+    <ul class="menu menu-horizontal px-1 text-base-200">
       <li><%= link_to (t 'user_sessions.new.to_register_page'), new_user_path %></li>
       <li><%= link_to (t 'users.new.to_login_page'), login_path %></li>
     </ul>
   </div>
 
-  <div class="btm-nav md:hidden fixed">
+  <div class="btm-nav md:hidden fixed z-50">
     <ul class="menu menu-horizontal px-1">
       <li class="px-4">
         <button class="btn"><%= link_to (t 'user_sessions.new.to_register_page'), new_user_path %></button>
@@ -20,5 +20,4 @@
       </li>
     </ul>
   </div>
-
 </header>
