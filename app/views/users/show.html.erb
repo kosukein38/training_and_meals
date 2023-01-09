@@ -1,86 +1,88 @@
-<div class="profile m-8 flex flex-col">
-  <h1 class="text-xl font-bold"><%= @user.name %>さんの<%= t '.title' %></h1>
-  <div class="md:flex md:justify-around">
-    <div class="flex max-w-full">
-      <div class="avatar max-w-max my-8 mx-4">
-        <div class="w-24 h-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-          <%= image_tag @user.avatar.variant(:thumb) if @user.avatar.attached? %>
+<div class="my-page">
+  <div class="profile m-8 flex flex-col">
+    <h1 class="text-xl font-bold"><%= @user.name %>さんの<%= t '.title' %></h1>
+    <div class="md:flex md:justify-around">
+      <div class="flex max-w-full">
+        <div class="avatar max-w-max my-8 mx-4">
+          <div class="w-24 h-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+            <%= image_tag @user.avatar.variant(:thumb) if @user.avatar.attached? %>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <div class="m-4">
+            <h2 class="font-bold text-lg">ユーザー名</h2>
+            <p><%= @user.name %><p>
+          </div>
+          <h1 class="text-xl font-bold text-amber-700 m-4">
+            <% if @user.target_calorie.present? %>
+              1日の目標カロリー<br>
+              <%= @user.target_calorie %> kcal
+            <% else %>
+              目標カロリー未設定
+            <% end%>
+          </h1>
         </div>
       </div>
-      <div class="flex flex-col">
-        <div class="m-4">
-          <h2 class="font-bold text-lg">ユーザー名</h2>
-          <p><%= @user.name %><p>
+      <div>
+        <div class="p-2">
+          <h2 class="font-bold text-lg">自己紹介</h2>
+          <p><%= @user.introduction %><p>
         </div>
-        <h1 class="text-xl font-bold text-amber-700 m-4">
-          <% if @user.target_calorie.present? %>
-            1日の目標カロリー<br>
-            <%= @user.target_calorie %> kcal
-          <% else %>
-            目標カロリー未設定
-          <% end%>
-        </h1>
-      </div>
-    </div>
-    <div>
-      <div class="p-2">
-        <h2 class="font-bold text-lg">自己紹介</h2>
-        <p><%= @user.introduction %><p>
-      </div>
-      <div class="p-2">
-        <h2 class="font-bold text-lg">SNS</h2>
-        <p><%= @user.twitter_link if @user.twitter_link.present? %><p>
-        <p><%= @user.instagram_link if @user.instagram_link.present? %><p>
-        <p><%= @user.facebook_link if @user.facebook_link.present? %><p>
+        <div class="p-2">
+          <h2 class="font-bold text-lg">SNS</h2>
+          <p><%= @user.twitter_link if @user.twitter_link.present? %><p>
+          <p><%= @user.instagram_link if @user.instagram_link.present? %><p>
+          <p><%= @user.facebook_link if @user.facebook_link.present? %><p>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="mx-8 my-4">
-  <%= form_with url: date_search_path, method: :get, local: true do |f| %>
-    <div class="form-control">
-      <%= f.label :date_search, (t 'defaults.date_search') %>
-      <%= f.date_field :date_search, class: "input input-bordered" %>
-    </div>
-    <%= hidden_field_tag :user_id, @user.id %>
-    <div class="form-control mt-3">
-      <%= f.submit '絞り込む', class: "btn btn-primary"%>
-    </div>
-  <% end %>
-</div>
-<div class="flex flex-col mt-8">
-  <h1 class="text-xl font-bold mx-8 my-4">
-    <%= @input_date.strftime("%Y年%m月%d日") %> の記録
-  </h1>
-  <% if @total_calorie.present? && @user.target_calorie.present? %>
-  <h1 class="text-xl font-bold mx-8 my-4 text-center text-primary-focus">
-    目標カロリーに対して 
-    <span class="text-red-500"><%= (@total_calorie.to_f / @user.target_calorie.to_f * 100).round(0) %> %</span>
-    の達成率 <br>
-    (合計<span class="text-red-500"><%= @total_calorie %> kcal</span> 摂取)
-  </h1>
-  <% end %>
-</div>
-<div class="flex flex-col w-full my-8">
-  <div class="grid card rounded-box">
+  <div class="mx-8 my-4">
+    <%= form_with url: date_search_path, method: :get, local: true do |f| %>
+      <div class="form-control">
+        <%= f.label :date_search, (t 'defaults.date_search') %>
+        <%= f.date_field :date_search, class: "input input-bordered" %>
+      </div>
+      <%= hidden_field_tag :user_id, @user.id %>
+      <div class="form-control mt-3">
+        <%= f.submit '絞り込む', class: "btn btn-primary"%>
+      </div>
+    <% end %>
+  </div>
+  <div class="flex flex-col mt-8">
+    <h1 class="text-xl font-bold mx-8 my-4">
+      <%= @input_date.strftime("%Y年%m月%d日") %> の記録
+    </h1>
+    <% if @total_calorie.present? && @user.target_calorie.present? %>
+    <h1 class="text-xl font-bold mx-8 my-4 text-center text-primary-focus">
+      目標カロリーに対して 
+      <span class="text-red-500"><%= (@total_calorie.to_f / @user.target_calorie.to_f * 100).round(0) %> %</span>
+      の達成率 <br>
+      (合計<span class="text-red-500"><%= @total_calorie %> kcal</span> 摂取)
+    </h1>
+    <% end %>
+  </div>
+  <div class="flex flex-col w-full my-8">
     <h1 class="text-xl font-bold mx-8 my-4">筋トレ</h1>
-    <div class="md:flex md:flex-wrap md:justify-start justify-center">
-      <% if @workouts.present? %>
-        <%= render @workouts %>
-      <% else %>
-        <p class="text-xl mx-8 my-4"><%= t('.no_result') %></p>
-      <% end %>
-    </div>
-  </div> 
-  <div class="divider"></div> 
-  <div class="grid card rounded-box">
+    <div class="grid card rounded-box">
+      <div class="md:flex md:flex-wrap md:justify-start justify-center">
+        <% if @workouts.present? %>
+          <%= render @workouts %>
+        <% else %>
+          <p class="text-xl mx-8 my-4"><%= t('.no_result') %></p>
+        <% end %>
+      </div>
+    </div> 
+    <div class="divider"></div> 
     <h1 class="text-xl font-bold mx-8 my-4">食事</h1>
-    <div class="md:flex md:flex-wrap md:justify-start justify-center">
-      <% if @meals.present? %>
-        <%= render @meals %>
-      <% else %>
-        <p class="text-xl mx-8 my-4"><%= t('.no_result') %></p>
-      <% end %>
+    <div class="grid card rounded-box">
+      <div class="md:flex md:flex-wrap md:justify-start justify-center">
+        <% if @meals.present? %>
+          <%= render @meals %>
+        <% else %>
+          <p class="text-xl mx-8 my-4"><%= t('.no_result') %></p>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
