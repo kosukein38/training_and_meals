@@ -6,10 +6,8 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[show new create]
   resource :profile, only: %i[show edit update destroy]
-  resources :workouts, only: %i[show new create edit update destroy]
-  resources :meals, only: %i[show new create edit update destroy]
-  get 'home/workouts', to: 'home#workouts'
-  get 'home/meals', to: 'home#meals'
+  resources :workouts
+  resources :meals
   get 'calorie_search', to: 'meals#calorie_search'
   get 'date_search', to: 'users#date_search'
 end

@@ -1,5 +1,9 @@
 class WorkoutsController < ApplicationController
-  skip_before_action :require_login, only: %i[show]
+  skip_before_action :require_login, only: %i[index show]
+
+  def index
+    @workouts = Workout.includes(:user).order(created_at: :desc)
+  end
 
   def show
     @workout = Workout.find(params[:id])

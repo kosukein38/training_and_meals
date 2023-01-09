@@ -3,8 +3,12 @@ require 'net/http'
 require 'openssl'
 
 class MealsController < ApplicationController
-  skip_before_action :require_login, only: %i[show]
+  skip_before_action :require_login, only: %i[index show]
   before_action :set_response, only: %i[new edit]
+  
+  def index
+    @meals = Meal.includes(:user, :meal_details).order(created_at: :desc)
+  end
 
   def show
     @meal = Meal.find(params[:id])
