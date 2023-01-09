@@ -5,7 +5,11 @@
       <div class="flex max-w-full">
         <div class="avatar max-w-max my-8 mx-4">
           <div class="w-24 h-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-            <%= image_tag @user.avatar.variant(:thumb) if @user.avatar.attached? %>
+            <% if current_user.avatar.attached? %>
+            <%= image_tag current_user.avatar.variant(:thumb) %>
+            <% else %>
+            <%= image_tag('user_sample.png', size: "400x400") %>
+            <% end %>
           </div>
         </div>
         <div class="flex flex-col">
