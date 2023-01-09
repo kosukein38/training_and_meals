@@ -1,68 +1,99 @@
-<div class="container mx-auto px-8 w-full">
-  <h1 class="text-5xl font-bold"><%= t '.title' %></h1>
+<div class="p-4 flex flex-col w-full">
+  <h1 class="text-xl font-bold"><%= t '.title' %></h1>
   <%= form_with model: @user, url: profile_path, local: true do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
-    <h2 class="mt-5">名前</h2>
-    <p><%= @user.name %></p>
-    <h2>メールアドレス</h2>
-    <p><%= current_user.email %></p>
+
+    <h2 class="text-xl pt-4 font-bold">名前</h2>
+    <p class="py-2"><%= @user.name %></p>
+
+    <h2 class="text-xl pt-4 font-bold">メールアドレス</h2>
+    <p class="py-2"><%= @user.email %></p>
+
     <div class="form-control">
-      <%= f.label :introduction %>
-      <%= f.text_area :introduction, class: "input input-bordered" %>
-    </div>
-    <div class="form-control">
-      <%= f.label :twitter_link%>
+      <%= f.label :introduction, class: "text-xl pt-4 font-bold" %>
+      <%= f.text_area :introduction, class: "textarea textarea-bordered" %>
+
+      <%= f.label :twitter_link, class: "text-xl pt-4 font-bold" %>
       <%= f.url_field :twitter_link, class: "input input-bordered" %>
-    </div>
-    <div class="form-control">
-      <%= f.label :facebook_link%>
+
+      <%= f.label :facebook_link, class: "text-xl pt-4 font-bold" %>
       <%= f.url_field :facebook_link, class: "input input-bordered" %>
-    </div>
-    <div class="form-control">
-      <%= f.label :instagram_link%>
+
+      <%= f.label :instagram_link, class: "text-xl pt-4 font-bold" %>
       <%= f.url_field :instagram_link, class: "input input-bordered" %>
-    </div>
-    <div class="form-control">
-      <%= f.label :height %>
+
+      <%= f.label :height, class: "text-xl pt-4 font-bold" %>
       <%= f.number_field :height, class: "input input-bordered" %>
-    </div>
-    <div class="form-control">
-      <%= f.label :body_weight %>
+
+      <%= f.label :body_weight, class: "text-xl pt-4 font-bold" %>
       <%= f.number_field :body_weight, class: "input input-bordered" %>
-    </div>
-    <div class="form-control">
-      <%= f.label :age %>
+
+      <%= f.label :age, class: "text-xl pt-4 font-bold" %>
       <%= f.number_field :age, class: "form-control input input-bordered" %>
-    </div>
-    <div class="form-control">
-      <%= f.label :sex %>
-      <%= f.select :sex, User.sexes_i18n.invert.map{|key, value| [key, value]}, class: "form-control input input-bordered" %>
-    </div>
-    <div class="form-control">
-      <%= f.label :active_level%>
-      <%= f.select :active_level, User.active_levels_i18n.invert.map{|key, value| [key, value]}, class: "form-control input input-bordered" %>
-    </div>
-    <div class="form-control">
-      <%= f.label :target_weight%>
+ 
+      <%= f.label :sex, class: "text-xl pt-4 font-bold" %>
+      <%= f.select :sex, User.sexes_i18n.invert.map{|key, value| [key, value]}, {}, class: "select select-bordered w-ful" %>
+
+      <%= f.label :active_level, class: "text-xl pt-4 font-bold" %>
+      <%= f.select :active_level, User.active_levels_i18n.invert.map{|key, value| [key, value]}, {}, class: "select select-bordered w-ful" %>
+      <div class="overflow-x-auto p-4">
+        <table class="table w-full">
+          <!-- head -->
+          <h1>※活動量は以下の表を目安に設定してください</h1>
+          <thead>
+            <tr>
+              <th>活動レベル</th>
+              <th>目安</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- row 1 -->
+            <tr>
+              <th>レベル1</th>
+              <td>通勤するなど一般的な活動量</td>
+            </tr>
+            <!-- row 2 -->
+            <tr>
+              <th>レベル2</th>
+              <td>週1, 2回の軽い運動</td>
+            </tr>
+            <!-- row 3 -->
+            <tr>
+              <th>レベル3</th>
+              <td>週2, 3回の筋トレなど</td>
+            </tr>
+            <!-- row 4 -->
+            <tr>
+              <th>レベル4</th>
+              <td>週4, 5回のハードな筋トレなど</td>
+            </tr>
+            <!-- row 4 -->
+            <tr>
+              <th>レベル5</th>
+              <td>毎日のハードな筋トレなど</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <%= f.label :target_weight, class: "text-xl pt-4 font-bold" %>
       <%= f.number_field :target_weight, class: "form-control input input-bordered" %>
-    </div>
-    <div class="form-control">
-      <%= f.label :target_date%>
+
+      <%= f.label :target_date, class: "text-xl pt-4 font-bold" %>
       <%= f.date_field :target_date, class: "form-control input input-bordered" %>
-    </div>
-    <div class="form-control mt-6">
-      <p>カロリーを調整できます</p>
-      <%= f.label :adjustment_calorie%>
+
+      <%= f.label :adjustment_calorie ,class: "text-xl pt-4 font-bold"%>
+      <p>※ここで摂取目標カロリーを調整できます</p>
       <%= f.number_field :adjustment_calorie, class: "form-control input input-bordered" %>
-    </div>
-    <span class="image">
-      <%= f.label :avatar %>
+
+      <%= f.label :avatar, class: "text-xl pt-4 font-bold" %>
       <%= f.file_field :avatar %>
-    </span>
-    <div class="form-control mt-6">
-      <%= f.submit '更新する', class: "btn btn-primary"%>
+
+      <%= f.submit '更新する', class: "btn btn-primary my-4"%>
     </div>
     <% end %>
   </div>
+
+
+
 </div>
 
