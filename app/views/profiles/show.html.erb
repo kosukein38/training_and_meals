@@ -1,53 +1,71 @@
-<div class="container mx-auto px-8 w-full flex flex-row justify-between">
+<div class="p-8 w-full flex flex-col lg:flex-row justify-between text-center">
   <div>
+    <h1 class="text-xl font-bold"><%= t '.title' %></h1>
+    <p class="text-neutral p-2">※このページは他ユーザーには表示されません</p>
+    <div class="avatar max-w-max my-8 mx-4">
+      <div class="w-24 h-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+        <% if current_user.avatar.attached? %>
+        <%= image_tag current_user.avatar.variant(:thumb) %>
+        <% else %>
+        <%= image_tag('user_sample.png', size: "400x400") %>
+        <% end %>
+      </div>
+    </div>
     <h2 class="text-xl pt-4 font-bold">名前</h2>
-    <p><%=@user.name%></p>
+    <p class="py-2"><%= @user.name %></p>
     <h2 class="text-xl pt-4 font-bold">メールアドレス</h2>
-    <p><%=@user.email%></p>
+    <p class="py-2"><%= @user.email %></p>
     <h2 class="text-xl pt-4 font-bold">自己紹介</h2>
-    <p><%=@user.introduction%></p>
+    <p class="py-2"><%= @user.introduction %></p>
     <h2 class="text-xl pt-4 font-bold">Twitter</h2>
-    <p><%=@user.twitter_link%></p>
+    <p class="py-2"><%= @user.twitter_link %></p>
     <h2 class="text-xl pt-4 font-bold">Facebook</h2>
-    <p><%=@user.facebook_link%></p>
+    <p class="py-2"><%= @user.facebook_link %></p>
     <h2 class="text-xl pt-4 font-bold">Instagram</h2>
-    <p><%=@user.instagram_link%></p>
+    <p class="py-2"><%= @user.instagram_link %></p>
   </div>
   <div>
-    <h2 class="text-xl pt-4 font-bold">身長</h2>
-    <p><%=@user.height%></p>
-    <h2 class="text-xl pt-4 font-bold">体重</h2>
-    <p><%=@user.body_weight%></p>
-    <h2 class="text-xl pt-4 font-bold">年齢</h2>
-    <p><%=@user.age%></p>
-    <h2 class="text-xl pt-4 font-bold">生まれた時の性別</h2>
-    <p><%=@user.sex%></p>
-    <h2 class="text-xl pt-4 font-bold">活動レベル</h2>
-    <p><%=@user.active_level%></p>
+    <div>
+      <h2 class="text-xl pt-4 font-bold">身長</h2>
+      <p class="py-2"><%= @user.height %> cm</p>
+      <h2 class="text-xl pt-4 font-bold">体重</h2>
+      <p class="py-2"><%= @user.body_weight %> kg</p>
+      <h2 class="text-xl pt-4 font-bold">年齢</h2>
+      <p class="py-2"><%= @user.age %> 歳</p>
+      <h2 class="text-xl pt-4 font-bold">生まれた時の性別</h2>
+      <p class="py-2"><%=@user.sex_i18n %></p>
+      <h2 class="text-xl pt-4 font-bold">活動レベル</h2>
+      <p class="py-2"><%=@user.active_level_i18n %></p>
+    </div>
+    <div>
+      <h2 class="text-xl pt-4 font-bold">目標体重</h2>
+      <p class="py-2"><%=@user.target_weight %></p>
+      <h2 class="text-xl pt-4 font-bold">目標達成予定日</h2>
+      <p class="py-2"><%=@user.target_date.strftime("%Y年%m月%d日") %></p>
+      <h2 class="text-xl pt-4 font-bold">メンテナンスカロリー</h2>
+      <p class="py-2"><%=@user.maintenance_calorie %> kcal</p>
+      <% if @user.adjustment_calorie.present? %>
+        <h2 class="text-xl pt-4 font-bold">調整カロリー</h2>
+        <p class="py-2"><%=@user.adjustment_calorie %> kcal</p>
+      <% end %>
+    </div>
   </div>
-  <div>
-    <h2 class="text-xl pt-4 font-bold">目標体重</h2>
-    <p><%=@user.target_weight%></p>
-    <h2 class="text-xl pt-4 font-bold">目標期日</h2>
-    <p><%=@user.target_date%></p>
-    <h2 class="text-xl pt-4 font-bold">メンテナンスカロリー</h2>
-    <p><%=@user.maintenance_calorie%></p>
-    <h2 class="text-xl pt-4 font-bold">調整カロリー</h2>
-    <p><%=@user.adjustment_calorie%></p>
+  <div class="flex flex-col justify-center ">
+    <div class="text-xl py-6 font-bold">
+      <h2 >目標摂取カロリーは１日あたり</h2>
+      <p class="text-amber-700 text-center"><%=@user.target_calorie%>kcalです</p>
+    </div>
+    <div>
+      <%= link_to edit_profile_path do %>
+      <button class= "btn btn-primary btn-wide my-4"><%= (t 'profiles.show.to_edit_page') %><button>
+      <% end %>
+    </div>
+    <div>
+      <%= link_to profile_path, data: { turbo_method: :delete, turbo_confirm: '本当に退会しますか?' } do %>
+        <button class= "btn btn-active btn-accent btn-wide my-4"><%= (t 'profiles.show.delete_an_account') %><button>
+      <% end %>
+    </div>
   </div>
 </div>
-<div class="text-xl text-center py-6 font-bold">
-  <h2 >あなたの目標摂取カロリーは１日あたり</h2>
-  <p class="text-amber-700"><%=@user.target_calorie%>kcalです</p>
-</div>
-<div class="px-8">
-  <h2 class="text-xl py-6 font-bold">プロフィール画像</h2>
-  <%= image_tag @user.avatar.variant(:thumb) if @user.avatar.attached? %>
-</div>
-<div class="btn btn-primary flex justify-center">
-  <%= link_to '編集する', edit_profile_path %>
-</div>
-<div class="btn btn-secondary flex justify-center">
-  <%= link_to (t 'profiles.destroy.delete_an_account'), profile_path, data: { turbo_method: :delete, turbo_confirm: '本当に退会しますか?' } %>
-</div>
+
 

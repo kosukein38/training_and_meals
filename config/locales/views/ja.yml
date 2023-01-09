@@ -39,6 +39,10 @@ ja:
     destroy:
       success: "ログアウトしました"
   profiles:
+    show:
+      title: "プロフィール詳細"
+      delete_an_account: "退会する"
+      to_edit_page: "編集"
     edit:
       title: "プロフィール編集"
     update:
@@ -46,7 +50,6 @@ ja:
       fail: "更新できませんでした"
     destroy:
       success: "退会しました"
-      delete_an_account: "退会する"
   workouts:
     new:
       title: "筋トレ新規投稿"
