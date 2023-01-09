@@ -21,6 +21,19 @@ RSpec.describe 'Meals', js: true do
     ).save
   end
 
+  it '未ログインでも食事のタイムラインを閲覧できること' do
+    visit meals_path
+    expect(page).to have_content '食事投稿一覧'
+  end
+
+  it '食事タイムラインへボタンをクリックすると食事タイムラインが表示されること' do
+    login_as(user)
+    click_on 'タイムライン'
+    click_button '食事投稿一覧へ'
+    expect(page).to have_content '食事投稿一覧'
+    expect(page).to have_current_path meals_path, ignore_query: true
+  end
+
   it '新規食事投稿画面から食事の記録を登録できること' do
     login_as(user)
     visit new_meal_path
@@ -101,13 +114,13 @@ RSpec.describe 'Meals', js: true do
   it '他人の投稿を編集できないこと' do # コントローラーレベルのテスト(認可外でedit/:id => root_pathへリダイレクトもテストしたい)
     another_user = create(:user)
     login_as(another_user)
-    visit home_meals_path
+    visit meals_path
     click_button '詳細'
     expect(page).not_to have_content '編集'
   end
 
   it '未ログインでも投稿の詳細表示できること' do
-    visit home_meals_path
+    visit meals_path
     click_button '詳細'
     expect(page).to have_content '食事詳細'
     # current_pathのチェック追加

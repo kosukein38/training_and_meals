@@ -39,6 +39,10 @@ ja:
     destroy:
       success: "ログアウトしました"
   profiles:
+    show:
+      title: "プロフィール詳細"
+      delete_an_account: "退会する"
+      to_edit_page: "編集"
     edit:
       title: "プロフィール編集"
     update:
@@ -46,8 +50,10 @@ ja:
       fail: "更新できませんでした"
     destroy:
       success: "退会しました"
-      delete_an_account: "退会する"
   workouts:
+    index:
+      title: "筋トレ投稿一覧"
+      to_meals_page: "食事投稿一覧へ"
     new:
       title: "筋トレ新規投稿"
     show:
@@ -60,6 +66,9 @@ ja:
       success: "削除しました"
       delete_a_workout: "削除する"
   meals:
+    index:
+      title: "食事投稿一覧"
+      to_workouts_page: "筋トレ投稿一覧へ"
     new:
       title: "食事新規投稿"
     show:
@@ -71,10 +80,3 @@ ja:
     destroy:
       success: "削除しました"
       delete_a_meal: "削除する"
-  home:
-    workouts:
-      title: "タイムライン -筋トレ-"
-      to_meals_page: "食事のタイムラインへ"
-    meals:
-      title: "タイムライン -食事-"
-      to_workouts_page: "筋トレのタイムラインへ"
