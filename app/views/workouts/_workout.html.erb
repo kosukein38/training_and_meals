@@ -15,7 +15,11 @@
       <div class="flex justify-end">
         <div class="avatar">
           <div class="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-            <%= image_tag workout.user.avatar.variant(:thumb) if workout.user.avatar.attached? %>
+            <% if workout.user.avatar.attached? %>
+            <%= image_tag workout.user.avatar.variant(:thumb) %>
+            <% else %>
+            <%= image_tag('user_sample.png', size: "400x400") %>
+            <% end %>
           </div>
         </div>
         <div class="font-bold mx-2 items-center">
