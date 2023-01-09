@@ -1,10 +1,14 @@
-<div class="profile m-8 flex flex-col w-full">
+<div class="m-8 flex flex-col w-full">
   <h1 class="text-xl font-bold"><%= t '.title' %></h1>
     <div class="grid card rounded-box place-items-center">
       <div class="flex max-w-full">
         <div class="avatar max-w-max my-8 mx-4">
           <div class="w-24 h-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-            <%= image_tag @user.avatar.variant(:thumb) if @user.avatar.attached? %>
+            <% if @user.avatar.attached? %>
+            <%= image_tag @user.avatar.variant(:thumb) %>
+            <% else %>
+            <%= image_tag('user_sample.png', size: "400x400") %>
+            <% end %>
           </div>
         </div>
         <div class="flex flex-col">

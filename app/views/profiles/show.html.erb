@@ -1,7 +1,7 @@
 <div class="p-8 w-full flex flex-col lg:flex-row justify-between text-center">
   <div>
-    <h1 class="text-xl font-bold"><%= t '.title' %></h1>
-    <p class="text-neutral p-2">※このページは他ユーザーには表示されません</p>
+    <h1 class="text-xl font-bold text-left"><%= t '.title' %></h1>
+    <p class="text-neutral p-2 text-left">※このページは他ユーザーには表示されません</p>
     <div class="avatar max-w-max my-8 mx-4">
       <div class="w-24 h-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
         <% if current_user.avatar.attached? %>

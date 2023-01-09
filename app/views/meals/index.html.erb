@@ -1,11 +1,9 @@
-<div class="flex flex-wrap">
-  <h1 class="text-5xl font-bold"><%= t '.title' %></h1>
-  <button class="btn btn-outline">
-    <%= link_to t('.to_workouts_page'), workouts_path %>
-  </button>
-</div>
-<div class="container mx-auto px-8 w-full flex flex-row justify-between">
-  <div>
+<div class="m-8 w-full">
+  <h1 class="text-xl font-bold"><%= t '.title' %></h1>
+  <%=link_to workouts_path, class: "btn btn-outline m-4" do %>
+    <button><%= (t '.to_workouts_page') %></button>
+  <% end %>
+  <div class="m-8 flex flex-wrap w-full">
     <% if @meals.present? %>
       <%= render @meals %>
     <% else %>

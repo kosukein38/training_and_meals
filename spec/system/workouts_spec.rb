@@ -48,7 +48,7 @@ RSpec.describe 'Workouts', js: true do
   it 'マイページの筋トレ投稿をクリックすると筋トレ詳細画面が表示されること' do
     login_as(user)
     visit user_path(user)
-    page.first(".workout-button").click
+    page.first('.workout-button').click
     expect(page).to have_content '筋トレ詳細'
     # current_pathのチェック追加
   end
@@ -56,7 +56,7 @@ RSpec.describe 'Workouts', js: true do
   it '筋トレ詳細画面の編集ボタンをクリックすると編集画面に遷移すること' do
     login_as(user)
     visit user_path(user)
-    page.first(".workout-button").click
+    page.first('.workout-button').click
     click_button '編集'
     expect(page).to have_content '筋トレ編集'
     # current_pathのチェック追加
@@ -65,7 +65,7 @@ RSpec.describe 'Workouts', js: true do
   it '筋トレ編集から項目を入力して更新をクリックすると更新できること' do
     login_as(user)
     visit user_path(user)
-    page.first(".workout-button").click
+    page.first('.workout-button').click
     click_button '編集'
     fill_in '筋トレ日', with: Time.current
     fill_in '種目名', with: 'ベンチプレス'
@@ -83,7 +83,7 @@ RSpec.describe 'Workouts', js: true do
   it '筋トレ編集画面で削除をクリックすると削除できること' do
     login_as(user)
     visit user_path(user)
-    page.first(".workout-button").click
+    page.first('.workout-button').click
     click_button '編集'
     page.accept_confirm do
       click_on '削除する'
@@ -95,7 +95,7 @@ RSpec.describe 'Workouts', js: true do
   it '筋トレ投稿編集画面から画像を変更できること' do
     login_as(user)
     visit user_path(user)
-    page.first(".workout-button").click
+    page.first('.workout-button').click
     click_button '編集'
     fill_in '筋トレ日', with: Time.current
     fill_in '種目名', with: 'ベンチプレス'
@@ -116,13 +116,13 @@ RSpec.describe 'Workouts', js: true do
     another_user = create(:user)
     login_as(another_user)
     visit workouts_path
-    page.first(".workout-button").click
+    page.first('.workout-button').click
     expect(page).not_to have_content '編集'
   end
 
   it '未ログインでも投稿の詳細表示できること' do
     visit workouts_path
-    page.first(".workout-button").click
+    page.first('.workout-button').click
     expect(page).to have_content '筋トレ詳細'
     # current_pathのチェック追加
   end

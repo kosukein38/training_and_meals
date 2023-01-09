@@ -34,7 +34,6 @@ RSpec.describe 'Meals', js: true do
     expect(page).to have_current_path meals_path, ignore_query: true
   end
 
-
   it '新規食事投稿画面から食事の記録を登録できること' do
     login_as(user)
     visit new_meal_path
