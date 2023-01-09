@@ -20,7 +20,7 @@ RSpec.describe 'Profiles', js: true do
     login_as(user)
     visit profile_path
     page.accept_confirm do
-      click_on '退会する'
+      click_button '退会する'
     end
     expect(page).to have_content '退会しました'
     expect(page).to have_content 'ログイン'
