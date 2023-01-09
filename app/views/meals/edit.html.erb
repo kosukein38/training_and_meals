@@ -73,7 +73,7 @@
       <%= f.submit class: "btn btn-primary btn-wide my-4"%>
       <% end %>
       <%=link_to meal_path(params[:id]), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか?' } do %>
-      <button class="workout-delete btn btn-active btn-accent btn-wide my-4"><%= (t 'meals.destroy.delete_a_meal') %></button>
+      <button class="meal-delete btn btn-active btn-accent btn-wide my-4"><%= (t 'meals.destroy.delete_a_meal') %></button>
       <% end %>
     </div>
   </div>

@@ -105,7 +105,7 @@ RSpec.describe 'Meals', js: true do
     click_button '詳細'
     click_button '編集'
     page.accept_confirm do
-      click_on '削除する'
+      page.first('.meal-delete').click
     end
     expect(page).to have_content '食事投稿を削除しました'
     expect(page).to have_current_path user_path(user), ignore_query: true
