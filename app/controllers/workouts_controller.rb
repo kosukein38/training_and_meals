@@ -2,7 +2,7 @@ class WorkoutsController < ApplicationController
   skip_before_action :require_login, only: %i[index show]
 
   def index
-    @workouts = Workout.includes(:user).order(created_at: :desc)
+    @workouts = Workout.includes(:user).order(workout_date: :desc)
   end
 
   def show

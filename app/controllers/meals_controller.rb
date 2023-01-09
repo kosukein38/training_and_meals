@@ -7,7 +7,7 @@ class MealsController < ApplicationController
   before_action :set_response, only: %i[new edit]
 
   def index
-    @meals = Meal.includes(:user, :meal_details).order(created_at: :desc)
+    @meals = Meal.includes(:user, :meal_details).order(meal_date: :desc)
   end
 
   def show
