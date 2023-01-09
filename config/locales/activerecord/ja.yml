@@ -24,6 +24,7 @@ ja:
         twitter_link: "Twitterリンク"
         facebook_link: "Facebookリンク"
         instagram_link: "Instagramリンク"
+        avatar: "プロフィール画像"
       workout:
         workout_date: "筋トレ日"
         workout_title: "種目名"
@@ -51,6 +52,7 @@ ja:
         meal_title: "献立名"
         meal_weight: "量(g)"
         meal_calorie: "カロリー"
+        meal_images: "食事画像（複数登録可）"
   activemodel:
     attributes:
       workout_form:
@@ -80,7 +82,7 @@ ja:
         meal_title: "献立名"
         meal_weight: "量(g)"
         meal_calorie: "カロリー"
-
+        meal_images: "食事画像（複数登録可）"
   enums:
     user:
       sex:

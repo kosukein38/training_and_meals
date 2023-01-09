@@ -86,7 +86,7 @@ RSpec.describe 'Workouts', js: true do
     page.first('.workout-button').click
     click_button '編集'
     page.accept_confirm do
-      click_on '削除する'
+      page.first('.workout-delete').click
     end
     expect(page).to have_content '筋トレ投稿を削除しました'
     expect(page).to have_current_path user_path(user), ignore_query: true

@@ -1,77 +1,80 @@
-<div class="container mx-auto px-8 w-full">
-<h1 class="text-5xl font-bold"><%= t '.title' %></h1>
+<div class="p-4 flex flex-col w-full">
+  <h1 class="text-xl font-bold"><%= t '.title' %></h1>
+  <div>
+    <%= render 'calorie_search', response: @response %>
+  </div>
   <%= form_with model: @meal_form, url: meal_path, local: true do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
     <div class="form-control">
-      <%= f.label :meal_date %>
+      <%= f.label :meal_date, class: "text-xl pt-4 font-bold" %>
       <%= f.date_field :meal_date, class: "input input-bordered" %>
-    </div>
-    <div class="form-control">
-      <%= f.label :meal_period %>
-      <%= f.select :meal_period, Meal.meal_periods_i18n.invert.map{|key, value| [key, Meal.meal_periods[value]]}, class: "input input-bordered" %>
-    </div>
-    <div class="form-control">
-      <%= f.label :meal_type %>
-      <%= f.select :meal_type, Meal.meal_types_i18n.invert.map{|key, value| [key, Meal.meal_types[value]]}, class: "input input-bordered" %>
-    </div>
-    <div class="flex">
-      <div class="flex-col">
-        <div class="form-control">
-          <%= f.label :meal_title_first %>
-          <%= f.text_field :meal_title_first, class: "input input-bordered" %>
-        </div>
-        <div class="form-control">
-          <%= f.label :meal_weight_first %>
-          <%= f.number_field :meal_weight_first, class: "input input-bordered" %>
-        </div>
-        <div class="form-control">
-          <%= f.label :meal_calorie_first %>
-          <%= f.number_field :meal_calorie_first, class: "input input-bordered" %>
+
+      <%= f.label :meal_period, class: "text-xl pt-4 font-bold" %>
+      <%= f.select :meal_period, Meal.meal_periods_i18n.invert.map{|key, value| [key, Meal.meal_periods[value]]}, {}, class: "select select-bordered w-ful" %>
+
+      <%= f.label :meal_type, class: "text-xl pt-4 font-bold" %>
+      <%= f.select :meal_type, Meal.meal_types_i18n.invert.map{|key, value| [key, Meal.meal_types[value]]}, {}, class: "select select-bordered w-ful" %>
+
+      <div class="m-2">
+        <p >食事メニュー, g数, カロリーを最低1つ（その1の欄）入力してください</p>
+        <div class="flex-none md:flex">
+          <div class="m-2">
+            <div class="form-control">
+              <%= f.label :meal_title_first, class: "text-xl font-bold" %>
+              <%= f.text_field :meal_title_first, class: "input input-bordered" %>
+            </div>
+            <div class="form-control">
+              <%= f.label :meal_weight_first, class: "text-xl font-bold" %>
+              <%= f.number_field :meal_weight_first, class: "input input-bordered" %>
+            </div>
+            <div class="form-control">
+              <%= f.label :meal_calorie_first, class: "text-xl font-bold" %>
+              <%= f.number_field :meal_calorie_first, class: "input input-bordered" %>
+            </div>
+          </div>
+          <div class="m-2">
+            <div class="form-control">
+              <%= f.label :meal_title_second, class: "text-xl font-bold" %>
+              <%= f.text_field :meal_title_second, class: "input input-bordered" %>
+            </div>
+            <div class="form-control">
+              <%= f.label :meal_weight_second, class: "text-xl font-bold" %>
+              <%= f.number_field :meal_weight_second, class: "input input-bordered" %>
+            </div>
+            <div class="form-control">
+              <%= f.label :meal_calorie_second, class: "text-xl font-bold" %>
+              <%= f.number_field :meal_calorie_second, class: "input input-bordered" %>
+            </div>
+          </div>
+          <div class="m-2">
+            <div class="form-control">
+              <%= f.label :meal_title_third, class: "text-xl font-bold"%>
+              <%= f.text_field :meal_title_third, class: "input input-bordered" %>
+            </div>
+            <div class="form-control">
+              <%= f.label :meal_weight_third, class: "text-xl font-bold" %>
+              <%= f.number_field :meal_weight_third, class: "input input-bordered" %>
+            </div>
+            <div class="form-control">
+              <%= f.label :meal_calorie_third, class: "text-xl font-bold" %>
+              <%= f.number_field :meal_calorie_third, class: "input input-bordered" %>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="flex-col">
-        <div class="form-control mt-6">
-          <%= f.label :meal_title_second %>
-          <%= f.text_field :meal_title_second, class: "input input-bordered" %>
-        </div>
-        <div class="form-control">
-          <%= f.label :meal_weight_second %>
-          <%= f.number_field :meal_weight_second, class: "input input-bordered" %>
-        </div>
-        <div class="form-control">
-          <%= f.label :meal_calorie_second %>
-          <%= f.number_field :meal_calorie_second, class: "input input-bordered" %>
-        </div>
-      </div>
-      <div class="flex-col">
-        <div class="form-control mt-6">
-          <%= f.label :meal_title_third %>
-          <%= f.text_field :meal_title_third, class: "input input-bordered" %>
-        </div>
-        <div class="form-control">
-          <%= f.label :meal_weight_third %>
-          <%= f.number_field :meal_weight_third, class: "input input-bordered" %>
-        </div>
-        <div class="form-control">
-          <%= f.label :meal_calorie_third %>
-          <%= f.number_field :meal_calorie_third, class: "input input-bordered" %>
-        </div>
-      </div>
-    </div>
-    <div class="form-control mt-10">
-      <%= f.label :meal_memo %>
-      <%= f.text_area :meal_memo, class: "input input-bordered" %>
-    </div>
-    <div class="form-control mt-10">
-      <%= f.label :meal_images %>
+
+      <%= f.label :meal_memo, class: "text-xl pt-4 font-bold" %>
+      <%= f.text_area :meal_memo, class: "textarea textarea-bordered" %>
+
+      <%= f.label :meal_images, class: "text-xl pt-4 font-bold" %>
       <%= f.file_field :meal_images, class: "input input-bordered", multiple: true %>
     </div>
-    <div class="form-control mt-6">
-      <%= f.submit class: "btn btn-primary"%>
-    </div>
-  <% end %>
-    <div class="btn btn-secondary flex justify-center">
-      <%= link_to (t 'meals.destroy.delete_a_meal'), meal_path(params[:id]), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか?' } %>
+    <div class="flex flex-col items-center">
+      <%= f.submit class: "btn btn-primary btn-wide my-4"%>
+      <% end %>
+      <%=link_to meal_path(params[:id]), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか?' } do %>
+      <button class="meal-delete btn btn-active btn-accent btn-wide my-4"><%= (t 'meals.destroy.delete_a_meal') %></button>
+      <% end %>
     </div>
   </div>
 </div>
