@@ -30,7 +30,7 @@
 
       <%= f.label :age, class: "text-xl pt-4 font-bold" %>
       <%= f.number_field :age, class: "form-control input input-bordered" %>
- 
+
       <%= f.label :sex, class: "text-xl pt-4 font-bold" %>
       <%= f.select :sex, User.sexes_i18n.invert.map{|key, value| [key, value]}, {}, class: "select select-bordered w-ful" %>
 
@@ -92,8 +92,5 @@
     </div>
     <% end %>
   </div>
-
-
-
 </div>
 
