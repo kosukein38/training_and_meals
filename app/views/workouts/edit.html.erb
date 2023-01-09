@@ -36,13 +36,12 @@
       <%= f.label :workout_images, class: "text-xl pt-4 font-bold"  %>
       <%= f.file_field :workout_images, class: "input input-bordered", multiple: true %>
     </div>
-    <div class="flex flex-colgit items-center">
+    <div class="flex flex-col items-center">
       <%= f.submit class: "btn btn-primary btn-wide my-4"%>
       <% end %>
       <%=link_to workout_path(params[:id]), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか?' } do %>
       <button class="workout-delete btn btn-active btn-accent btn-wide my-4"><%= (t 'workouts.destroy.delete_a_workout') %></button>
       <% end %>
     </div>
-
   </div>
 </div>

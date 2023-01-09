@@ -52,6 +52,7 @@ ja:
         meal_title: "献立名"
         meal_weight: "量(g)"
         meal_calorie: "カロリー"
+        meal_images: "食事画像（複数登録可）"
   activemodel:
     attributes:
       workout_form:
@@ -81,7 +82,7 @@ ja:
         meal_title: "献立名"
         meal_weight: "量(g)"
         meal_calorie: "カロリー"
-
+        meal_images: "食事画像（複数登録可）"
   enums:
     user:
       sex:
