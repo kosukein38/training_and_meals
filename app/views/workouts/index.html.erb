@@ -1,13 +1,15 @@
-<div class="m-8 w-full">
-  <h1 class="text-xl font-bold"><%= t '.title' %></h1>
-  <%=link_to meals_path, class: "btn btn-outline m-4" do %>
-    <button><%= (t '.to_meals_page') %></button>
-  <% end %>
-  <div class="m-8 flex flex-wrap w-full">
-    <% if @workouts.present? %>
-      <%= render @workouts %>
-    <% else %>
-      <p><%= t('.no_result') %></p>
+<div class="w-full">
+  <div class="m-8">
+    <h1 class="text-xl font-bold"><%= t '.title' %></h1>
+    <%=link_to meals_path, class: "btn btn-outline m-4" do %>
+      <button><%= (t '.to_meals_page') %></button>
     <% end %>
+    <div class="flex flex-wrap w-full">
+      <% if @workouts.present? %>
+        <%= render @workouts %>
+      <% else %>
+        <p><%= t('.no_result') %></p>
+      <% end %>
+    </div>
   </div>
 </div>
