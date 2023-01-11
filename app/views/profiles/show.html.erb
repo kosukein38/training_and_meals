@@ -41,13 +41,14 @@
       <h2 class="text-xl pt-4 font-bold">目標体重</h2>
       <p class="py-2"><%=@user.target_weight %></p>
       <% if @user.target_date.present? %>
-      <h2 class="text-xl pt-4 font-bold">目標達成予定日</h2>
+      <h2 class="text-xl pt-4 font-bold">目標達成したい日</h2>
       <p class="py-2"><%=@user.target_date.strftime("%Y年%m月%d日") %></p>
       <% end %>
-      <h2 class="text-xl pt-4 font-bold">メンテナンスカロリー</h2>
+      <h2 class="text-xl pt-4 font-bold">メンテナンスカロリー※</h2>
       <p class="py-2"><%=@user.maintenance_calorie %> kcal</p>
+      <p>※体重維持に必要なカロリーのこと<br>(これを下回ると減量しちゃいます)</p>
       <% if @user.adjustment_calorie.present? %>
-        <h2 class="text-xl pt-4 font-bold">調整カロリー</h2>
+        <h2 class="text-xl pt-4 font-bold">カロリー調整</h2>
         <p class="py-2"><%=@user.adjustment_calorie %> kcal</p>
       <% end %>
     </div>
