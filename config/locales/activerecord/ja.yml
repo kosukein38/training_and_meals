@@ -6,10 +6,10 @@ ja:
       meal: "食事投稿"
     attributes:
       user:
-        name: 名前
-        email: "メールアドレス"
-        password: "パスワード"
-        password_confirmation: "パスワード（確認用）"
+        name: "名前(必須)"
+        email: "メールアドレス(必須)"
+        password: "パスワード(必須)"
+        password_confirmation: "確認用パスワード(必須)"
         introduction: "自己紹介"
         height: "身長"
         body_weight: "体重"
