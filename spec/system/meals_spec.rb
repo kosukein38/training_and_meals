@@ -38,15 +38,15 @@ RSpec.describe 'Meals', js: true do
     login_as(user)
     visit new_meal_path
     fill_in '日付', with: Time.current
-    select '昼食', from: '食事タイミング'
-    select '外食', from: '食事タイプ'
-    fill_in 'メニューその1', with: '唐揚げ'
+    select '昼食', from: '食事タイミング(任意)'
+    select '外食', from: '食事タイプ(任意)'
+    fill_in 'メニュー1(必須)', with: '唐揚げ'
     fill_in 'meal_form_meal_weight_first', with: 200
     fill_in 'meal_form_meal_calorie_first', with: 500
-    fill_in 'メニューその2', with: '唐揚げ'
+    fill_in 'メニュー2(任意)', with: '唐揚げ'
     fill_in 'meal_form_meal_weight_second', with: 200
     fill_in 'meal_form_meal_calorie_second', with: 500
-    fill_in 'メニューその3', with: '唐揚げ'
+    fill_in 'メニュー3(任意)', with: '唐揚げ'
     fill_in 'meal_form_meal_weight_third', with: 200
     fill_in 'meal_form_meal_calorie_third', with: 500
     fill_in 'メモ', with: '唐揚げおいしい'
@@ -80,15 +80,15 @@ RSpec.describe 'Meals', js: true do
     click_button '詳細'
     click_button '編集'
     fill_in '日付', with: Time.current
-    select '昼食', from: '食事タイミング'
-    select '自炊', from: '食事タイプ'
-    fill_in 'メニューその1', with: 'お弁当'
+    select '昼食', from: '食事タイミング(任意)'
+    select '自炊', from: '食事タイプ(任意)'
+    fill_in 'メニュー1(必須)', with: 'お弁当'
     fill_in 'meal_meal_weight_first', with: 200
     fill_in 'meal_meal_calorie_first', with: 500
-    fill_in 'メニューその2', with: '味噌汁'
+    fill_in 'メニュー2(任意)', with: '味噌汁'
     fill_in 'meal_meal_weight_second', with: 120
     fill_in 'meal_meal_calorie_second', with: 100
-    fill_in 'メニューその3', with: 'ジュース'
+    fill_in 'メニュー3(任意)', with: 'ジュース'
     fill_in 'meal_meal_weight_third', with: 100
     fill_in 'meal_meal_calorie_third', with: 80
     fill_in 'メモ', with: 'お弁当おいしい'

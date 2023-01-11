@@ -31,13 +31,13 @@ RSpec.describe 'Workouts', js: true do
   it '新規筋トレ投稿画面から筋トレの記録（種目名、トレーニング時間、重量、回数、セット数）を登録できること' do
     login_as(user)
     visit new_workout_path
-    fill_in '筋トレ日', with: Time.current
-    fill_in '種目名', with: 'ベンチプレス'
+    fill_in '筋トレ日(必須)', with: Time.current
+    fill_in '種目名(必須)', with: 'ベンチプレス'
     check '胸'
-    fill_in 'トレーニーング時間(分)', with: 30
-    fill_in '重量', with: 80.5
-    fill_in '回数', with: 10
-    fill_in 'セット数', with: 3
+    fill_in 'トレーニーング時間(分)(必須)', with: 30
+    fill_in '重量(必須)', with: 80.5
+    fill_in '回数(必須)', with: 10
+    fill_in 'セット数(必須)', with: 3
     attach_file 'workout_form[workout_images][]', "#{Rails.root}/spec/fixtures/images/sample_man.png"
     click_button '投稿する'
     expect(page).to have_content '筋トレ投稿を作成しました'
@@ -67,14 +67,14 @@ RSpec.describe 'Workouts', js: true do
     visit user_path(user)
     page.first('.workout-button').click
     click_button '編集'
-    fill_in '筋トレ日', with: Time.current
-    fill_in '種目名', with: 'ベンチプレス'
+    fill_in '筋トレ日(必須)', with: Time.current
+    fill_in '種目名(必須)', with: 'ベンチプレス'
     check '胸'
     check '肩'
-    fill_in 'トレーニーング時間(分)', with: 40
-    fill_in '重量', with: 90.4
-    fill_in '回数', with: 10
-    fill_in 'セット数', with: 3
+    fill_in 'トレーニーング時間(分)(必須)', with: 40
+    fill_in '重量(必須)', with: 90.4
+    fill_in '回数(必須)', with: 10
+    fill_in 'セット数(必須)', with: 3
     click_button '更新する'
     expect(page).to have_content '筋トレ投稿を更新しました'
     expect(page).to have_current_path user_path(user), ignore_query: true
@@ -97,14 +97,14 @@ RSpec.describe 'Workouts', js: true do
     visit user_path(user)
     page.first('.workout-button').click
     click_button '編集'
-    fill_in '筋トレ日', with: Time.current
-    fill_in '種目名', with: 'ベンチプレス'
+    fill_in '筋トレ日(必須)', with: Time.current
+    fill_in '種目名(必須)', with: 'ベンチプレス'
     check '胸'
     check '肩'
-    fill_in 'トレーニーング時間(分)', with: 40
-    fill_in '重量', with: 90.4
-    fill_in '回数', with: 10
-    fill_in 'セット数', with: 3
+    fill_in 'トレーニーング時間(分)(必須)', with: 40
+    fill_in '重量(必須)', with: 90.4
+    fill_in '回数(必須)', with: 10
+    fill_in 'セット数(必須)', with: 3
     attach_file 'workout[workout_images][]', "#{Rails.root}/spec/fixtures/images/sample.png"
     click_button '更新する'
     expect(page).to have_content '筋トレ投稿を更新しました'
