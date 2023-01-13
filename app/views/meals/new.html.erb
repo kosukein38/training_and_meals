@@ -6,7 +6,7 @@
   </div>
 
   <div class="mt-6">
-    <%= form_with model: @meal_form, url: meals_path, local: true do |f| %>
+    <%= form_with model: @meal_form, local: true do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
       <div class="form-control">
         <%= f.label :meal_date, class: "text-xl pt-4 font-bold" %>
