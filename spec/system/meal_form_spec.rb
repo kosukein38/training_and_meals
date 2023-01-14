@@ -1,10 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe 'Meals', js: true do
+RSpec.describe 'MealForm', js: true do
   let(:user) { create(:user) }
 
   before do
-    MealForm.new(
+    meal = MealForm.new
+    meal.assign_attributes(
       meal_date: Time.current,
       meal_period: 1,
       meal_type: 1,
@@ -18,7 +19,8 @@ RSpec.describe 'Meals', js: true do
       meal_weight_third: 100,
       meal_calorie_third: 100,
       user_id: user.id
-    ).save
+    )
+    meal.save
   end
 
   it '未ログインでも食事のタイムラインを閲覧できること' do
@@ -41,16 +43,16 @@ RSpec.describe 'Meals', js: true do
     select '昼食', from: '食事タイミング(任意)'
     select '外食', from: '食事タイプ(任意)'
     fill_in 'メニュー1(必須)', with: '唐揚げ'
-    fill_in 'meal_form_meal_weight_first', with: 200
-    fill_in 'meal_form_meal_calorie_first', with: 500
+    fill_in 'meal_meal_weight_first', with: 200
+    fill_in 'meal_meal_calorie_first', with: 500
     fill_in 'メニュー2(任意)', with: '唐揚げ'
-    fill_in 'meal_form_meal_weight_second', with: 200
-    fill_in 'meal_form_meal_calorie_second', with: 500
+    fill_in 'meal_meal_weight_second', with: 200
+    fill_in 'meal_meal_calorie_second', with: 500
     fill_in 'メニュー3(任意)', with: '唐揚げ'
-    fill_in 'meal_form_meal_weight_third', with: 200
-    fill_in 'meal_form_meal_calorie_third', with: 500
+    fill_in 'meal_meal_weight_third', with: 200
+    fill_in 'meal_meal_calorie_third', with: 500
     fill_in 'メモ', with: '唐揚げおいしい'
-    attach_file 'meal_form[meal_images][]', "#{Rails.root}/spec/fixtures/images/sample_man.png"
+    attach_file 'meal[meal_images][]', "#{Rails.root}/spec/fixtures/images/sample_man.png"
     click_button '投稿する'
     expect(page).to have_content '食事投稿を作成しました'
     expect(page).to have_selector("img[src$='sample_man.png']")

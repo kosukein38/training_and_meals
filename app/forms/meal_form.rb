@@ -25,37 +25,79 @@ class MealForm
   validates :meal_weight_first, presence: true
   validates :meal_calorie_first, presence: true
 
+  delegate :persisted?, to: :meal
+
+  def initialize(attributes = nil, meal: Meal.new)
+    @meal = meal
+    attributes ||= default_attributes
+    super(attributes)
+  end
+
   def save
     return false if invalid?
 
-    meal = Meal.create(meal_date:, meal_period:, meal_type:, meal_memo:, user_id:, meal_images:)
-    meal.meal_details.build(meal_title: meal_title_first, meal_weight: meal_weight_first, meal_calorie: meal_calorie_first).save
-    if meal_title_second.present?
-      meal.meal_details.build(meal_title: meal_title_second, meal_weight: meal_weight_second,
-                              meal_calorie: meal_calorie_second).save
+    ActiveRecord::Base.transaction do
+      if meal.meal_images.blank?
+        meal.update!(meal_date:, meal_period:, meal_type:, meal_memo:, user_id:, meal_images:)
+      else
+        meal.update!(meal_date:, meal_period:, meal_type:, meal_memo:, user_id:)
+      end
+
+      if meal.meal_details.blank?
+        meal.meal_details.create!(meal_title: meal_title_first, meal_weight: meal_weight_first, meal_calorie: meal_calorie_first)
+      else
+        meal.meal_details.update!(meal_title: meal_title_first, meal_weight: meal_weight_first, meal_calorie: meal_calorie_first)
+      end
+
+      unless meal_title_second.empty?
+        meal.meal_details.build(meal_title: meal_title_second, meal_weight: meal_weight_second,
+                                meal_calorie: meal_calorie_second).save
+      end
+
+      unless meal_title_third.empty?
+        meal.meal_details.build(meal_title: meal_title_third, meal_weight: meal_weight_third,
+                                meal_calorie: meal_calorie_third).save
+      end
+      meal
     end
-    if meal_title_third.present?
-      meal.meal_details.build(meal_title: meal_title_third, meal_weight: meal_weight_third,
-                              meal_calorie: meal_calorie_third).save
-    end
+  rescue ActiveRecord::RecordInvalid
+    false
+  end
+
+  def to_model
     meal
   end
 
-  def update
-    return false if invalid?
+  private
 
-    meal = Meal.find(meal_id)
-    meal.update!(meal_date:, meal_period:, meal_type:, meal_memo:, meal_images:, user_id:)
-    MealDetail.where(meal_id: meal.id).delete_all
-    meal.meal_details.build(meal_title: meal_title_first, meal_weight: meal_weight_first, meal_calorie: meal_calorie_first).save
-    if meal_title_second.present?
-      meal.meal_details.build(meal_title: meal_title_second, meal_weight: meal_weight_second,
-                              meal_calorie: meal_calorie_second).save
-    end
-    if meal_title_third.present?
-      meal.meal_details.build(meal_title: meal_title_third, meal_weight: meal_weight_third,
-                              meal_calorie: meal_calorie_third).save
-    end
-    meal
+  attr_reader :meal
+
+  def default_attributes
+    meal_title_first = meal.meal_details.first.nil? ? '' : meal.meal_details.first.meal_title
+    meal_weight_first = meal.meal_details.first.nil? ? '' : meal.meal_details.first.meal_weight
+    meal_calorie_first = meal.meal_details.first.nil? ? '' : meal.meal_details.first.meal_calorie
+    meal_title_second = meal.meal_details.second.nil? ? '' : meal.meal_details.second.meal_title
+    meal_weight_second = meal.meal_details.second.nil? ? '' : meal.meal_details.second.meal_weight
+    meal_calorie_second = meal.meal_details.second.nil? ? '' : meal.meal_details.second.meal_calorie
+    meal_title_third = meal.meal_details.third.nil? ? '' : meal.meal_details.third.meal_title
+    meal_weight_third = meal.meal_details.third.nil? ? '' : meal.meal_details.third.meal_weight
+    meal_calorie_third = meal.meal_details.third.nil? ? '' : meal.meal_details.third.meal_calorie
+    {
+      user_id: meal.user_id,
+      meal_date: meal.meal_date,
+      meal_period: meal.meal_period_before_type_cast,
+      meal_type: meal.meal_period_before_type_cast,
+      meal_memo: meal.meal_memo,
+      meal_images: meal.meal_images,
+      meal_title_first:,
+      meal_weight_first:,
+      meal_calorie_first:,
+      meal_title_second:,
+      meal_weight_second:,
+      meal_calorie_second:,
+      meal_title_third:,
+      meal_weight_third:,
+      meal_calorie_third:
+    }
   end
 end
