@@ -69,6 +69,16 @@
       <%= f.label :meal_images, class: "text-xl pt-4 font-bold" %>
       <%= f.file_field :meal_images, class: "input input-bordered", multiple: true %>
     </div>
+    <div class="flex flex-col items-start my-3">
+      <% if @meal_form.meal_images.attached? %>
+        <h1 class="text-xl pt-4 font-bold">アップロード済み画像</h1>
+        <div class="flex flex-wrap">
+          <% @meal_form.meal_images.each do |meal_image|%>
+          <div><%= image_tag meal_image.variant(:thumb), class: "m-2" if meal_image.representable? %></div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
     <div class="flex flex-col items-center">
       <%= f.submit class: "btn btn-primary btn-wide my-4"%>
       <% end %>

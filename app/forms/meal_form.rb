@@ -37,12 +37,23 @@ class MealForm
     return false if invalid?
 
     ActiveRecord::Base.transaction do
-      meal = Meal.create(meal_date:, meal_period:, meal_type:, meal_memo:, user_id:, meal_images:)
-      meal.meal_details.build(meal_title: meal_title_first, meal_weight: meal_weight_first, meal_calorie: meal_calorie_first).save
+      if meal.meal_images.blank?
+        meal.update!(meal_date:, meal_period:, meal_type:, meal_memo:, user_id:, meal_images:)
+      else
+        meal.update!(meal_date:, meal_period:, meal_type:, meal_memo:, user_id:)
+      end
+
+      if meal.meal_details.blank?
+        meal.meal_details.create!(meal_title: meal_title_first, meal_weight: meal_weight_first, meal_calorie: meal_calorie_first)
+      else
+        meal.meal_details.update!(meal_title: meal_title_first, meal_weight: meal_weight_first, meal_calorie: meal_calorie_first)
+      end
+
       unless meal_title_second.empty?
         meal.meal_details.build(meal_title: meal_title_second, meal_weight: meal_weight_second,
                                 meal_calorie: meal_calorie_second).save
       end
+
       unless meal_title_third.empty?
         meal.meal_details.build(meal_title: meal_title_third, meal_weight: meal_weight_third,
                                 meal_calorie: meal_calorie_third).save
@@ -77,6 +88,7 @@ class MealForm
       meal_period: meal.meal_period_before_type_cast,
       meal_type: meal.meal_period_before_type_cast,
       meal_memo: meal.meal_memo,
+      meal_images: meal.meal_images,
       meal_title_first:,
       meal_weight_first:,
       meal_calorie_first:,

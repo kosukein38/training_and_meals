@@ -38,9 +38,14 @@ class MealsController < ApplicationController
 
   def update
     load_meal
-
+    
     @meal_form = MealForm.new(meal_params, meal: @meal)
     if @meal_form.save
+      if params.dig(:meal, :meal_images)[1].present?
+        images = ActiveStorage::Attachment.where(record_id: params[:id])
+        images.map(&:purge)
+        @meal.meal_images.attach(params[:meal][:meal_images])
+      end
       redirect_to user_path(current_user), success: t('defaults.message.updated', item: Meal.model_name.human)
     else
       flash.now['danger'] = t('defaults.message.not_updated', item: Meal.model_name.human)
