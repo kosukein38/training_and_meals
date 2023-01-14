@@ -27,7 +27,6 @@ class MealsController < ApplicationController
   end
 
   def create
-    debugger
     @meal_form = MealForm.new(meal_params)
     if @meal_form.save
       redirect_to user_path(current_user.id), success: t('defaults.message.created', item: Meal.model_name.human)
@@ -39,9 +38,8 @@ class MealsController < ApplicationController
 
   def update
     load_meal
-    debugger
-    @meal_form = MealForm.new(meal_params, meal: @meal)
 
+    @meal_form = MealForm.new(meal_params, meal: @meal)
     if @meal_form.save
       redirect_to user_path(current_user), success: t('defaults.message.updated', item: Meal.model_name.human)
     else
