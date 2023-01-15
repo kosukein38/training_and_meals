@@ -30,8 +30,8 @@ RSpec.describe 'MealForm', js: true do
 
   it '食事タイムラインへボタンをクリックすると食事タイムラインが表示されること' do
     login_as(user)
-    click_on 'タイムライン'
-    click_button '食事投稿一覧へ'
+    page.first('.to-index').click
+    click_on '食事投稿一覧'
     expect(page).to have_content '食事投稿一覧'
     expect(page).to have_current_path meals_path, ignore_query: true
   end

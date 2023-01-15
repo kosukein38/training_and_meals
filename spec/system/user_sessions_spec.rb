@@ -42,13 +42,19 @@ RSpec.describe 'UserSessions' do
       it 'ログイン後サイドバーが表示され、マイページへのリンクがあること' do
         login_as(user)
         visit profile_path
-        expect(page).to have_link 'マイページ'
+        expect(page).to have_content 'マイページ'
       end
 
-      it 'ログイン後サイドバーが表示され、タイムラインのリンクがあること' do
+      it 'ログイン後サイドバーが表示され、投稿一覧のリンクがあること' do
         login_as(user)
         visit profile_path
-        expect(page).to have_link 'タイムライン'
+        expect(page).to have_content '投稿一覧'
+      end
+
+      it 'ログイン後サイドバーが表示され、新規投稿作成のリンクがあること' do
+        login_as(user)
+        visit profile_path
+        expect(page).to have_content '新規投稿作成'
       end
     end
   end

@@ -4,14 +4,19 @@
       <h1 class="text-5xl font-bold">Bulk Upper</h1>
       <p class="py-8 text-xl">バルクアップしたい人をサポートする<br>筋トレ、食事メニューの記録と共有サービス</p>
       <% unless logged_in? %>
-        <%= link_to '会員登録なしでユーザーの投稿をチェック', workouts_path, class: 'btn'%>
+      <div class="flex flex-col items-center dropdown dropdown-bottom">
+        <button tabindex="0" class="btn btm-nav-label">会員登録なしでユーザーの投稿をチェック</button>
+        <ul tabindex="0" class="dropdown-content menu p-2 bg-base-300 text-base-content shadow rounded-box w-52">
+          <li><%= link_to '筋トレ投稿一覧', workouts_path %></li>
+          <li><%= link_to '食事投稿一覧', meals_path %></li>
+        </ul>
+      </div>
       <% end %>
     </div>
   </div>
   <div class="hero-content text-center my-12">
     <div>
       <h1 class="text-5xl font-bold my-16">How to use</h1>
-
       <div class="hero-content flex-col lg:flex-row">
         <%= image_tag 'step1.jpg', size: "400x260", class:"max-w-sm rounded-lg shadow-2xl" %>
         <div class="p-4">
@@ -20,7 +25,6 @@
           <p>バルクアップに必要な1日に必要な摂取カロリーを自動で計算します</p>
         </div>
       </div>
-
       <div class="hero-content flex-col lg:flex-row-reverse">
         <%= image_tag 'step2.jpg', size: "400x260", class:"max-w-sm rounded-lg shadow-2xl" %>
         <div class="p-4">
@@ -29,7 +33,6 @@
           <p>メニュー名など自由に登録ができます</p>
         </div>
       </div>
-
       <div class="hero-content flex-col lg:flex-row">
         <%= image_tag 'step3.jpg', size: "400x260", class:"max-w-sm rounded-lg shadow-2xl" %>
         <div class="p-4">
@@ -38,7 +41,6 @@
           <p>筋トレメニューの記録や食事メニューの記録を日付ごと確認できます</p>
         </div>
       </div>
-
       <div class="hero-content flex-col lg:flex-row-reverse">
         <%= image_tag 'step4.jpg', size: "400x260", class:"max-w-sm rounded-lg shadow-2xl" %>
         <div class="p-4">

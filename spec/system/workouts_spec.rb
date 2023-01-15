@@ -23,7 +23,8 @@ RSpec.describe 'Workouts', js: true do
 
   it 'サイドバーのタイムラインをクリックすると筋トレのタイムラインが表示されること' do
     login_as(user)
-    click_on 'タイムライン'
+    page.first('.to-index').click
+    click_on '筋トレ投稿一覧'
     expect(page).to have_content '筋トレ投稿一覧'
     expect(page).to have_current_path workouts_path, ignore_query: true
   end
