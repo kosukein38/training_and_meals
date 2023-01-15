@@ -7,6 +7,8 @@ ja:
     logout: "ログアウト"
     calorie_search: "カロリー検索したいメニューを入力してください"
     date_search: "日付を選択してください"
+    profile: "プロフィール"
+    to_show_page: "詳細"
     message:
       require_login: "ログインしてください"
       created: "%{item}を作成しました"
@@ -14,8 +16,10 @@ ja:
       updated: "%{item}を更新しました"
       not_updated: "%{item}を更新できませんでした"
       deleted: "%{item}を削除しました"
-    profile: "プロフィール"
-    to_show_page: "詳細"
+  pagination:
+    first: "first"
+    last: "last"
+    truncate: "&hellip;"
   users:
     new:
       title: "ユーザー登録"
