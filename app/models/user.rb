@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  before_update :set_active_level_coefficient
   before_update :set_default_adjustment_calorie
+  before_update :set_active_level_coefficient
 
   authenticates_with_sorcery!
 
