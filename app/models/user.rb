@@ -38,7 +38,7 @@ class User < ApplicationRecord
       else
         ((9.247 * body_weight) + (3.098 * height) - (4.33 * age) + 447.593) * @active_level_coefficient
       end
-    self.target_calorie = maintenance_calorie + adjustment_calorie
+    self.target_calorie = maintenance_calorie + adjustment_calorie + 300
     save
   end
 
