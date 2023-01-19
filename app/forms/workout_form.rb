@@ -12,7 +12,7 @@ class WorkoutForm
   attribute :body_part_ids
   attribute :workout_images
   attribute :user_id
-  attribute :workout_id
+  # attribute :workout_id
 
   validates :workout_date, presence: true
   validates :workout_title, presence: true
@@ -22,26 +22,69 @@ class WorkoutForm
   validates :repetition_count, presence: true
   validates :set_count, presence: true
 
+  delegate :persisted?, to: :workout
+
+  def initialize(attributes = nil, workout: Workout.new)
+    @workout = workout
+    attributes ||= default_attributes
+    super(attributes)
+  end
+
+
   def save
     return false if invalid?
-
-    workout = Workout.create(workout_date:, workout_title:, workout_time:,
-                             workout_weight:, repetition_count:, set_count:, workout_memo:, user_id:, workout_images:)
-    body_part_ids.each do |body_part_id|
-      WorkoutBodyPart.create(workout_id: workout.id, body_part_id:)
+    ActiveRecord::Base.transaction do
+      workout.update!(workout_date:, workout_title:, workout_time:,
+                      workout_weight:, repetition_count:, set_count:, workout_memo:, user_id:, workout_images:)
+      debugger
+      body_part_ids.each do |body_part_id|
+        WorkoutBodyPart.find_or_create_by!(workout_id: workout.id, body_part_id:)
+      end
     end
+  rescue ActiveRecord::RecordInvalid
+    false
   end
 
-  def update
-    return false if invalid?
 
-    workout = Workout.find(workout_id)
-    workout.update!(workout_date:, workout_title:, workout_time:, workout_weight:, repetition_count:, set_count:, workout_memo:,
-                    workout_images:, user_id:)
-    body_part_ids.map(&:to_i).each do |body_part_id|
-      next if WorkoutBodyPart.find_by(workout_id:, body_part_id:)
-
-      WorkoutBodyPart.create(workout_id:, body_part_id:)
-    end
+  def to_model
+    workout
   end
+
+  private
+
+  attr_reader :workout
+
+  def default_attributes
+    {
+      user_id: workout.user_id,
+      workout_date: workout.workout_date,
+      workout_title: workout.workout_title,
+      workout_date: workout.workout_title,
+      workout_time: workout.workout_time,
+      workout_weight: workout.workout_weight,
+      repetition_count: workout.repetition_count,
+      set_count: workout.set_count,
+      workout_memo: workout.workout_memo,
+      workout_images: workout.workout_images,
+      body_part_ids: workout.body_parts.pluck(:id)
+    }
+  end
+
+
+
+
+
+
+  # def update
+  #   return false if invalid?
+
+  #   workout = Workout.find(workout_id)
+  #   workout.update!(workout_date:, workout_title:, workout_time:, workout_weight:, repetition_count:, set_count:, workout_memo:,
+  #                   workout_images:, user_id:)
+  #   body_part_ids.map(&:to_i).each do |body_part_id|
+  #     next if WorkoutBodyPart.find_by(workout_id:, body_part_id:)
+
+  #     WorkoutBodyPart.create(workout_id:, body_part_id:)
+  #   end
+  # end
 end
