@@ -18,11 +18,11 @@ class WorkoutsController < ApplicationController
     load_workout
 
     @workout_form = WorkoutForm.new(workout: @workout)
+    debugger
     redirect_to root_url, status: :see_other if @workout_form.nil?
   end
 
   def create
-    debugger
     @workout_form = WorkoutForm.new(workout_params)
     if @workout_form.save
       redirect_to user_path(current_user), success: t('defaults.message.created', item: Workout.model_name.human)

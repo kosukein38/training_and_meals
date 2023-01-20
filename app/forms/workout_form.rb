@@ -12,7 +12,6 @@ class WorkoutForm
   attribute :body_part_ids
   attribute :workout_images
   attribute :user_id
-  # attribute :workout_id
 
   validates :workout_date, presence: true
   validates :workout_title, presence: true
@@ -33,10 +32,10 @@ class WorkoutForm
 
   def save
     return false if invalid?
+
     ActiveRecord::Base.transaction do
       workout.update!(workout_date:, workout_title:, workout_time:,
                       workout_weight:, repetition_count:, set_count:, workout_memo:, user_id:, workout_images:)
-      debugger
       body_part_ids.each do |body_part_id|
         WorkoutBodyPart.find_or_create_by!(workout_id: workout.id, body_part_id:)
       end
@@ -59,7 +58,6 @@ class WorkoutForm
       user_id: workout.user_id,
       workout_date: workout.workout_date,
       workout_title: workout.workout_title,
-      workout_date: workout.workout_title,
       workout_time: workout.workout_time,
       workout_weight: workout.workout_weight,
       repetition_count: workout.repetition_count,
@@ -69,22 +67,4 @@ class WorkoutForm
       body_part_ids: workout.body_parts.pluck(:id)
     }
   end
-
-
-
-
-
-
-  # def update
-  #   return false if invalid?
-
-  #   workout = Workout.find(workout_id)
-  #   workout.update!(workout_date:, workout_title:, workout_time:, workout_weight:, repetition_count:, set_count:, workout_memo:,
-  #                   workout_images:, user_id:)
-  #   body_part_ids.map(&:to_i).each do |body_part_id|
-  #     next if WorkoutBodyPart.find_by(workout_id:, body_part_id:)
-
-  #     WorkoutBodyPart.create(workout_id:, body_part_id:)
-  #   end
-  # end
 end
