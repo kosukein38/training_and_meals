@@ -34,8 +34,15 @@ class WorkoutForm
     return false if invalid?
 
     ActiveRecord::Base.transaction do
-      workout.update!(workout_date:, workout_title:, workout_time:,
-                      workout_weight:, repetition_count:, set_count:, workout_memo:, user_id:, workout_images:)
+      if workout.workout_images.blank?
+        workout.update!(workout_date:, workout_title:, workout_time:,
+                        workout_weight:, repetition_count:, set_count:,
+                        workout_memo:, user_id:, workout_images:)
+      else
+        workout.update!(workout_date:, workout_title:, workout_time:,
+                        workout_weight:, repetition_count:, set_count:,
+                        workout_memo:, user_id:)
+      end
       body_part_ids.each do |body_part_id|
         WorkoutBodyPart.find_or_create_by!(workout_id: workout.id, body_part_id:)
       end

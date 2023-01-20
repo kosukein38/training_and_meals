@@ -18,7 +18,6 @@ class WorkoutsController < ApplicationController
     load_workout
 
     @workout_form = WorkoutForm.new(workout: @workout)
-    debugger
     redirect_to root_url, status: :see_other if @workout_form.nil?
   end
 
@@ -33,8 +32,15 @@ class WorkoutsController < ApplicationController
   end
 
   def update
-    @workout_form = WorkoutForm.new(workout_params)
+    load_workout
+
+    @workout_form = WorkoutForm.new(workout_params, workout: @workout)
     if @workout_form.save
+      if params.dig(:workout, :workout_images)[1].present?
+        images = ActiveStorage::Attachment.where(record_id: params[:id])
+        images.each(&:purge)
+        @workout.workout_images.attach(params[:workout][:workout_images])
+      end
       redirect_to user_path(current_user), success: t('defaults.message.updated', item: Workout.model_name.human)
     else
       flash.now['danger'] = t('defaults.message.not_updated', item: Workout.model_name.human)
