@@ -1,10 +1,10 @@
 <div class="p-4 flex flex-col w-full">
   <h1 class="text-xl font-bold"><%= t '.title' %></h1>
-
-  <div>
-    <%= render 'calorie_search', response: @response %>
-  </div>
-
+  <%= turbo_frame_tag 'calorie_search' do %>
+    <div>
+      <%= render 'calorie_search', response: @response %>
+    </div>
+  <% end %>
   <div class="mt-6">
     <%= form_with model: @meal_form, local: true do |f| %>
     <%= render 'shared/error_messages', object: f.object %>

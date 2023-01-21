@@ -1,22 +1,24 @@
-<h2 class="text-xl font-bold my-4">カロリー検索</h2>
-<div class="mt-3">
-  <%= form_with url: calorie_search_path, method: :get, local: true do |f| %>
-    <div class="form-control">
-      <%= f.label :calorie_search, (t 'defaults.calorie_search') %>
-      <%= f.text_field :calorie_search, class: "input input-bordered" %>
-    </div>
-    <div class="form-control my-4">
-      <%= f.submit '検索する', class: "btn btn-primary"%>
-    </div>
+<div class="calorie-seach">
+  <h2 class="text-xl font-bold my-4">カロリー検索</h2>
+  <div class="mt-3">
+    <%= form_with url: calorie_search_path, method: :get, local: true do |f| %>
+      <div class="form-control">
+        <%= f.label :calorie_search, (t 'defaults.calorie_search') %>
+        <%= f.text_field :calorie_search, class: "input input-bordered" %>
+      </div>
+      <div class="form-control my-4">
+        <%= f.submit '検索する', class: "btn btn-primary"%>
+      </div>
+    <% end %>
+  </div>
+  <% if response.present? %>
+  <div class="flex flex-col border-4 border-primary-focus items-center m-4">
+    <h2 class="text-xl font-bold my-4">検索結果</h2>
+    <% response.each do |val| %>
+      <div class="text-xl font-bold p-2">
+        <%= val %>
+      </div>
+    <% end %>
+  </div>
   <% end %>
 </div>
-<% if response.present? %>
-<div class="flex flex-col border-4 border-red-700 items-center m-4">
-  <h2 class="text-xl font-bold my-4">検索結果</h2>
-  <% response.each do |val| %>
-    <div class="text-xl font-bold p-2">
-      <%= val %>
-    </div>
-  <% end %>
-</div>
-<% end %>

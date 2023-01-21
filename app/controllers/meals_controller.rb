@@ -4,7 +4,6 @@ require 'openssl'
 
 class MealsController < ApplicationController
   skip_before_action :require_login, only: %i[index show]
-  before_action :set_response, only: %i[new edit]
 
   def index
     @meals = Meal.includes(:user, :meal_details).order(meal_date: :desc).page(params[:page])
@@ -61,40 +60,8 @@ class MealsController < ApplicationController
   end
 
   def calorie_search
-    text = params[:calorie_search]
-    # APIキーを定義
-    deepl_api_key = Rails.application.credentials.deepl[:api_key]
-    # リクエストURLを定義
-    deepl_api_url = URI('https://api-free.deepl.com/v2/translate')
-    # リクエストパラメーターを定義
-    req_params = {
-      auth_key: deepl_api_key,
-      text:,
-      target_lang: 'EN',
-      source_lang: 'JA'
-    }
-    # リクエストを送信し、返ってきたレスポンスを変数responseに格納
-    response = Net::HTTP.post_form(deepl_api_url, req_params)
-    result_body = JSON.parse(response.body)
-    translated_text = result_body['translations'][0]['text']
-    # translated_textをクエリに含ませ、Nutrition by API-NinjasのAPIを叩く
-    nutrition_url = URI("https://nutrition-by-api-ninjas.p.rapidapi.com/v1/nutrition?query=#{translated_text}")
-
-    http = Net::HTTP.new(nutrition_url.host, nutrition_url.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-
-    request = Net::HTTP::Get.new(nutrition_url)
-    request['X-RapidAPI-Key'] = Rails.application.credentials.nutrition[:api_key]
-    request['X-RapidAPI-Host'] = 'nutrition-by-api-ninjas.p.rapidapi.com'
-
-    response = http.request(request)
-    results = JSON.parse(response.body)
-    final_results = []
-    results.each do |result|
-      final_results << "メニュー：#{result['name']} カロリー：#{result['calories']} kcal グラム数：#{result['serving_size_g']} g"
-    end
-    @response = final_results
+    @response = MealSearchService.new(params[:calorie_search]).call
+    @response << 'すみません...見つかりませんでした' if @response.empty?
     @meal_form = MealForm.new
     render :new
   end
@@ -111,9 +78,5 @@ class MealsController < ApplicationController
 
   def load_meal
     @meal = current_user.meals.find(params[:id])
-  end
-
-  def set_response
-    @response ||= []
   end
 end
