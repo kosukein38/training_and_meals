@@ -28,7 +28,7 @@ RSpec.describe 'MealForm', js: true do
     expect(page).to have_content '食事投稿一覧'
   end
 
-  it '食事タイムラインへボタンをクリックすると食事タイムラインが表示されること' do
+  it 'サイドバーの投稿一覧をクリックすると食事タイムラインが表示されること' do
     login_as(user)
     page.first('.to-index').click
     click_on '食事投稿一覧'
