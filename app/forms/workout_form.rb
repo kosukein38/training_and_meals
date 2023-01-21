@@ -29,7 +29,6 @@ class WorkoutForm
     super(attributes)
   end
 
-
   def save
     return false if invalid?
 
@@ -47,10 +46,10 @@ class WorkoutForm
         WorkoutBodyPart.find_or_create_by!(workout_id: workout.id, body_part_id:)
       end
     end
+    workout
   rescue ActiveRecord::RecordInvalid
     false
   end
-
 
   def to_model
     workout
