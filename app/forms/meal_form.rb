@@ -57,6 +57,7 @@ class MealForm
                                 meal_calorie: meal_calorie_third).save!
       end
     end
+    meal
   rescue ActiveRecord::RecordInvalid
     false
   end
