@@ -61,9 +61,7 @@ class MealsController < ApplicationController
 
   def calorie_search
     @response = MealSearchService.new(params[:calorie_search]).call
-    if @response.empty?
-      @response << 'すみません...見つかりませんでした'
-    end
+    @response << 'すみません...見つかりませんでした' if @response.empty?
     @meal_form = MealForm.new
     render :new
   end
