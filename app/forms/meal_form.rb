@@ -16,7 +16,6 @@ class MealForm
   attribute :meal_title_third, :string
   attribute :meal_weight_third, :integer
   attribute :meal_calorie_third, :integer
-  attribute :meal_id
   attribute :meal_images
 
   validates :meal_date, presence: true
@@ -57,7 +56,6 @@ class MealForm
         meal.meal_details.build(meal_title: meal_title_third, meal_weight: meal_weight_third,
                                 meal_calorie: meal_calorie_third).save!
       end
-      meal
     end
   rescue ActiveRecord::RecordInvalid
     false
