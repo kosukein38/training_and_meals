@@ -7,7 +7,6 @@ class MealForm
   attribute :meal_type, :integer
   attribute :meal_memo, :string
   attribute :user_id
-
   attribute :meal_title_first, :string
   attribute :meal_weight_first, :integer
   attribute :meal_calorie_first, :integer
@@ -17,7 +16,6 @@ class MealForm
   attribute :meal_title_third, :string
   attribute :meal_weight_third, :integer
   attribute :meal_calorie_third, :integer
-  attribute :meal_id
   attribute :meal_images
 
   validates :meal_date, presence: true
@@ -51,14 +49,13 @@ class MealForm
 
       unless meal_title_second.empty?
         meal.meal_details.build(meal_title: meal_title_second, meal_weight: meal_weight_second,
-                                meal_calorie: meal_calorie_second).save
+                                meal_calorie: meal_calorie_second).save!
       end
 
       unless meal_title_third.empty?
         meal.meal_details.build(meal_title: meal_title_third, meal_weight: meal_weight_third,
-                                meal_calorie: meal_calorie_third).save
+                                meal_calorie: meal_calorie_third).save!
       end
-      meal
     end
   rescue ActiveRecord::RecordInvalid
     false

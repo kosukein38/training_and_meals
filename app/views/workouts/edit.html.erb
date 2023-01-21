@@ -1,14 +1,12 @@
 <div class="p-4 flex flex-col w-full">
   <h1 class="text-xl font-bold"><%= t '.title' %></h1>
-  <%= form_with model: @workout_form, url: workout_path, local: true do |f| %>
+  <%= form_with model: @workout_form, local: true do |f| %>
   <%= render 'shared/error_messages', object: f.object %>
     <div class="form-control">
       <%= f.label :workout_date, class: "text-xl pt-4 font-bold" %>
       <%= f.date_field :workout_date, class: "input input-bordered" %>
-
       <%= f.label :workout_title, class: "text-xl pt-4 font-bold"  %>
       <%= f.text_field :workout_title, class: "input input-bordered" %>
-
       <%= f.label :body_part_ids, class: "text-xl pt-4 font-bold"  %>
       <div class="flex flex-wrap justify-start">
         <%= f.collection_check_boxes(:body_part_ids, BodyPart.all, :id, :body_part_name, {include_hidden: false}, {class: "checkbox"}) do |body_part| %>
@@ -17,24 +15,28 @@
           </div>
         <% end%>
       </div>
-
       <%= f.label :workout_time, class: "text-xl pt-4 font-bold"  %>
       <%= f.number_field :workout_time, class: "input input-bordered" %>
-
       <%= f.label :workout_weight, class: "text-xl pt-4 font-bold"  %>
       <%= f.number_field :workout_weight, step: "0.1", class: "input input-bordered" %>
-
       <%= f.label :repetition_count, class: "text-xl pt-4 font-bold"  %>
       <%= f.number_field :repetition_count, class: "input input-bordered" %>
-
       <%= f.label :set_count, class: "text-xl pt-4 font-bold"  %>
       <%= f.number_field :set_count, class: "input input-bordered" %>
-
       <%= f.label :workout_memo, class: "text-xl pt-4 font-bold"  %>
       <%= f.text_area :workout_memo, class: "textarea textarea-bordered" %>
-
       <%= f.label :workout_images, class: "text-xl pt-4 font-bold"  %>
       <%= f.file_field :workout_images, class: "input input-bordered", multiple: true %>
+    </div>
+    <div class="flex flex-col items-start my-3">
+      <% if @workout_form.workout_images.attached? %>
+        <h1 class="text-xl pt-4 font-bold">アップロード済み画像</h1>
+        <div class="flex flex-wrap">
+          <% @workout_form.workout_images.each do |workout_image|%>
+          <div><%= image_tag workout_image.variant(:thumb), class: "m-2" if workout_image.representable? %></div>
+          <% end %>
+        </div>
+      <% end %>
     </div>
     <div class="flex flex-col items-center">
       <%= f.submit class: "btn btn-primary btn-wide my-4"%>

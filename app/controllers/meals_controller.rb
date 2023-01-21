@@ -106,7 +106,7 @@ class MealsController < ApplicationController
                                  :meal_title_first, :meal_weight_first, :meal_calorie_first,
                                  :meal_title_second, :meal_weight_second, :meal_calorie_second,
                                  :meal_title_third, :meal_weight_third, :meal_calorie_third,
-                                 meal_images: []).merge(user_id: current_user.id, meal_id: params[:id])
+                                 meal_images: []).merge(user_id: current_user.id)
   end
 
   def load_meal
