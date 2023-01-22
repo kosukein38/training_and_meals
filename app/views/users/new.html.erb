@@ -23,7 +23,8 @@
             <%= f.label :password_confirmation %>
             <%= f.password_field :password_confirmation, class: "form-control input input-bordered" %>
           </div>
-          <div class="form-control mt-6">
+          <p class="text-xs m-2">ユーザーが本サービスへの登録申込をしたことをもって<%=link_to '利用規約', terms_path, class: "link"%>および<%= link_to 'プライバシーポリシー', privacy_path, class: "link" %>のすべての条項に同意したものとみなします。</p>
+          <div class="form-control p-4">
             <%= f.submit (t 'defaults.register'), class: "btn btn-primary"%>
           </div>
         <% end %>
