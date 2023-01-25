@@ -53,6 +53,7 @@ gem 'enum_help'
 gem 'jsbundling-rails'
 gem 'kaminari'
 gem 'rails-i18n', '~> 7.0.0'
+gem 'sitemap_generator'
 gem 'sorcery'
 
 group :production do

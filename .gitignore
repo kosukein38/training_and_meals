@@ -42,3 +42,6 @@ vendor/bundle
 
 # Ignore precompiled javascript packs
 /public/dev-assets
+
+# Ignore sitemaps of develpment environment
+/public/sitemap.xml.gz
