@@ -53,8 +53,8 @@ gem 'enum_help'
 gem 'jsbundling-rails'
 gem 'kaminari'
 gem 'rails-i18n', '~> 7.0.0'
-gem 'sorcery'
 gem 'sitemap_generator'
+gem 'sorcery'
 
 group :production do
   gem 'aws-sdk-s3', require: false
