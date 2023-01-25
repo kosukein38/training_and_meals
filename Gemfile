@@ -54,6 +54,7 @@ gem 'jsbundling-rails'
 gem 'kaminari'
 gem 'rails-i18n', '~> 7.0.0'
 gem 'sorcery'
+gem 'sitemap_generator'
 
 group :production do
   gem 'aws-sdk-s3', require: false
