@@ -20,6 +20,13 @@ ja:
     first: "first"
     last: "last"
     truncate: "&hellip;"
+  static_pages:
+    contact:
+      title: "お問い合わせ"
+    privacy:
+      title: "プライバシーポリシー"
+    terms:
+      title: "利用規約"
   users:
     new:
       title: "ユーザー登録"

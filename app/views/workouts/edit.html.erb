@@ -1,3 +1,4 @@
+<% assign_meta_tags title: (t '.title') %>
 <div class="p-4 flex flex-col w-full">
   <h1 class="text-xl font-bold"><%= t '.title' %></h1>
   <%= form_with model: @workout_form, local: true do |f| %>
