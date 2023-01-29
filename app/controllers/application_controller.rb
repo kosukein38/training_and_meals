@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
   # ログイン済みユーザーかどうか確認(:require_loginのメソッドに追加)
   def not_authenticated
     flash[:warning] = t('defaults.message.require_login')
-    redirect_to login_path
+    redirect_to main_app.login_path #rails_admin
   end
 end

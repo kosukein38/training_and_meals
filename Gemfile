@@ -89,3 +89,4 @@ group :test do
   gem 'capybara'
   gem 'webdrivers'
 end
+gem "sassc-rails"
