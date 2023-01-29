@@ -1,6 +1,8 @@
 <header class="navbar bg-primary-focus text-primary-content flex justify-between">
   <div class="flex-1">
-    <%= link_to (t 'defaults.top'), root_path, class: "btn btn-ghost normal-case text-xl text-base-200" %>
+    <%= link_to root_path, class: "btn btn-ghost normal-case text-xl text-base-200 italic" do%>
+    <%= image_tag('header-logo.png', width: 150) %>
+    <% end %>
   </div>
 
   <div class="hidden md:flex md:justify-end">
