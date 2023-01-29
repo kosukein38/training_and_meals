@@ -1,8 +1,6 @@
 module ApplicationHelper
   def show_meta_tags
-    if display_meta_tags.blank?
-      assign_meta_tags
-    end
+    assign_meta_tags if display_meta_tags.blank?
     display_meta_tags
   end
 
@@ -19,26 +17,26 @@ module ApplicationHelper
     configs = {
       separator: '|',
       reverse: true,
-      site: site,
-      title: title,
-      description: description,
-      keywords: keywords,
+      site:,
+      title:,
+      description:,
+      keywords:,
       canonical: request.original_url,
-      icon: { 
-        href: image_url('favicon.png') 
+      icon: {
+        href: image_url('favicon.png')
       },
       og: {
         type: 'website',
         title: title.presence || site,
-        description: description,
+        description:,
         url: request.original_url,
-        image: image,
+        image:,
         site_name: site
       },
       twitter: {
         site: '@kosukein38',
         card: 'summary',
-        image: image
+        image:
       }
     }
     set_meta_tags(configs)

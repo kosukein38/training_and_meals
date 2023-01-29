@@ -52,10 +52,10 @@ gem 'cssbundling-rails'
 gem 'enum_help'
 gem 'jsbundling-rails'
 gem 'kaminari'
+gem 'meta-tags'
 gem 'rails-i18n', '~> 7.0.0'
 gem 'sitemap_generator'
 gem 'sorcery'
-gem 'meta-tags'
 
 group :production do
   gem 'aws-sdk-s3', require: false
