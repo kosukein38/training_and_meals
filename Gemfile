@@ -57,6 +57,8 @@ gem 'rails-i18n', '~> 7.0.0'
 gem 'sitemap_generator'
 gem 'sorcery'
 gem 'rails_admin', '~> 3.0'
+gem "sassc-rails"
+gem 'cancancan'
 
 group :production do
   gem 'aws-sdk-s3', require: false
@@ -89,4 +91,3 @@ group :test do
   gem 'capybara'
   gem 'webdrivers'
 end
-gem "sassc-rails"

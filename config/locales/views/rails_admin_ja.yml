@@ -136,6 +136,7 @@ ja:
       confirmation: "実行する"
       bulk_delete: "以下の項目が削除され、それによって関連する項目が削除され、もしくは関係を失います:"
       new_model: "%{name} (新規)"
+      delete_file: "ファイル削除"
     export:
       confirmation: "%{name}としてエクスポート"
       select: "エクスポートするフィールドを選択してください"
