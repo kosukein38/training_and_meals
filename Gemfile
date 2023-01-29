@@ -48,17 +48,17 @@ gem 'bootsnap', require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem 'image_processing', '~> 1.2'
 
+gem 'cancancan'
 gem 'cssbundling-rails'
 gem 'enum_help'
 gem 'jsbundling-rails'
 gem 'kaminari'
 gem 'meta-tags'
+gem 'rails_admin', '~> 3.0'
 gem 'rails-i18n', '~> 7.0.0'
+gem 'sassc-rails'
 gem 'sitemap_generator'
 gem 'sorcery'
-gem 'rails_admin', '~> 3.0'
-gem "sassc-rails"
-gem 'cancancan'
 
 group :production do
   gem 'aws-sdk-s3', require: false
