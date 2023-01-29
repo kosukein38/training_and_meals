@@ -56,6 +56,7 @@ gem 'meta-tags'
 gem 'rails-i18n', '~> 7.0.0'
 gem 'sitemap_generator'
 gem 'sorcery'
+gem 'rails_admin', '~> 3.0'
 
 group :production do
   gem 'aws-sdk-s3', require: false
