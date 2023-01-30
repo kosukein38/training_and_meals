@@ -49,6 +49,7 @@ gem 'bootsnap', require: false
 gem 'image_processing', '~> 1.2'
 
 gem 'cancancan'
+gem 'config'
 gem 'cssbundling-rails'
 gem 'enum_help'
 gem 'jsbundling-rails'
@@ -59,7 +60,6 @@ gem 'rails-i18n', '~> 7.0.0'
 gem 'sassc-rails'
 gem 'sitemap_generator'
 gem 'sorcery'
-gem 'config'
 
 group :production do
   gem 'aws-sdk-s3', require: false
@@ -82,11 +82,11 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
   gem 'faker'
+  gem 'letter_opener_web', '~> 2.0'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
-  gem 'letter_opener_web', '~> 2.0'
 end
 
 group :test do
