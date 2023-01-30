@@ -6,6 +6,8 @@ RSpec.describe 'Profiles', js: true do
   it 'プロフィール登録すると、プロフィール表示画面に遷移し、情報が表示されること' do
     login_as(user)
     visit edit_profile_path
+    fill_in '名前(必須)', with: user.name
+    fill_in 'メールアドレス(必須)', with: user.email
     fill_in '身長(必須)', with: user.height
     fill_in '体重(必須)', with: user.body_weight
     fill_in '年齢(必須)', with: user.age
