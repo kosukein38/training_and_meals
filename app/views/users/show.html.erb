@@ -18,14 +18,14 @@
             <h2 class="font-bold text-lg">ユーザー名</h2>
             <p><%= @user.name %><p>
           </div>
-          <h1 class="text-xl font-bold text-amber-700 m-4">
+          <h2 class="text-xl font-bold text-amber-700 m-4">
             <% if @user.target_calorie.present? %>
               1日の目標カロリー<br>
               <%= @user.target_calorie %> kcal
             <% else %>
               目標カロリー未設定
             <% end%>
-          </h1>
+          </h2>
         </div>
       </div>
       <div>
@@ -75,20 +75,20 @@
     <% end %>
   </div>
   <div class="flex flex-col mt-8">
-    <h1 class="text-xl font-bold mx-8 my-4">
+    <h2 class="text-xl font-bold mx-8 my-4">
       <%= @input_date.strftime("%Y年%m月%d日") %> の記録
-    </h1>
+    </h2>
     <% if @total_calorie.present? && @user.target_calorie.present? %>
-    <h1 class="text-xl font-bold mx-8 my-4 text-center text-primary-focus">
+    <h2 class="text-xl font-bold mx-8 my-4 text-center text-primary-focus">
       目標カロリーに対して 
       <span class="text-red-500"><%= (@total_calorie.to_f / @user.target_calorie.to_f * 100).round(0) %> %</span>
       の達成率 <br>
       (合計<span class="text-red-500"><%= @total_calorie %> kcal</span> 摂取)
-    </h1>
+    </h2>
     <% end %>
   </div>
   <div class="flex flex-col w-full my-8">
-    <h1 class="text-xl font-bold mx-8 my-4">筋トレ</h1>
+    <h2 class="text-xl font-bold mx-8 my-4">筋トレ</h2>
     <div class="grid card rounded-box">
       <div class="md:flex md:flex-wrap md:justify-start justify-center">
         <% if @workouts.present? %>
@@ -99,7 +99,7 @@
       </div>
     </div> 
     <div class="divider"></div> 
-    <h1 class="text-xl font-bold mx-8 my-4">食事</h1>
+    <h2 class="text-xl font-bold mx-8 my-4">食事</h2>
     <div class="grid card rounded-box">
       <div class="md:flex md:flex-wrap md:justify-start justify-center">
         <% if @meals.present? %>
