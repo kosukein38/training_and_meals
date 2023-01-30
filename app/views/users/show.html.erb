@@ -31,7 +31,7 @@
       <div>
         <div class="p-2">
           <h2 class="font-bold text-lg">自己紹介</h2>
-          <% if @user.introduction.empty? %>
+          <% if @user.introduction.blank? %>
             <p>未設定</p>
           <% end %>
           <p><%= @user.introduction %></p>
@@ -39,7 +39,7 @@
         <div class="p-2">
           <h2 class="font-bold text-lg">SNS</h2>
           <div class="flex">
-            <% if @user.twitter_link.empty? && @user.instagram_link && @user.facebook_link%>
+            <% if @user.twitter_link.blank? && @user.instagram_link.blank? && @user.facebook_link.blank? %>
               <p>未設定</p>
             <% end %>
             <% if @user.twitter_link.present? %>
