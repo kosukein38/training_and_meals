@@ -56,5 +56,8 @@ Rails.application.configure do
   # config.i18n.raise_on_missing_translations = true
 
   # Annotate rendered view with file names.
-  # config.action_view.annotate_rendered_view_with_filenames = true
+  # config.action_view.annotate_rendered_view_with_filenames = 
+
+  # Set a css_compressor so sassc-rails does not overwrite the compressor when running the tests
+  config.assets.css_compressor = nil
 end

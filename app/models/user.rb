@@ -26,6 +26,7 @@ class User < ApplicationRecord
 
   enum sex: { male: 0, female: 1 }
   enum active_level: { level1: 1, level2: 2, level3: 3, level4: 4, level5: 5 }
+  enum role: { general: 0, admin: 1 }
 
   def own?(object)
     object.user_id == id
