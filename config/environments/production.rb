@@ -92,4 +92,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   # To prevent sprockets of using sass mode and SassC gem (which based on deprecated LibSass library) in assets:precompile step
   config.assets.css_compressor = nil
+  config.action_mailer.default_url_options = Settings.default_url_options.to_h
 end

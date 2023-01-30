@@ -1,0 +1,16 @@
+<% assign_meta_tags title: (t '.title') %>
+<div class="p-4 flex flex-col w-full items-center">
+  <h1 class="text-2xl font-bold py-8"><%= t '.title' %></h1>
+  <%= form_with model: @user, url: password_reset_path(@token), local: true do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="form-group flex flex-col w-full items-center">
+      <%= f.label :email, class: "text-xl pt-4 font-bold"%>
+      <%= @user.email %>
+      <%= f.label :password, class: "text-xl pt-4 font-bold" %>
+      <%= f.password_field :password, class: 'input input-bordered' %>
+      <%= f.label :password_confirmation, class: "text-xl pt-4 font-bold" %>
+      <%= f.password_field :password_confirmation, class: 'input input-bordered' %>
+      <%= f.submit (t '.submit'), class: "btn btn-primary btn-wide my-8"%>
+    </div>
+  <% end %>
+</div>
