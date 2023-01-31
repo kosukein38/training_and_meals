@@ -7,9 +7,9 @@
       <%= f.label :email, class: "text-xl pt-4 font-bold"%>
       <%= @user.email %>
       <%= f.label :password, class: "text-xl pt-4 font-bold" %>
-      <%= f.password_field :password, class: 'input input-bordered' %>
+      <%= f.password_field :password, class: "input input-bordered w-auto" %>
       <%= f.label :password_confirmation, class: "text-xl pt-4 font-bold" %>
-      <%= f.password_field :password_confirmation, class: 'input input-bordered' %>
+      <%= f.password_field :password_confirmation, class: "input input-bordered w-auto" %>
       <%= f.submit (t '.submit'), class: "btn btn-primary btn-wide my-8"%>
     </div>
   <% end %>

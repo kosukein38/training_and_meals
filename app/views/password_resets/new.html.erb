@@ -4,7 +4,7 @@
     <%= form_with url: password_resets_path, local: true do |f| %>
     <div class="form-control flex flex-col w-full items-center">
       <%= f.label :email, t(User.human_attribute_name(:email)), class: "text-xl pt-4 font-bold" %>
-      <%= f.email_field :email, class: "input input-bordered" %>
+      <%= f.email_field :email, class: "input input-bordered w-full" %>
       <p>リセットページへのリンクをメール送信します</p>
       <%= f.submit (t '.submit'), class: "btn btn-primary btn-wide my-8"%>
     </div>

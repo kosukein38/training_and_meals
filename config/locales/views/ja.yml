@@ -98,7 +98,7 @@ ja:
       submit: "送信"
     edit:
       title: "パスワードリセット"
-      submit: "送信"
+      submit: "変更する"
     create:
       success: "パスワードリセット手順を送信しました"
     update:
