@@ -9,6 +9,7 @@ ja:
     date_search: "日付を選択してください"
     profile: "プロフィール"
     to_show_page: "詳細"
+    password_reset: "パスワードリセット"
     message:
       require_login: "ログインしてください"
       created: "%{item}を作成しました"
@@ -91,3 +92,15 @@ ja:
     destroy:
       success: "削除しました"
       delete_a_meal: "削除する"
+  password_resets:
+    new:
+      title: "パスワードリセット申請"
+      submit: "送信"
+    edit:
+      title: "パスワードリセット"
+      submit: "変更する"
+    create:
+      success: "パスワードリセット手順を送信しました"
+    update:
+      success: "パスワードを変更しました"
+      fail: "パスワードの変更に失敗しました"

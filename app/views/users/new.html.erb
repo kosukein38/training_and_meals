@@ -8,21 +8,21 @@
       <div class="card-body">
         <%= form_with model: @user, local: true do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
-          <div class="form-control">
+          <div class="form-control my-2">
             <%= f.label :name %>
             <%= f.text_field :name, class: "input input-bordered" %>
           </div>
-          <div class="form-control">
+          <div class="form-control my-2">
             <%= f.label :email %>
             <%= f.email_field :email, class: "input input-bordered" %>
           </div>
-          <div class="form-control">
+          <div class="form-control my-2">
             <%= f.label :password %>
-            <%= f.password_field :password, class: "form-control input input-bordered" %>
+            <%= f.password_field :password, class: "input input-bordered" %>
           </div>
-          <div class="form-control">
+          <div class="form-control my-2">
             <%= f.label :password_confirmation %>
-            <%= f.password_field :password_confirmation, class: "form-control input input-bordered" %>
+            <%= f.password_field :password_confirmation, class: "input input-bordered" %>
           </div>
           <p class="text-xs m-2">ユーザーが本サービスへの登録申込をしたことをもって<%=link_to '利用規約', terms_path, class: "link"%>および<%= link_to 'プライバシーポリシー', privacy_path, class: "link" %>のすべての条項に同意したものとみなします。</p>
           <div class="form-control p-4">

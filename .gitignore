@@ -45,3 +45,8 @@ vendor/bundle
 
 # Ignore sitemaps of develpment environment
 /public/sitemap.xml.gz
+
+# Ignore config files
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml
