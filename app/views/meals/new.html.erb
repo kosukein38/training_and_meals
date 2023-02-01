@@ -11,7 +11,7 @@
     <%= render 'shared/error_messages', object: f.object %>
       <div class="form-control">
         <%= f.label :meal_date, class: "text-xl pt-4 font-bold" %>
-        <%= f.date_field :meal_date, class: "input input-bordered" %>
+        <%= f.date_field :meal_date, value: Time.now.strftime("%Y-%m-%d"), class: "input input-bordered" %>
 
         <%= f.label :meal_period, class: "text-xl pt-4 font-bold" %>
         <%= f.select :meal_period, Meal.meal_periods_i18n.invert.map{|key, value| [key, Meal.meal_periods[value]]}, {}, class: "select select-bordered w-ful" %>
