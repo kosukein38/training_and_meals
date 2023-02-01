@@ -5,7 +5,7 @@
   <%= render 'shared/error_messages', object: f.object %>
     <div class="form-control">
       <%= f.label :workout_date, class: "text-xl pt-4 font-bold" %>
-      <%= f.date_field :workout_date, class: "input input-bordered" %>
+      <%= f.date_field :workout_date, value: Time.now.strftime("%Y-%m-%d"), class: "input input-bordered" %>
 
       <%= f.label :workout_title, class: "text-xl pt-4 font-bold"  %>
       <%= f.text_field :workout_title, class: "input input-bordered" %>
