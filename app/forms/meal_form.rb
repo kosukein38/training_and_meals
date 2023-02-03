@@ -18,7 +18,6 @@ class MealForm
   attribute :meal_calorie_third, :integer
   attribute :meal_images
 
-  validates :meal_date, presence: true
   validates :meal_title_first, presence: true
   validates :meal_weight_first, presence: true
   validates :meal_calorie_first, presence: true
@@ -59,6 +58,7 @@ class MealForm
     end
     meal
   rescue ActiveRecord::RecordInvalid
+    errors.merge!(meal.errors)
     false
   end
 
@@ -71,15 +71,15 @@ class MealForm
   attr_reader :meal
 
   def default_attributes
-    meal_title_first = meal.meal_details.first.nil? ? '' : meal.meal_details.first.meal_title
-    meal_weight_first = meal.meal_details.first.nil? ? '' : meal.meal_details.first.meal_weight
-    meal_calorie_first = meal.meal_details.first.nil? ? '' : meal.meal_details.first.meal_calorie
-    meal_title_second = meal.meal_details.second.nil? ? '' : meal.meal_details.second.meal_title
-    meal_weight_second = meal.meal_details.second.nil? ? '' : meal.meal_details.second.meal_weight
-    meal_calorie_second = meal.meal_details.second.nil? ? '' : meal.meal_details.second.meal_calorie
-    meal_title_third = meal.meal_details.third.nil? ? '' : meal.meal_details.third.meal_title
-    meal_weight_third = meal.meal_details.third.nil? ? '' : meal.meal_details.third.meal_weight
-    meal_calorie_third = meal.meal_details.third.nil? ? '' : meal.meal_details.third.meal_calorie
+    meal_title_first = meal.meal_details.first.nil? ? nil : meal.meal_details.first.meal_title
+    meal_weight_first = meal.meal_details.first.nil? ? nil : meal.meal_details.first.meal_weight
+    meal_calorie_first = meal.meal_details.first.nil? ? nil : meal.meal_details.first.meal_calorie
+    meal_title_second = meal.meal_details.second.nil? ? nil : meal.meal_details.second.meal_title
+    meal_weight_second = meal.meal_details.second.nil? ? nil : meal.meal_details.second.meal_weight
+    meal_calorie_second = meal.meal_details.second.nil? ? nil : meal.meal_details.second.meal_calorie
+    meal_title_third = meal.meal_details.third.nil? ? nil : meal.meal_details.third.meal_title
+    meal_weight_third = meal.meal_details.third.nil? ? nil : meal.meal_details.third.meal_weight
+    meal_calorie_third = meal.meal_details.third.nil? ? nil : meal.meal_details.third.meal_calorie
     {
       user_id: meal.user_id,
       meal_date: meal.meal_date,
