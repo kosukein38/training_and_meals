@@ -14,5 +14,5 @@ class Workout < ApplicationRecord
   validates :repetition_count, presence: true
   validates :set_count, presence: true
   validates :workout_images, attachment: { purge: true, content_type: %r{\Aimage/(png|jpeg|jpg)\Z}, maximum: 5_242_880 }
-  self.implicit_order_column = "created_at"
+  self.implicit_order_column = 'created_at'
 end
