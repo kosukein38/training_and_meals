@@ -30,10 +30,10 @@
       <%= f.file_field :workout_images, class: "input input-bordered", multiple: true %>
     </div>
     <div class="flex flex-col items-start my-3">
-      <% if @workout_form.workout_images.attached? %>
+      <% if @workout.workout_images.attached? %>
         <h1 class="text-xl pt-4 font-bold">アップロード済み画像</h1>
         <div class="flex flex-wrap">
-          <% @workout_form.workout_images.each do |workout_image|%>
+          <% @workout.workout_images.each do |workout_image|%>
           <div><%= image_tag workout_image.variant(:thumb), class: "m-2" if workout_image.representable? %></div>
           <% end %>
         </div>
