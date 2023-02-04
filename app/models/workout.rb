@@ -1,6 +1,4 @@
 class Workout < ApplicationRecord
-  #after_initialize :set_start_time
-
   belongs_to :user
   has_many :workout_body_parts, dependent: :destroy
   has_many :body_parts, through: :workout_body_parts
@@ -8,8 +6,6 @@ class Workout < ApplicationRecord
   has_many_attached :workout_images do |attachable|
     attachable.variant :thumb, resize_to_limit: [400, 400]
   end
-
-  #attribute :start_time, :datetime
 
   validates :workout_date, presence: true
   validates :workout_title, presence: true
@@ -21,6 +17,6 @@ class Workout < ApplicationRecord
   self.implicit_order_column = 'created_at'
 
   def start_time
-    self.workout_date 
+    workout_date
   end
 end

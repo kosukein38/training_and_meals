@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   end
 
   def set_calendar_info
-    start_date = params.fetch(:start_date, Date.today).to_date
-    @workouts_per_month = @user.workouts.where(workout_date: start_date.beginning_of_month..start_date.end_of_month)
+    start_date = params.fetch(:start_date, Time.zone.today).to_date
+    @workouts_per_month = @user.workouts.where(workout_date: start_date.all_month)
   end
 end
