@@ -58,6 +58,7 @@ gem 'meta-tags'
 gem 'rails_admin', '~> 3.0'
 gem 'rails-i18n', '~> 7.0.0'
 gem 'sassc-rails'
+gem 'simple_calendar', '~> 2.4'
 gem 'sitemap_generator'
 gem 'sorcery'
 

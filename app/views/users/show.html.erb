@@ -1,8 +1,8 @@
 <% assign_meta_tags title: (t '.title') %>
-<div class="my-page">
-  <div class="profile m-8 flex flex-col">
-    <h1 class="text-xl font-bold"><%= @user.name %>さんの<%= t '.title' %></h1>
-    <div class="md:flex md:justify-around">
+<div class="my-page mx-4 my-8">
+  <h1 class="text-xl font-bold"><%= @user.name %>さんの<%= t '.title' %></h1>
+  <div class="profile my-4 md:flex md:justify-around md:items-start">
+    <div>
       <div class="flex max-w-full">
         <div class="avatar max-w-max my-8 mx-4">
           <div class="w-24 h-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
@@ -61,53 +61,33 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="mx-8 my-4">
-    <%= form_with url: date_search_path, method: :get, local: true do |f| %>
-      <div class="form-control">
-        <%= f.label :date_search, (t 'defaults.date_search') %>
-        <%= f.date_field :date_search, class: "input input-bordered" %>
-      </div>
-      <%= hidden_field_tag :user_id, @user.id %>
-      <div class="form-control mt-3">
-        <%= f.submit '絞り込む', class: "btn btn-primary"%>
+    <!--筋トレカレンダー -->
+    <%= turbo_frame_tag 'calendar' do %>
+      <div class="flex flex-col mt-8">
+        <h2 class="font-bold text-lg">筋トレカレンダー</h2>
+        <%= month_calendar(events: @workouts_per_month) do |date, workouts| %>
+        <%= date.day %>
+          <% workouts.each do |workout| %>
+            <div>
+              <p>💪</p>
+            </div>
+            <% break %>
+          <% end %>
+        <% end %>
+        <div class="font-bold text-lg my-4 text-center">
+          <% if @workouts_per_month.present? %>
+            <p>筋トレ回数 <%= @workouts_per_month.pluck(:workout_date).uniq.size %>回/月</p>
+          <% else %>
+            <p>筋トレ回数 0回/月</p>
+          <% end %>
+        </div>
       </div>
     <% end %>
+    <!--筋トレカレンダーここまで -->
   </div>
-  <div class="flex flex-col mt-8">
-    <h2 class="text-xl font-bold mx-8 my-4">
-      <%= @input_date.strftime("%Y年%m月%d日") %> の記録
-    </h2>
-    <% if @total_calorie.present? && @user.target_calorie.present? %>
-    <h2 class="text-xl font-bold mx-8 my-4 text-center text-primary-focus">
-      目標カロリーに対して 
-      <span class="text-red-500"><%= (@total_calorie.to_f / @user.target_calorie.to_f * 100).round(0) %> %</span>
-      の達成率 <br>
-      (合計<span class="text-red-500"><%= @total_calorie %> kcal</span> 摂取)
-    </h2>
-    <% end %>
-  </div>
-  <div class="flex flex-col w-full my-8">
-    <h2 class="text-xl font-bold mx-8 my-4">筋トレ</h2>
-    <div class="grid card rounded-box">
-      <div class="md:flex md:flex-wrap md:justify-start justify-center">
-        <% if @workouts.present? %>
-          <%= render @workouts %>
-        <% else %>
-          <p class="text-xl mx-8 my-4"><%= t('.no_result') %></p>
-        <% end %>
-      </div>
-    </div> 
-    <div class="divider"></div> 
-    <h2 class="text-xl font-bold mx-8 my-4">食事</h2>
-    <div class="grid card rounded-box">
-      <div class="md:flex md:flex-wrap md:justify-start justify-center">
-        <% if @meals.present? %>
-          <%= render @meals %>
-        <% else %>
-          <p class="text-xl mx-8 my-4"><%= t('.no_result') %></p>
-        <% end %>
-      </div>
-    </div>
+  <div>
+  <%= turbo_frame_tag 'date_search' do %>
+    <%= render 'date_search' %>
+  <% end %>
   </div>
 </div>
