@@ -48,6 +48,7 @@ class WorkoutForm
     end
     workout
   rescue ActiveRecord::RecordInvalid
+    errors.merge!(workout.errors)
     false
   end
 
