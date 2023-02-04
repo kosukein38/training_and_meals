@@ -6,7 +6,7 @@ ja:
     register: "登録"
     logout: "ログアウト"
     calorie_search: "カロリー検索したいメニューを入力してください"
-    date_search: "日付を選択してください"
+    date_search: "日付変更"
     profile: "プロフィール"
     to_show_page: "詳細"
     password_reset: "パスワードリセット"
@@ -104,3 +104,6 @@ ja:
     update:
       success: "パスワードを変更しました"
       fail: "パスワードの変更に失敗しました"
+  simple_calendar:
+    previous: "<<"
+    next: ">>"

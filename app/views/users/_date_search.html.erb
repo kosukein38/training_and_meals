@@ -1,0 +1,54 @@
+<div class="date_search">
+  <div class="flex flex-col my-8 md:flex-row md:items-center">
+    <div>
+      <h2 class="text-xl font-bold">
+        <%= @input_date.strftime("%Y年%m月%d日") %> の記録
+      </h2>
+    </div>
+    <div class="flex form-control md:mx-8">
+      <%= form_with url: date_search_path, method: :get, local: true do |f| %>
+        <div class="flex">
+          <div class="flex flex-col">
+            <%= f.label :date_search, (t 'defaults.date_search') %>
+            <%= f.date_field :date_search, class: "input input-bordered" %>
+            <%= hidden_field_tag :user_id, @user.id %>
+          </div>
+          <div class="flex items-end mx-4">
+            <%= f.submit '変更', class: "btn btn-primary"%>
+          </div>
+        </div>
+    </div>
+    <% end %>
+  </div>
+  <div class="flex flex-col w-full my-8">
+    <h2 class="text-xl font-bold m-4">筋トレ</h2>
+    <div class="grid card rounded-box">
+      <div class="h-fit md:flex md:flex-wrap">
+        <% if @workouts.present? %>
+          <%= render @workouts %>
+        <% else %>
+          <p class="text-xl mx-8 my-4"><%= t('.no_result') %></p>
+        <% end %>
+      </div>
+    </div> 
+    <div class="divider"></div> 
+    <h2 class="text-xl font-bold m-4">食事</h2>
+      <% if @total_calorie.present? && @user.target_calorie.present? %>
+      <h2 class="text-xl font-bold mx-8 my-4 text-primary-focus">
+        目標カロリーの
+        <span class="text-red-500"><%= (@total_calorie.to_f / @user.target_calorie.to_f * 100).round(0) %> %</span>
+        達成 <br>
+        (合計<span class="text-red-500"><%= @total_calorie %> kcal</span> 摂取)
+      </h2>
+      <% end %>
+    <div class="grid card rounded-box">
+      <div class="h-fit md:flex md:flex-wrap">
+        <% if @meals.present? %>
+          <%= render @meals %>
+        <% else %>
+          <p class="text-xl mx-8 my-4"><%= t('.no_result') %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -60,6 +60,7 @@ gem 'rails-i18n', '~> 7.0.0'
 gem 'sassc-rails'
 gem 'sitemap_generator'
 gem 'sorcery'
+gem 'simple_calendar', '~> 2.4'
 
 group :production do
   gem 'aws-sdk-s3', require: false
