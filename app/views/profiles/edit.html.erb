@@ -76,7 +76,7 @@
       <%= f.file_field :avatar %>
       <div class="flex flex-col items-start my-3">
         <% if @user.avatar.attached? %>
-          <h1 class="text-xl pt-4 font-bold">アップロード済み画像</h1>
+          <h2 class="text-xl pt-4 font-bold">アップロード済み画像</h2>
           <div class="flex flex-wrap">
             <div><%= image_tag @user.avatar.variant(:thumb), class: "m-2" if @user.avatar.representable? %></div>
           </div>
