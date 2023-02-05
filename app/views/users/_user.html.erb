@@ -3,8 +3,8 @@
     <div class="card card-side w-80 bg-base-100 shadow-xl border border-base-300">
       <div class="avatar max-w-max m-4">
         <div class="w-24 h-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-          <% if @user.avatar.attached? %>
-          <%= image_tag @user.avatar.variant(:thumb) %>
+          <% if user.avatar.attached? %>
+          <%= image_tag user.avatar.variant(:thumb) %>
           <% else %>
           <%= image_tag('user_sample.png', size: "400x400") %>
           <% end %>
