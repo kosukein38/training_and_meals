@@ -1,44 +1,52 @@
 <% assign_meta_tags title: (t '.title') %>
 <div class="my-page mx-4 my-8">
   <h1 class="text-xl font-bold"><%= @user.name %>さんの<%= t '.title' %></h1>
-  <div class="profile my-4 md:flex md:justify-around md:items-start">
+  <div class="profile my-4 flex flex-wrap text-center md:flex md:justify-around md:items-start">
     <div>
-      <div class="flex max-w-full">
-        <div class="avatar max-w-max my-8 mx-4">
-          <div class="w-24 h-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-            <% if @user.avatar.attached? %>
-            <%= image_tag @user.avatar.variant(:thumb) %>
-            <% else %>
-            <%= image_tag('user_sample.png', size: "400x400") %>
-            <% end %>
+      <div class="flex flex-col max-w-full">
+        <div class="flex">
+          <div class="avatar max-w-max m-4">
+            <div class="w-24 h-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+              <% if @user.avatar.attached? %>
+              <%= image_tag @user.avatar.variant(:thumb) %>
+              <% else %>
+              <%= image_tag('user_sample.png', size: "400x400") %>
+              <% end %>
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <div class="m-4">
+              <h2 class="font-bold text-lg">ユーザー名</h2>
+              <p><%= @user.name %><p>
+            </div>
+            <h2 class="text-xl font-bold text-amber-700 m-4">
+              <% if @user.target_calorie.present? %>
+                1日の目標カロリー<br>
+                <%= @user.target_calorie %> kcal
+              <% else %>
+                目標カロリー未設定
+              <% end%>
+            </h2>
           </div>
         </div>
-        <div class="flex flex-col">
-          <div class="m-4">
-            <h2 class="font-bold text-lg">ユーザー名</h2>
-            <p><%= @user.name %><p>
-          </div>
-          <h2 class="text-xl font-bold text-amber-700 m-4">
-            <% if @user.target_calorie.present? %>
-              1日の目標カロリー<br>
-              <%= @user.target_calorie %> kcal
-            <% else %>
-              目標カロリー未設定
-            <% end%>
-          </h2>
+        <div>
+          <%= render 'shared/stats' %>
+        </div>
+        <div>
+          <%= render 'follow_form' if logged_in? %>
         </div>
       </div>
-      <div>
-        <div class="p-2">
+      <div class="my-8">
+        <div class="my-4">
           <h2 class="font-bold text-lg">自己紹介</h2>
           <% if @user.introduction.blank? %>
             <p>未設定</p>
           <% end %>
           <p><%= @user.introduction %></p>
         </div>
-        <div class="p-2">
+        <div  class="my-4">
           <h2 class="font-bold text-lg">SNS</h2>
-          <div class="flex">
+          <div class="flex justify-center">
             <% if @user.twitter_link.blank? && @user.instagram_link.blank? && @user.facebook_link.blank? %>
               <p>未設定</p>
             <% end %>

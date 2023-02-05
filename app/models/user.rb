@@ -7,6 +7,10 @@ class User < ApplicationRecord
   has_many :workouts, dependent: :destroy
   has_many :meals, dependent: :destroy
   has_many :meal_details, through: :meals
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :followings, through: :relationships, source: :followed
+  has_many :followers, through: :reverse_of_relationships, source: :follower
 
   has_one_attached :avatar do |attachable|
     attachable.variant :thumb, resize_to_limit: [200, 200]
@@ -44,6 +48,18 @@ class User < ApplicationRecord
       end
     self.target_calorie = maintenance_calorie + adjustment_calorie + 300
     save
+  end
+
+  def follow(other_user)
+    followings << other_user unless self == other_user
+  end
+
+  def unfollow(other_user)
+    followings.delete(other_user)
+  end
+
+  def following?(other_user)
+    followings.include?(other_user)
   end
 
   private

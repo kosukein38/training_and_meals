@@ -1,0 +1,14 @@
+<div class="flex justify-center">
+  <%= link_to followings_user_path(@user) do %>
+    <div id="following" class="mx-4">
+      <%= @user.followings.count %>
+      フォロー中
+    </div>
+  <%  end %>
+  <%= link_to followers_user_path(@user) do %>
+    <div id="followers" class="mx-4">
+      <%= @user.followers.count %>
+      フォロワー
+    </div>
+  <%  end %>
+</div>
