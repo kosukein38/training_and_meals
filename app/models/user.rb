@@ -1,6 +1,7 @@
 class User < ApplicationRecord
-  before_update :set_default_adjustment_calorie
   before_update :set_active_level_coefficient
+  before_update :set_self_calories
+  before_update :set_default_adjustment_calorie
 
   authenticates_with_sorcery!
 
@@ -18,6 +19,8 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
   validates :name, length: { maximum: 30 }, presence: true
+  validates :avatar, attachment: { purge: true, content_type: %r{\Aimage/(png|jpeg|jpg)\Z}, maximum: 5_242_880 }
+  self.implicit_order_column = 'created_at'
 
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
@@ -39,16 +42,6 @@ class User < ApplicationRecord
     object.user_id == id
   end
 
-  def save_self_calories
-    self.maintenance_calorie =
-      if sex == 'male'
-        ((13.397 * body_weight) + (4.799 * height) - (5.677 * age) + 88.362) * @active_level_coefficient
-      else
-        ((9.247 * body_weight) + (3.098 * height) - (4.33 * age) + 447.593) * @active_level_coefficient
-      end
-    self.target_calorie = maintenance_calorie + adjustment_calorie + 300
-    save
-  end
 
   def follow(other_user)
     followings << other_user unless self == other_user
@@ -80,6 +73,16 @@ class User < ApplicationRecord
       else
         1
       end
+  end
+
+  def set_self_calories
+    self.maintenance_calorie =
+      if sex == 'male'
+        ((13.397 * body_weight) + (4.799 * height) - (5.677 * age) + 88.362) * @active_level_coefficient
+      else
+        ((9.247 * body_weight) + (3.098 * height) - (4.33 * age) + 447.593) * @active_level_coefficient
+      end
+    self.target_calorie = maintenance_calorie + adjustment_calorie + 300
   end
 
   def set_default_adjustment_calorie
