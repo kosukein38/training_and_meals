@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   before_update :set_active_level_coefficient
-  before_update :set_self_calories
   before_update :set_default_adjustment_calorie
+  before_update :set_self_calories
 
   authenticates_with_sorcery!
 
@@ -86,6 +86,6 @@ class User < ApplicationRecord
   end
 
   def set_default_adjustment_calorie
-    self.adjustment_calorie = 0 if adjustment_calorie.blank?
+    self.adjustment_calorie ||= 0
   end
 end
