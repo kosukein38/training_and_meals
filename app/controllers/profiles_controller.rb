@@ -5,9 +5,12 @@ class ProfilesController < ApplicationController
   def edit; end
 
   def update
-    @user.avatar.attach(params[:user][:avatar])
     if @user.update(user_params)
-      @user.save_self_calories
+      if params.dig(:user, :avatar).present?
+        images = ActiveStorage::Attachment.where(record_id: current_user.id)
+        images.each(&:purge)
+        @user.avatar.attach(params[:user][:avatar])
+      end
       redirect_to profile_path, success: t('.success')
     else
       flash.now['danger'] = t('.fail')
