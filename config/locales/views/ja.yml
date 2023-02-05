@@ -64,7 +64,7 @@ ja:
       success: "退会しました"
   workouts:
     index:
-      title: "筋トレ投稿一覧"
+      title: "全ユーザーの筋トレ投稿"
       to_meals_page: "食事投稿一覧へ"
     new:
       title: "筋トレ新規投稿"
@@ -77,6 +77,8 @@ ja:
     destroy:
       success: "削除しました"
       delete_a_workout: "削除する"
+    workouts_feed:
+      title: "フォロー中ユーザーの筋トレ投稿"
   meals:
     index:
       title: "食事投稿一覧"
