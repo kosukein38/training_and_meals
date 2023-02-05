@@ -42,7 +42,6 @@ class User < ApplicationRecord
     object.user_id == id
   end
 
-
   def follow(other_user)
     followings << other_user unless self == other_user
   end
