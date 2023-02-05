@@ -17,13 +17,13 @@
             <h2 class="font-bold text-lg">ユーザー名</h2>
             <p><%= @user.name %><p>
           </div>
-          <h1 class="text-xl font-bold text-amber-700 m-4">
+          <h2 class="text-xl font-bold text-amber-700 m-4">
             <% if @user.target_calorie.present? %>
               1日の目標カロリーは <%= @user.target_calorie %> kcalです
             <% else %>
               目標カロリー未設定です
             <% end%>
-          </h1>
+          </h2>
         </div>
       </div>
     </div> 
@@ -31,7 +31,7 @@
     <div class="grid card rounded-box">
       <div class="flex justify-around">
         <div class="w-2/5 flex flex-col align-center">
-          <h1 class="text-xl font-bold my-4 text-center"><%= @workout.workout_date.strftime("%Y年%m月%d日") %></h1>
+          <h2 class="text-xl font-bold my-4 text-center"><%= @workout.workout_date.strftime("%Y年%m月%d日") %></h2>
           <% if @workout.workout_images.attached? %>
             <% @workout.workout_images.each do |workout_image|%>
               <%= image_tag workout_image.variant(:thumb), class: "flex items-center mx-auto" if workout_image.representable? %>
@@ -40,15 +40,15 @@
         </div>
         <div class="w-3/5 flex flex-col">
           <div class="mx-8 mt-4">
-            <h1 class="text-xl font-bold">メニュー名</h1>
+            <h2 class="text-xl font-bold">メニュー名</h2>
             <p class="text-base"><%= @workout.workout_title %></p>
           </div>
           <div class="mx-8 mt-4">
-            <h1 class="text-xl font-bold">トレーニング部位</h1>
+            <h2 class="text-xl font-bold">トレーニング部位</h2>
             <p class="text-base"><%= @workout.body_parts.pluck(:body_part_name).join(' , ') %></p>
           </div>
           <div class="mx-8 mt-4">
-            <h1 class="text-xl font-bold">重量 / 回数 / セット数</h1>
+            <h2 class="text-xl font-bold">重量 / 回数 / セット数</h2>
             <p class="text-base">
             <%= @workout.workout_weight %> kg /
             <%= @workout.repetition_count %> reps /
@@ -56,7 +56,7 @@
             </p>
           </div>
           <div class="mx-8 mt-4">
-            <h1 class="text-xl font-bold">メモ</h1>
+            <h2 class="text-xl font-bold">メモ</h2>
             <p class="text-base md:w-96"><%= @workout.workout_memo %></p>
           </div>
           <div class="mx-8 mt-4">

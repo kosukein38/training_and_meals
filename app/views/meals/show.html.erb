@@ -17,13 +17,13 @@
             <h2 class="font-bold text-lg">ユーザー名</h2>
             <p><%= @user.name %><p>
           </div>
-          <h1 class="text-xl font-bold text-amber-700 m-4">
+          <h2 class="text-xl font-bold text-amber-700 m-4">
             <% if @user.target_calorie.present? %>
               1日の目標カロリーは <%= @user.target_calorie %> kcalです
             <% else %>
               目標カロリー未設定です
             <% end%>
-          </h1>
+          </h2>
         </div>
       </div>
     </div> 
@@ -31,7 +31,7 @@
     <div class="grid card rounded-box">
       <div class="flex justify-around">
         <div class="w-2/5 flex flex-col align-center">
-          <h1 class="text-xl font-bold my-4 text-center"><%= @meal.meal_date.strftime("%Y年%m月%d日") %></h1>
+          <h2 class="text-xl font-bold my-4 text-center"><%= @meal.meal_date.strftime("%Y年%m月%d日") %></h2>
           <% if @meal.meal_images.attached? %>
             <% @meal.meal_images.each do |meal_image|%>
               <%= image_tag meal_image.variant(:thumb), class: "flex items-center m-2" if meal_image.representable? %>
@@ -40,23 +40,23 @@
         </div>
         <div class="w-3/5 flex flex-col">
           <div class="mx-8 mt-4">
-            <h1 class="text-xl font-bold">メニュー名</h1>
+            <h2 class="text-xl font-bold">メニュー名</h2>
             <p class="text-base"><%= @meal.meal_details.pluck(:meal_title).join(' , ') %></p>
           </div>
           <div class="mx-8 mt-4">
-            <h1 class="text-xl font-bold">食事タイミング</h1>
+            <h2 class="text-xl font-bold">食事タイミング</h2>
             <p class="text-base"><%= @meal.meal_period_i18n %></p>
           </div>
           <div class="mx-8 mt-4">
-            <h1 class="text-xl font-bold">食事タイプ</h1>
+            <h2 class="text-xl font-bold">食事タイプ</h2>
             <p class="text-base"><%= @meal.meal_type_i18n %></p>
           </div>
           <div class="mx-8 mt-4">
-            <h1 class="text-xl font-bold">カロリー</h1>
+            <h2 class="text-xl font-bold">カロリー</h2>
             <p class="text-base"><%= @meal.meal_details.pluck(:meal_calorie).sum %> kcal</p>
           </div>
           <div class="mx-8 mt-4">
-            <h1 class="text-xl font-bold">メモ</h1>
+            <h2 class="text-xl font-bold">メモ</h2>
             <p class="text-base md:w-96"><%= @meal.meal_memo %></p>
           </div>
           <div class="mx-8 mt-4">
