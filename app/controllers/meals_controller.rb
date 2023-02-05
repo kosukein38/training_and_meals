@@ -66,6 +66,10 @@ class MealsController < ApplicationController
     render :new
   end
 
+  def meals_feed
+    @feed_items = Meal.where(user_id: [*current_user.following_ids]).order(meal_date: :desc).page(params[:page])
+  end
+
   private
 
   def meal_params

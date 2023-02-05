@@ -78,10 +78,11 @@ ja:
       success: "削除しました"
       delete_a_workout: "削除する"
     workouts_feed:
-      title: "フォロー中ユーザーの筋トレ投稿"
+      title: "フォローユーザーの筋トレ投稿"
+      no_result: "投稿がありません"
   meals:
     index:
-      title: "食事投稿一覧"
+      title: "全ユーザーの食事投稿"
       to_workouts_page: "筋トレ投稿一覧へ"
     new:
       title: "食事新規投稿"
@@ -94,6 +95,9 @@ ja:
     destroy:
       success: "削除しました"
       delete_a_meal: "削除する"
+    meals_feed:
+      title: "フォローユーザーの食事投稿"
+      no_result: "投稿がありません"
   password_resets:
     new:
       title: "パスワードリセット申請"
