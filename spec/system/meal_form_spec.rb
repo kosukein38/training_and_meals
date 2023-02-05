@@ -25,14 +25,15 @@ RSpec.describe 'MealForm', js: true do
 
   it '未ログインでも食事のタイムラインを閲覧できること' do
     visit meals_path
-    expect(page).to have_content '食事投稿一覧'
+    expect(page).to have_content '全ユーザーの食事投稿'
   end
 
   it 'サイドバーの投稿一覧をクリックすると食事タイムラインが表示されること' do
     login_as(user)
     page.first('.to-index').click
-    click_on '食事投稿一覧'
-    expect(page).to have_content '食事投稿一覧'
+    page.first('.to-meals-index').click
+    click_on '全ユーザー'
+    expect(page).to have_content '全ユーザーの食事投稿'
     expect(page).to have_current_path meals_path, ignore_query: true
   end
 

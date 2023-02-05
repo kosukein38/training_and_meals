@@ -28,7 +28,7 @@ RSpec.describe 'WorkoutForm', js: true do
   it 'サイドバーの投稿一覧をクリックすると筋トレのタイムラインが表示されること' do
     login_as(user)
     page.first('.to-index').click
-    page.first('.to-workout-index').click
+    page.first('.to-workouts-index').click
     click_on '全ユーザー'
     expect(page).to have_content '全ユーザーの筋トレ投稿'
     expect(page).to have_current_path workouts_path, ignore_query: true
