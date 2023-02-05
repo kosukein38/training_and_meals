@@ -34,8 +34,8 @@ module ApplicationHelper
         site_name: site
       },
       twitter: {
-        site: '@kosukein38',
-        card: 'summary',
+        site: '@bulkupper',
+        card: 'summary_large_image',
         image:
       }
     }
