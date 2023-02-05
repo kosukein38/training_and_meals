@@ -1,0 +1,35 @@
+<% assign_meta_tags title: @title %>
+<div class="mx-4 my-8">
+  <h1 class="text-xl font-bold"><%= @user.name %>さんの<%= @title %></h1>
+  <div>
+    <div class="user_info flex flex-col items-center">
+      <%=link_to user_path(@user) do%>
+        <div class="avatar max-w-max m-4">
+          <div class="w-24 h-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+            <% if @user.avatar.attached? %>
+            <%= image_tag @user.avatar.variant(:thumb) %>
+            <% else %>
+            <%= image_tag('user_sample.png', size: "400x400") %>
+            <% end %>
+          </div>
+        </div>
+        <div class="m-2">
+          <h2 class="font-bold text-lg text-center"><%= @user.name %></h2>
+        </div>
+      <%end%>
+      <div>
+        <%= render 'shared/stats' %>
+      </div>
+    </div>
+  </div>
+  <div>
+    <% if @users.present? %>
+      <div class="flex flex-wrap w-full justyfy-center md:justify-start">
+        <%= render @users %>
+      </div>
+    <% end %>
+  </div>
+  <div class="flex justify-center btn-group m-4">
+    <%= paginate @users %>
+  </div>
+</div>

@@ -5,12 +5,12 @@
       <h1 class="text-xl font-bold"><%= t '.title' %></h1>
     </div>
     <div class="flex flex-wrap w-full">
-      <% if @workouts.present? %>
-        <%= render @workouts %>
+      <% if @feed_items.present? %>
+        <%= render partial: 'meal', collection: @feed_items, as: 'meal' %>
       <% else %>
         <p><%= t('.no_result') %></p>
       <% end %>
     </div>
-    <div class="flex md:justify-center btn-group w-screen"><%= paginate @workouts %></div>
+    <div class="flex md:justify-center btn-group w-screen"><%= paginate @feed_items %></div>
   </div>
 </div>

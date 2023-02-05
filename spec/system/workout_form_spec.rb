@@ -22,14 +22,15 @@ RSpec.describe 'WorkoutForm', js: true do
 
   it '未ログインでも筋トレのタイムラインを閲覧できること' do
     visit workouts_path
-    expect(page).to have_content '筋トレ投稿一覧'
+    expect(page).to have_content '全ユーザーの筋トレ投稿'
   end
 
   it 'サイドバーの投稿一覧をクリックすると筋トレのタイムラインが表示されること' do
     login_as(user)
     page.first('.to-index').click
-    click_on '筋トレ投稿一覧'
-    expect(page).to have_content '筋トレ投稿一覧'
+    page.first('.to-workouts-index').click
+    click_on '全ユーザー'
+    expect(page).to have_content '全ユーザーの筋トレ投稿'
     expect(page).to have_current_path workouts_path, ignore_query: true
   end
 

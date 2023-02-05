@@ -55,6 +55,10 @@ class WorkoutsController < ApplicationController
     redirect_to user_path(current_user), success: t('defaults.message.deleted', item: Workout.model_name.human)
   end
 
+  def workouts_feed
+    @feed_items = Workout.where(user_id: [*current_user.following_ids]).order(workout_date: :desc).page(params[:page])
+  end
+
   private
 
   def workout_params

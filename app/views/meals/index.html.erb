@@ -3,9 +3,6 @@
   <div class="m-8">
     <div class="flex items-center">
       <h1 class="text-xl font-bold"><%= t '.title' %></h1>
-      <%=link_to workouts_path, class: "btn btn-outline m-4" do %>
-        <button><%= (t '.to_workouts_page') %></button>
-      <% end %>
     </div>
     <div class="flex flex-wrap w-full">
       <% if @meals.present? %>

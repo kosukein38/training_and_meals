@@ -24,6 +24,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def followings
+    @title = 'フォロー一覧'
+    @user  = User.find(params[:id])
+    @users = @user.followings.page(params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = 'フォロワー一覧'
+    @user  = User.find(params[:id])
+    @users = @user.followers.page(params[:page])
+    render 'show_follow'
+  end
+
   def date_search
     user_id = params[:user_id]
     @user = User.find(user_id)

@@ -1,0 +1,20 @@
+<div id="user-id-<%= user.id %>" class="m-4 max-w-lg">
+  <%=link_to user_path(user) do%>
+    <div class="card card-side w-80 bg-base-100 shadow-xl border border-base-300">
+      <div class="avatar max-w-max m-4">
+        <div class="w-24 h-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+          <% if user.avatar.attached? %>
+          <%= image_tag user.avatar.variant(:thumb) %>
+          <% else %>
+          <%= image_tag('user_sample.png', size: "400x400") %>
+          <% end %>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="font-bold text-xl m-2 items-center">
+          <p class="m-2"><%= user.name %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
