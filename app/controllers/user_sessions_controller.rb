@@ -1,5 +1,5 @@
 class UserSessionsController < ApplicationController
-  skip_before_action :require_login, only: %i[new create]
+  skip_before_action :require_login, only: %i[new create guest_login]
 
   def new; end
 
@@ -16,5 +16,24 @@ class UserSessionsController < ApplicationController
   def destroy
     logout
     redirect_to root_path, status: :see_other, success: t('.success')
+  end
+
+  def guest_login
+    @guest_user = User.new(
+      email: 'guestuser.bulkupper@example.com',
+      name: 'ゲスト',
+      password: 'password',
+      password_confirmation: 'password',
+      role: 2
+      )
+    if @guest_user.save
+      auto_login(@guest_user)
+    else
+      @guest_user = User.find_by(
+        email: 'guestuser.bulkupper@example.com'
+      )
+      auto_login(@guest_user)
+    end
+    redirect_to root_path, success: 'ゲストとしてログインしました'
   end
 end

@@ -4,14 +4,18 @@
     <%= image_tag('header-logo.png', width: 150) %>
     <% end %>
   </div>
-
   <div class="hidden md:flex md:justify-end">
     <ul class="menu menu-horizontal px-1 text-base-200">
+      <li><%= link_to 'ゲストログイン', '/guest_login', data: { turbo_method: :post }, class: "text-sm btn mx-8" %></li>
       <li><%= link_to (t 'user_sessions.new.to_register_page'), new_user_path %></li>
       <li><%= link_to (t 'users.new.to_login_page'), login_path %></li>
     </ul>
   </div>
-
+  <div class="flex justify-end md:hidden">
+    <ul class="menu menu-horizontal px-1 text-base-200">
+      <li><%= link_to 'ゲストログイン', '/guest_login', data: { turbo_method: :post }, class: "text-sm btn mx-8" %></li>
+    </ul>
+  </div>
   <div class="btm-nav md:hidden fixed z-50">
     <ul class="menu menu-horizontal px-1">
       <li class="px-4">
