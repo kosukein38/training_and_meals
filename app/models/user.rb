@@ -34,7 +34,7 @@ class User < ApplicationRecord
 
   enum sex: { male: 0, female: 1 }
   enum active_level: { level1: 1, level2: 2, level3: 3, level4: 4, level5: 5 }
-  enum role: { general: 0, admin: 1 }
+  enum role: { general: 0, admin: 1, guest: 2 }
 
   self.implicit_order_column = 'created_at'
 
