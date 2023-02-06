@@ -25,15 +25,13 @@ class UserSessionsController < ApplicationController
       password: 'password',
       password_confirmation: 'password',
       role: 2
-      )
-    if @guest_user.save
-      auto_login(@guest_user)
-    else
+    )
+    unless @guest_user.save
       @guest_user = User.find_by(
         email: 'guestuser.bulkupper@example.com'
       )
-      auto_login(@guest_user)
     end
+    auto_login(@guest_user)
     redirect_to root_path, success: 'ゲストとしてログインしました'
   end
 end
