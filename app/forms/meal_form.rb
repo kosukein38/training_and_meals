@@ -33,15 +33,15 @@ class MealForm
   def save
     return false if invalid?
 
-    #bugfix
+    # bugfix
     if meal.meal_details.size > 3
       n = meal.meal_details.size
-      while n > 3 do
-        meal.meal_details[n-1].delete
+      while n > 3
+        meal.meal_details[n - 1].delete
         n -= 1
       end
     end
-    #ここまで
+    # ここまで
 
     ActiveRecord::Base.transaction do
       if meal.meal_images.blank?
@@ -53,33 +53,33 @@ class MealForm
       if meal.meal_details.blank?
         meal.meal_details.create!(meal_title: meal_title_first, meal_weight: meal_weight_first, meal_calorie: meal_calorie_first)
       else
-        meal.meal_details.first.update!(meal_title: meal_title_first, meal_weight: meal_weight_first, meal_calorie: meal_calorie_first)
+        meal.meal_details.first.update!(meal_title: meal_title_first, meal_weight: meal_weight_first,
+                                        meal_calorie: meal_calorie_first)
       end
 
       if meal_title_second.blank?
         next if meal.meal_details.second.nil?
+
         meal.meal_details.second.delete
+      elsif meal.meal_details.second.blank?
+        meal.meal_details.build(meal_title: meal_title_second, meal_weight: meal_weight_second,
+                                meal_calorie: meal_calorie_second).save!
       else
-        if meal.meal_details.second.blank?
-          meal.meal_details.build(meal_title: meal_title_second, meal_weight: meal_weight_second,
-            meal_calorie: meal_calorie_second).save!
-        else
-          meal.meal_details.second.update!(meal_title: meal_title_second, meal_weight: meal_weight_second, meal_calorie: meal_calorie_second)
-        end
+        meal.meal_details.second.update!(meal_title: meal_title_second, meal_weight: meal_weight_second,
+                                         meal_calorie: meal_calorie_second)
       end
 
       if meal_title_third.blank?
         next if meal.meal_details.third.nil?
-        meal.meal_details.third.delete
-      else
-        if meal.meal_details.third.blank?
-          meal.meal_details.build(meal_title: meal_title_third, meal_weight: meal_weight_third,
-            meal_calorie: meal_calorie_third).save!
-        else
-          meal.meal_details.third.update!(meal_title: meal_title_third, meal_weight: meal_weight_third, meal_calorie: meal_calorie_third)
-        end
-      end
 
+        meal.meal_details.third.delete
+      elsif meal.meal_details.third.blank?
+        meal.meal_details.build(meal_title: meal_title_third, meal_weight: meal_weight_third,
+                                meal_calorie: meal_calorie_third).save!
+      else
+        meal.meal_details.third.update!(meal_title: meal_title_third, meal_weight: meal_weight_third,
+                                        meal_calorie: meal_calorie_third)
+      end
     end
     meal
   rescue ActiveRecord::RecordInvalid
