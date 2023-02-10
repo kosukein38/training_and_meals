@@ -26,7 +26,7 @@ class WorkoutsController < ApplicationController
     if @workout_form.save
       redirect_to user_path(current_user), success: t('defaults.message.created', item: Workout.model_name.human)
     else
-      flash.now['danger'] = t('defaults.message.not_created', item: Workout.model_name.human)
+      flash.now['error'] = t('defaults.message.not_created', item: Workout.model_name.human)
       render :new, status: :unprocessable_entity
     end
   end
@@ -43,7 +43,7 @@ class WorkoutsController < ApplicationController
       end
       redirect_to user_path(current_user), success: t('defaults.message.updated', item: Workout.model_name.human)
     else
-      flash.now['danger'] = t('defaults.message.not_updated', item: Workout.model_name.human)
+      flash.now['error'] = t('defaults.message.not_updated', item: Workout.model_name.human)
       render :edit, status: :unprocessable_entity
     end
   end

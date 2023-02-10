@@ -22,10 +22,10 @@
   <body class="min-h-screen">
     <% if logged_in? %>
       <%= render 'shared/header' %>
-      <%= render 'shared/flash_message' %>
       <div class="main-wrapper flex">
         <%= render 'shared/sidebar' %>
         <div class="main-content container mx-auto">
+          <%= render 'shared/flash_message' %>
           <%= yield %>
         </div>
       </div>

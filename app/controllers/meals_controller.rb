@@ -26,7 +26,7 @@ class MealsController < ApplicationController
     if @meal_form.save
       redirect_to user_path(current_user.id), success: t('defaults.message.created', item: Meal.model_name.human)
     else
-      flash.now['danger'] = t('defaults.message.not_created', item: Meal.model_name.human)
+      flash.now['error'] = t('defaults.message.not_created', item: Meal.model_name.human)
       render :new, status: :unprocessable_entity
     end
   end
@@ -43,7 +43,7 @@ class MealsController < ApplicationController
       end
       redirect_to user_path(current_user), success: t('defaults.message.updated', item: Meal.model_name.human)
     else
-      flash.now['danger'] = t('defaults.message.not_updated', item: Meal.model_name.human)
+      flash.now['error'] = t('defaults.message.not_updated', item: Meal.model_name.human)
       render :edit, status: :unprocessable_entity
     end
   end
