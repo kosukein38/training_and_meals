@@ -1,7 +1,3 @@
-require 'uri'
-require 'net/http'
-require 'openssl'
-
 class MealsController < ApplicationController
   skip_before_action :require_login, only: %i[index show]
 
