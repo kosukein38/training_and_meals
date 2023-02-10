@@ -7,14 +7,15 @@
       <%= f.label :workout_date, class: "text-xl pt-4 font-bold" %>
       <%= f.date_field :workout_date, value: Time.now.strftime("%Y-%m-%d"), class: "input input-bordered" %>
 
-      <%= f.label :workout_title, class: "text-xl pt-4 font-bold"  %>
+      <%= f.label :workout_title, class: "text-xl pt-4 font-bold" %>
       <%= f.text_field :workout_title, class: "input input-bordered" %>
 
-      <%= f.label :body_part_ids, class: "text-xl pt-4 font-bold"  %>
+      <%= f.label :body_part_ids, class: "text-xl pt-4 font-bold" %>
       <div class="flex flex-wrap justify-start">
         <%= f.collection_check_boxes(:body_part_ids, BodyPart.all, :id, :body_part_name, {include_hidden: false}, {class: "checkbox"}) do |body_part| %>
-          <div class="m-4">
-          <%= body_part.label { body_part.check_box + body_part.text }%>
+          <div class="m-4 flex">
+            <%= body_part.check_box %>
+            <%= body_part.label { body_part.text }%>
           </div>
         <% end%>
       </div>

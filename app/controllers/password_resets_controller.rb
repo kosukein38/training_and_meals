@@ -33,7 +33,7 @@ class PasswordResetsController < ApplicationController
       end
       redirect_to root_path, success: t('.success')
     else
-      flash.now['danger'] = t('.fail')
+      flash.now['error'] = t('.fail')
       render :edit, status: :unprocessable_entity
     end
   end
