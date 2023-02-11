@@ -4,7 +4,7 @@
   "dependencies": {
     "@hotwired/turbo-rails": "^7.2.4",
     "autoprefixer": "^10.4.13",
-    "daisyui": "^2.42.0",
+    "daisyui": "^2.50.0",
     "esbuild": "^0.15.16",
     "postcss": "^8.4.19",
     "tailwindcss": "^3.2.4"
