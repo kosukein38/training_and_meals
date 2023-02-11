@@ -1,7 +1,16 @@
 <% flash.each do |message_type, message| %>
-  <div class="alert alert-<%= message_type %> shadow-lg m-4 w-auto">
-    <div>
-      <%= message %>
+  <% case message_type %>
+  <% when 'success'%>
+    <div class="alert alert-success shadow-lg m-4 w-auto">
+  <% when 'warning'%>
+    <div class="alert alert-warning shadow-lg m-4 w-auto">
+  <% when 'error' %>
+    <div class="alert alert-error shadow-lg m-4 w-auto">
+  <% else  %>
+    <div class="alert alert-info shadow-lg m-4 w-auto">
+  <% end %>
+      <div>
+        <%= message %>
+      </div>
     </div>
-  </div>
 <% end %>
