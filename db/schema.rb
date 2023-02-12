@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_05_015900) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_12_114549) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -49,6 +49,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_015900) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "likes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "meal_details", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "meal_title", null: false
     t.integer "meal_weight", null: false
@@ -57,6 +64,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_015900) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["meal_id"], name: "index_meal_details_on_meal_id"
+  end
+
+  create_table "meal_likes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "meal_id", null: false
+    t.uuid "like_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["like_id"], name: "index_meal_likes_on_like_id"
+    t.index ["meal_id", "like_id"], name: "index_meal_likes_on_meal_id_and_like_id", unique: true
+    t.index ["meal_id"], name: "index_meal_likes_on_meal_id"
   end
 
   create_table "meals", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -119,6 +136,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_015900) do
     t.index ["workout_id"], name: "index_workout_body_parts_on_workout_id"
   end
 
+  create_table "workout_likes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "workout_id", null: false
+    t.uuid "like_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["like_id"], name: "index_workout_likes_on_like_id"
+    t.index ["workout_id", "like_id"], name: "index_workout_likes_on_workout_id_and_like_id", unique: true
+    t.index ["workout_id"], name: "index_workout_likes_on_workout_id"
+  end
+
   create_table "workouts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "workout_date"
     t.string "workout_title"
@@ -135,9 +162,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_015900) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "likes", "users"
   add_foreign_key "meal_details", "meals"
+  add_foreign_key "meal_likes", "likes"
+  add_foreign_key "meal_likes", "meals"
   add_foreign_key "meals", "users"
   add_foreign_key "workout_body_parts", "body_parts"
   add_foreign_key "workout_body_parts", "workouts"
+  add_foreign_key "workout_likes", "likes"
+  add_foreign_key "workout_likes", "workouts"
   add_foreign_key "workouts", "users"
 end
