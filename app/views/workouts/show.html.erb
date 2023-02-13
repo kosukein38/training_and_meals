@@ -57,7 +57,7 @@
           </div>
           <div class="mx-8 mt-4">
             <h2 class="text-xl font-bold">メモ</h2>
-            <p class="text-base md:w-96"><%= @workout.workout_memo %></p>
+            <p class="text-base md:w-96 break-words"><%= @workout.workout_memo %></p>
           </div>
           <div class="mx-8 mt-4">
           <% if logged_in? && current_user.own?(@workout) %>
