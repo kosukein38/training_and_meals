@@ -53,7 +53,7 @@ RSpec.describe 'MealForm', js: true do
     fill_in 'meal_meal_weight_third', with: 200
     fill_in 'meal_meal_calorie_third', with: 500
     fill_in 'メモ', with: '唐揚げおいしい'
-    attach_file 'meal[meal_images][]', "#{Rails.root}/spec/fixtures/images/sample_man.png"
+    attach_file 'meal[meal_images][]', Rails.root.join('spec/fixtures/images/sample_man.png')
     click_button '投稿する'
     expect(page).to have_content '食事投稿を作成しました'
     expect(page).to have_selector("img[src$='sample_man.png']")
@@ -95,7 +95,7 @@ RSpec.describe 'MealForm', js: true do
     fill_in 'meal_meal_weight_third', with: 100
     fill_in 'meal_meal_calorie_third', with: 80
     fill_in 'メモ', with: 'お弁当おいしい'
-    attach_file 'meal[meal_images][]', "#{Rails.root}/spec/fixtures/images/sample.png"
+    attach_file 'meal[meal_images][]', Rails.root.join('spec/fixtures/images/sample.png')
     click_button '更新する'
     expect(page).to have_content '食事投稿を更新しました'
     expect(page).to have_selector("img[src$='sample.png']")

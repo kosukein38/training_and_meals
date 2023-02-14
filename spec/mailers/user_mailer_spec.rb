@@ -4,14 +4,12 @@ RSpec.describe UserMailer do
   describe 'reset_password_email' do
     let(:mail) { described_class.reset_password_email }
 
-    xit 'renders the headers' do
-      expect(mail.subject).to eq('Reset password email')
-      expect(mail.to).to eq(['to@example.org'])
-      expect(mail.from).to eq(['from@example.com'])
+    it 'renders the headers' do
+      skip '後ほど実装1'
     end
 
-    xit 'renders the body' do
-      expect(mail.body.encoded).to match('Hi')
+    it 'renders the body' do
+      skip '後ほど実装2'
     end
   end
 end
