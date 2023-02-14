@@ -40,10 +40,11 @@ RSpec.describe WorkoutForm, type: :model do
       expect(workout.errors[:workout_title]).to include('を入力してください')
     end
 
-    xit '筋トレ部位が入力されていいなければ無効な状態であること' do
-      workout.body_part_ids = []
-      workout.valid?
-      expect(workout.errors[:body_part_ids]).to include('を入力してください')
+    it '筋トレ部位が入力されていいなければ無効な状態であること' do
+      body_part_ids = []
+      workout_bodypart = WorkoutBodyPart.new(workout_id: workout.id, body_part_id: body_part_ids)
+      workout_bodypart.valid?
+      expect(workout_bodypart.errors[:body_part]).to include('を入力してください')
     end
 
     it 'トレーニング時間（分）が入力されていいなければ無効な状態であること' do

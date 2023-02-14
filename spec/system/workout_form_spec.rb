@@ -44,7 +44,7 @@ RSpec.describe 'WorkoutForm', js: true do
     fill_in '重量(必須)', with: 80.5
     fill_in '回数(必須)', with: 10
     fill_in 'セット数(必須)', with: 3
-    attach_file 'workout[workout_images][]', "#{Rails.root}/spec/fixtures/images/sample_man.png"
+    attach_file 'workout[workout_images][]', Rails.root.join('spec/fixtures/images/sample_man.png')
     click_button '投稿する'
     expect(page).to have_content '筋トレ投稿を作成しました'
     expect(page).to have_selector("img[src$='sample_man.png']")
@@ -111,7 +111,7 @@ RSpec.describe 'WorkoutForm', js: true do
     fill_in '重量(必須)', with: 90.4
     fill_in '回数(必須)', with: 10
     fill_in 'セット数(必須)', with: 3
-    attach_file 'workout[workout_images][]', "#{Rails.root}/spec/fixtures/images/sample.png"
+    attach_file 'workout[workout_images][]', Rails.root.join('spec/fixtures/images/sample.png')
     click_button '更新する'
     expect(page).to have_content '筋トレ投稿を更新しました'
     expect(page).to have_selector("img[src$='sample.png']")

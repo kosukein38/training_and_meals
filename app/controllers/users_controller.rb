@@ -5,8 +5,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @input_date = Time.zone.today
     set_calendar_info
-    @workouts = @user.workouts.where(workout_date: @input_date.beginning_of_day...@input_date.end_of_day).order(created_at: :desc)
-    @meals = @user.meals.includes(:meal_details).where(meal_date: @input_date.beginning_of_day...@input_date.end_of_day).order(created_at: :desc)
+    @workouts = @user.workouts.workouts_today
+    @meals = @user.meals.includes(:meal_details).meals_today
     @total_calorie = MealDetail.where(meal_id: @meals.pluck(:id)).pluck(:meal_calorie).sum
   end
 

@@ -13,4 +13,9 @@ class Meal < ApplicationRecord
   enum meal_type: { self_catering: 0, eating_out: 1, to_go: 2, convenience_store: 3 }
 
   self.implicit_order_column = 'created_at'
+
+  def self.meals_today
+    input_date = Time.zone.today
+    where(meal_date: input_date.beginning_of_day...input_date.end_of_day).order(created_at: :desc)
+  end
 end
