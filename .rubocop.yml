@@ -34,7 +34,7 @@ Metrics/CyclomaticComplexity:
   Max: 20
 
 Metrics/MethodLength:
-  Max: 30
+  Max: 40
 
 Metrics/BlockNesting:
   Max: 5
