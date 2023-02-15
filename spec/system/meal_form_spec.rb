@@ -63,7 +63,7 @@ RSpec.describe 'MealForm', js: true do
   it 'マイページの食事投稿をクリックすると食事詳細画面が表示されること' do
     login_as(user)
     visit user_path(user)
-    click_button '詳細'
+    click_on '唐揚げ'
     expect(page).to have_content '食事詳細'
     # current_pathのチェック追加
   end
@@ -71,7 +71,7 @@ RSpec.describe 'MealForm', js: true do
   it '食事詳細画面の編集ボタンをクリックすると編集画面に遷移すること' do
     login_as(user)
     visit user_path(user)
-    click_button '詳細'
+    click_on '唐揚げ'
     click_button '編集'
     expect(page).to have_content '食事編集'
     # current_pathのチェック追加
@@ -80,7 +80,7 @@ RSpec.describe 'MealForm', js: true do
   it '食事編集から項目を入力して更新をクリックすると更新できること' do
     login_as(user)
     visit user_path(user)
-    click_button '詳細'
+    click_on '唐揚げ'
     click_button '編集'
     fill_in '日付', with: Time.current
     select '昼食', from: '食事タイミング(任意)'
@@ -105,7 +105,7 @@ RSpec.describe 'MealForm', js: true do
   it '食事編集画面で削除をクリックすると削除できること' do
     login_as(user)
     visit user_path(user)
-    click_button '詳細'
+    click_on '唐揚げ'
     click_button '編集'
     page.accept_confirm do
       page.first('.meal-delete').click
@@ -118,13 +118,13 @@ RSpec.describe 'MealForm', js: true do
     another_user = create(:user)
     login_as(another_user)
     visit meals_path
-    click_button '詳細'
+    click_on '唐揚げ'
     expect(page).not_to have_content '編集'
   end
 
   it '未ログインでも投稿の詳細表示できること' do
     visit meals_path
-    click_button '詳細'
+    click_on '唐揚げ'
     expect(page).to have_content '食事詳細'
     # current_pathのチェック追加
   end
