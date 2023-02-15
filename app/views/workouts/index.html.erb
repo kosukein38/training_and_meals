@@ -1,8 +1,8 @@
 <% assign_meta_tags title: (t '.title') %>
 <div class="w-full">
-  <div class="m-8">
+  <div class="mx-auto">
     <div class="flex items-center">
-      <h1 class="text-xl font-bold"><%= t '.title' %></h1>
+      <h1 class="text-xl font-bold m-4"><%= t '.title' %></h1>
     </div>
     <div class="flex flex-wrap w-full">
       <% if @workouts.present? %>
@@ -11,6 +11,6 @@
         <p><%= t('.no_result') %></p>
       <% end %>
     </div>
-    <div class="flex md:justify-center btn-group w-screen"><%= paginate @workouts %></div>
+    <div class="flex justify-start md:justify-center btn-group w-screen m-8"><%= paginate @workouts %></div>
   </div>
 </div>

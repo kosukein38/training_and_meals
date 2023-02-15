@@ -5,7 +5,7 @@
         <%= @input_date.strftime("%Y年%m月%d日") %> の記録
       </h2>
     </div>
-    <div class="flex form-control md:mx-8">
+    <div class="flex form-control items-center md:items-start md:mx-8">
       <%= form_with url: date_search_path, method: :get, local: true do |f| %>
         <div class="flex">
           <div class="flex flex-col">

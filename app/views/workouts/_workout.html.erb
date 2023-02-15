@@ -1,38 +1,36 @@
-<div id="workout-id-<%= workout.id %>" class="m-4 max-w-lg">
-  <div class="card lg:card-side bg-base-100 shadow-xl border border-base-300">
-    <% if workout.workout_images.attached? %>
-      <figure><%= image_tag workout.workout_images.last.variant(:thumb) %></figure>
-    <% else %>
-      <figure><%= image_tag('workout_sample.jpg', size: "400x400") %></figure>
-    <% end %>
-    <div class="card-body">
+<div class="card card-compact h-28 bg-base-100 shadow-xl image-full m-4 md:card-side md:w-96">
+  <% if workout.workout_images.attached? %>
+    <figure><%= image_tag workout.workout_images.last.variant(:thumb) %></figure>
+  <% else %>
+    <figure><%= image_tag('workout_sample.jpg', size: "400x400") %></figure>
+  <% end %>
+  <%= link_to workout_path(workout.id) do %>
+  <div class="card-body flex flex-row items-center justify-around">
+    <div>
       <h2 class="card-title"><%= workout.workout_title %></h2>
-      <p>
-        <%= workout.workout_weight %> kg /<%= workout.repetition_count %> reps /<%= workout.set_count %> sets 
-      </p>
+      <p><%= workout.workout_weight %> kg /<%= workout.repetition_count %> reps /<%= workout.set_count %> sets </p>
       <p><%= workout.workout_date.strftime("%Y年%m月%d日") %></p>
+    </div>
+    <div>
       <%=link_to user_path(workout.user) do%>
-      <div class="flex justify-end">
-        <div class="avatar">
-          <div class="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-            <% if workout.user.avatar.attached? %>
-            <%= image_tag workout.user.avatar.variant(:thumb) %>
-            <% else %>
-            <%= image_tag('user_sample.png', size: "400x400") %>
-            <% end %>
+        <div class="flex flex-col items-center mx-4">
+          <div class="avatar">
+            <div class="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+              <% if workout.user.avatar.attached? %>
+              <%= image_tag workout.user.avatar.variant(:thumb) %>
+              <% else %>
+              <%= image_tag('user_sample.png', size: "400x400") %>
+              <% end %>
+            </div>
+          </div>
+          <div class="font-bold mx-2 items-center">
+            <p class="m-2"><%= workout.user.name %></p>
           </div>
         </div>
-        <div class="font-bold mx-2 items-center">
-          <p class="m-2"><%= workout.user.name %></p>
-        </div>
-      </div>
       <% end %>
-      <div class="card-actions justify-center">
-        <%= link_to workout_path(workout.id) do %>
-          <button class= "workout-button btn btn-wide my-4"><%= (t 'defaults.to_show_page') %><button>
-        <% end %>
-      </div>
     </div>
   </div>
+  <% end %>
 </div>
+
 

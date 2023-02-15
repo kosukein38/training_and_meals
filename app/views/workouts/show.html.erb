@@ -36,6 +36,8 @@
             <% @workout.workout_images.each do |workout_image|%>
               <%= image_tag workout_image.variant(:thumb), class: "flex items-center mx-auto" if workout_image.representable? %>
             <% end %>
+          <% else %>
+            <%= image_tag('workout_sample.jpg', size: "400x400") %>
           <% end %>
         </div>
         <div class="w-3/5 flex flex-col">

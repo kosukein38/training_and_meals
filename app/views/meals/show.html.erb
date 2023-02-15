@@ -36,6 +36,8 @@
             <% @meal.meal_images.each do |meal_image|%>
               <%= image_tag meal_image.variant(:thumb), class: "flex items-center m-2" if meal_image.representable? %>
             <% end %>
+          <% else %>
+            <%= image_tag('meal_sample.jpg', size: "400x400") %>
           <% end %>
         </div>
         <div class="w-3/5 flex flex-col">
