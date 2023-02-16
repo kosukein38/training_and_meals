@@ -1,17 +1,17 @@
-<div class="card card-compact h-28 bg-base-100 shadow-xl image-full m-4 md:card-side md:w-96">
+<div class="card card-compact h-28 bg-base-100 shadow-xl image-full mx-4 my-2 md:card-side md:w-96">
   <% if workout.workout_images.attached? %>
     <figure><%= image_tag workout.workout_images.last.variant(:thumb) %></figure>
   <% else %>
     <figure><%= image_tag('workout_sample.jpg', size: "400x400") %></figure>
   <% end %>
   <%= link_to workout_path(workout.id) do %>
-  <div class="card-body flex flex-row items-center justify-around">
-    <div>
-      <h2 class="card-title"><%= workout.workout_title %></h2>
+  <div class="card-body flex flex-row ijustify-start">
+    <div class="w-44">
+      <h2 class="card-title truncate block"><%= workout.workout_title %></h2>
       <p><%= workout.workout_weight %> kg /<%= workout.repetition_count %> reps /<%= workout.set_count %> sets </p>
-      <p><%= workout.workout_date.strftime("%Y年%m月%d日") %></p>
+      <p><%= workout.workout_date.strftime("%Y/%m/%d") %></p>
     </div>
-    <div>
+    <div class="w-auto">
       <%=link_to user_path(workout.user) do%>
         <div class="flex flex-col items-center mx-4">
           <div class="avatar">
