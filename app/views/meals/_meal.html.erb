@@ -1,19 +1,19 @@
-<div class="card card-compact h-28 bg-base-100 shadow-xl image-full m-4 md:card-side md:w-96">
+<div class="card card-compact h-28 bg-base-100 shadow-xl image-full mx-4 my-2 md:card-side md:w-96">
   <% if meal.meal_images.attached? %>
     <figure><%= image_tag meal.meal_images.last.variant(:thumb) %></figure>
   <% else %>
     <figure><%= image_tag('meal_sample.jpg', size: "400x400") %></figure>
   <% end %>
   <%= link_to meal_path(meal.id) do %>
-  <div class="card-body flex flex-row items-center justify-around">
-    <div>
-      <h2 class="card-title"><%= meal.meal_details.pluck(:meal_title).join(',') %></h2>
+  <div class="card-body flex flex-row justify-start">
+    <div class="w-44 self-start">
+      <h2 class="card-title truncate block"><%= meal.meal_details.pluck(:meal_title).join(',') %></h2>
       <p><%= meal.meal_details.pluck(:meal_calorie).sum %> kcal / <%= meal.meal_period_i18n %></p>
       <p><%= meal.meal_date.strftime("%Y年%m月%d日") %></p>
     </div>
-    <div>
+    <div class="w-auto">
       <%=link_to user_path(meal.user) do%>
-        <div class="flex flex-col items-center">
+        <div class="flex flex-col items-center mx-4">
           <div class="avatar">
             <div class="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
               <% if meal.user.avatar.attached? %>
