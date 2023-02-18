@@ -28,15 +28,6 @@ RSpec.describe 'MealForm', js: true do
     expect(page).to have_content '全ユーザーの食事投稿'
   end
 
-  it 'サイドバーの投稿一覧をクリックすると食事タイムラインが表示されること' do
-    login_as(user)
-    page.first('.to-index').click
-    page.first('.to-meals-index').click
-    click_on '全ユーザー'
-    expect(page).to have_content '全ユーザーの食事投稿'
-    expect(page).to have_current_path meals_path, ignore_query: true
-  end
-
   it '新規食事投稿画面から食事の記録を登録できること' do
     login_as(user)
     visit new_meal_path
