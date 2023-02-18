@@ -11,7 +11,7 @@ RSpec.describe 'UserSessions' do
         fill_in 'パスワード(必須)', with: 'password'
         click_button 'ログイン'
         expect(page).to have_content 'ログインしました'
-        expect(page).to have_current_path profile_path, ignore_query: true
+        expect(page).to have_current_path user_path(user), ignore_query: true
       end
     end
 
@@ -45,16 +45,16 @@ RSpec.describe 'UserSessions' do
         expect(page).to have_content 'マイページ'
       end
 
-      it 'ログイン後サイドバーが表示され、投稿一覧のリンクがあること' do
+      it 'ログイン後サイドバーが表示され、新規筋トレ投稿のリンクがあること' do
         login_as(user)
         visit profile_path
-        expect(page).to have_content '投稿一覧'
+        expect(page).to have_content '新規筋トレ投稿'
       end
 
-      it 'ログイン後サイドバーが表示され、新規投稿作成のリンクがあること' do
+      it 'ログイン後サイドバーが表示され、新規食事投稿のリンクがあること' do
         login_as(user)
         visit profile_path
-        expect(page).to have_content '新規投稿作成'
+        expect(page).to have_content '新規食事投稿'
       end
     end
   end
