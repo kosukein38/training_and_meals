@@ -14,7 +14,7 @@ RSpec.describe User do
     end
 
     it '名前が31字以上では無効であること' do
-      user = build(:user, name: "#{'a'*31}")
+      user = build(:user, name: ('a' * 31).to_s)
       user.valid?
       expect(user.errors[:name]).to include('は30文字以内で入力してください')
     end
