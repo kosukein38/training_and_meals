@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe WorkoutForm, type: :model do
+RSpec.describe WorkoutForm do
   let(:user) { create(:user) }
   let(:params) do
     {
@@ -18,12 +18,10 @@ RSpec.describe WorkoutForm, type: :model do
     workout = described_class.new
     workout.assign_attributes(**params)
     workout.save
-    # ここでのworkoutはWorkoutForm Class
   end
 
   describe 'validation' do
     it '筋トレ日、種目名、筋トレ部位、トレーニング時間（分）、重量、回数、セット数、が入力されていれば有効な状態であること' do
-      # ここでのworkoutはWorkout Class
       workout.valid?
       expect(workout).to be_valid
     end
@@ -38,6 +36,12 @@ RSpec.describe WorkoutForm, type: :model do
       workout.workout_title = ''
       workout.valid?
       expect(workout.errors[:workout_title]).to include('を入力してください')
+    end
+
+    it '種目名が21文字以上では無効な状態であること' do
+      workout.workout_title = ('a' * 21).to_s
+      workout.valid?
+      expect(workout.errors[:workout_title]).to include('は20文字以内で入力してください')
     end
 
     it '筋トレ部位が入力されていいなければ無効な状態であること' do
@@ -69,6 +73,12 @@ RSpec.describe WorkoutForm, type: :model do
       workout.set_count = ''
       workout.valid?
       expect(workout.errors[:set_count]).to include('を入力してください')
+    end
+
+    it '筋トレメモが101文字以上では無効な状態であること' do
+      workout.workout_memo = ('a' * 101).to_s
+      workout.valid?
+      expect(workout.errors[:workout_memo]).to include('は100文字以内で入力してください')
     end
   end
 end
