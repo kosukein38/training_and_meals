@@ -18,9 +18,13 @@ class MealForm
   attribute :meal_calorie_third, :integer
   attribute :meal_images
 
-  validates :meal_title_first, presence: true
+  validates :meal_date, presence: true
+  validates :meal_period, presence: true
+  validates :meal_type, presence: true
+  validates :meal_title_first, presence: true, length: { maximum: 20 }
   validates :meal_weight_first, presence: true
   validates :meal_calorie_first, presence: true
+  validates :meal_memo, length: { maximum: 100 }
 
   delegate :persisted?, to: :meal
 
