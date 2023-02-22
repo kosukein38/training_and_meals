@@ -13,6 +13,13 @@ class WorkoutForm
   attribute :workout_images
   attribute :user_id
 
+  validates :workout_date, presence: true
+  validates :workout_title, presence: true, length: { maximum: 20 }
+  validates :workout_time, presence: true
+  validates :workout_weight, presence: true
+  validates :repetition_count, presence: true
+  validates :set_count, presence: true
+  validates :workout_memo, length: { maximum: 100 }
   validates :body_part_ids, presence: true
 
   delegate :persisted?, to: :workout
