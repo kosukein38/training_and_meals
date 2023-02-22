@@ -49,6 +49,16 @@ RSpec.describe 'Profiles', js: true do
     expect(page).to have_current_path edit_profile_path, ignore_query: true
   end
 
+  it 'アバター画像に5MB以上のファイルを設定できないこと' do
+    login_as(user)
+    visit edit_profile_path
+    attach_file 'user[avatar]', Rails.root.join('spec/fixtures/images/large_image.png')
+    click_button '更新する'
+    expect(page).to have_content '更新できませんでした'
+    expect(page).to have_content '5MB以下にしてください'
+    expect(page).to have_current_path edit_profile_path, ignore_query: true
+  end
+
   it '未ログインではプロフィールの編集ができないこと' do
     visit edit_profile_path
     expect(page).to have_content 'ログインしてください'

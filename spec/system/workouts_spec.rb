@@ -118,24 +118,38 @@ RSpec.describe 'Workouts', js: true do
           expect(page).to have_current_path user_path(user), ignore_query: true
         end
 
-        it '筋トレ投稿編ら画像を変更できること' do
+        it '筋トレ投稿編集から画像を変更できること' do
           login_as(user)
           visit user_path(user)
           click_on 'ベンチプレス'
           click_button '編集'
-          fill_in '筋トレ日(必須)', with: Time.current
-          fill_in '種目名(必須)', with: 'ベンチプレス'
-          check '胸'
-          check '肩'
-          fill_in 'トレーニーング時間(分)(必須)', with: 40
-          fill_in '重量(必須)', with: 90.4
-          fill_in '回数(必須)', with: 10
-          fill_in 'セット数(必須)', with: 3
           attach_file 'workout[workout_images][]', Rails.root.join('spec/fixtures/images/sample.png')
           click_button '更新する'
           expect(page).to have_content '筋トレ投稿を更新しました'
           expect(page).to have_selector("img[src$='sample.png']")
           expect(page).to have_current_path user_path(user), ignore_query: true
+        end
+
+        it 'png,jpeg,jpg以外の拡張子以外のファイルをアップロードできないこと' do
+          login_as(user)
+          visit user_path(user)
+          click_on 'ベンチプレス'
+          click_button '編集'
+          attach_file 'workout[workout_images][]', Rails.root.join('spec/fixtures/error.txt')
+          click_button '更新する'
+          expect(page).to have_content '筋トレ投稿を更新できませんでした'
+          expect(page).to have_content '対応できないファイル形式です'
+        end
+
+        it '5MBを超える画像をアップロードできないこと' do
+          login_as(user)
+          visit user_path(user)
+          click_on 'ベンチプレス'
+          click_button '編集'
+          attach_file 'workout[workout_images][]', Rails.root.join('spec/fixtures/images/large_image.png')
+          click_button '更新する'
+          expect(page).to have_content '筋トレ投稿を更新できませんでした'
+          expect(page).to have_content '5MB以下にしてください'
         end
       end
 
