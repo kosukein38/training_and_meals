@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'WorkoutForm', js: true do
+RSpec.describe 'Workouts', js: true do
   let(:user) { create(:user) }
 
   describe '筋トレ投稿のCRUD' do

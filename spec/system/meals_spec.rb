@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'MealForm', js: true do
+RSpec.describe 'Meals', js: true do
   let(:user) { create(:user) }
 
   before do
