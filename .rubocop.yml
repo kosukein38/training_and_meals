@@ -15,14 +15,14 @@ AllCops:
 
 Layout/LineLength:
   Max: 130
-  Exclude: #除外ディレクトリ
+  Exclude:
     - "**/Rakefile"
     - "spec/rails_helper.rb"
     - "spec/spec_helper.rb"
 
 Metrics/BlockLength:
   Exclude:
-    - "spec/**/*" #RSpecは1つのブロックあたりの行数が多くなるため、チェックから除外
+    - "spec/**/*"
 
 Metrics/AbcSize:
   Max: 50
@@ -77,5 +77,12 @@ RSpec/ExampleLength:
     - "spec/**/*"
 
 RSpec/MultipleExpectations:
+  Exclude:
+    - "spec/**/*"
+
+RSpec/NestedGroups:
+  Max: 5
+
+RSpec/InstanceVariable:
   Exclude:
     - "spec/**/*"
