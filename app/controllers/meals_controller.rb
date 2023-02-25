@@ -56,8 +56,8 @@ class MealsController < ApplicationController
   end
 
   def calorie_search
-    @response = MealSearchService.new(params[:calorie_search]).call
-    @response << 'すみません...見つかりませんでした' if @response.empty?
+    translated_text = DeeplApiService.new(params[:calorie_search]).call
+    @response = NutritionApiService.new(translated_text).call
     @meal_form = MealForm.new
     render :new
   end
