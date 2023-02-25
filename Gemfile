@@ -84,6 +84,7 @@ gem 'sitemap_generator'
 # 登録、ログイン
 gem 'sorcery'
 
+# HTTPクライアント
 gem 'faraday'
 
 group :production do

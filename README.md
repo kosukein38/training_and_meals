@@ -115,6 +115,7 @@
 - `meta-tags`（OGP、メタタグの設定）
 - `rspec-rails`（テストフレームワーク）
 - `rubocop`（Lint ツール）
+- `faraday`（HTTP クライアント）
   なお、画像アップロードには`Active Storage`を使用
 
 <br>
