@@ -14,16 +14,16 @@ class DeeplApiService
   def translating_japanese_to_english
     connection = Faraday.new('https://api-free.deepl.com') do |builder|
       builder.request  :url_encoded
-      builder.response :json, :content_type => /\bjson$/
+      builder.response :json, content_type: /\bjson$/
       builder.adapter  :net_http
     end
     params = {
-      text: text,
+      text:,
       auth_key: Rails.application.credentials.deepl[:api_key],
       target_lang: 'EN',
       source_lang: 'JA'
     }
     deepl_response = connection.post('/v2/translate', params)
-    translated_text = deepl_response.body['translations'][0]['text']
+    deepl_response.body['translations'][0]['text']
   end
 end

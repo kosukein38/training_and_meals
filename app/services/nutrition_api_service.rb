@@ -4,17 +4,17 @@ class NutritionApiService
   end
 
   def call
-    get_nutrition_info
+    taking_nutrition_info
   end
 
   private
 
   attr_reader :text
 
-  def get_nutrition_info
+  def taking_nutrition_info
     connection = Faraday.new('https://nutrition-by-api-ninjas.p.rapidapi.com') do |builder|
       builder.request  :url_encoded
-      builder.response :json, :content_type => /\bjson$/
+      builder.response :json, content_type: /\bjson$/
       builder.adapter  :net_http
     end
 
@@ -22,8 +22,8 @@ class NutritionApiService
       query: text
     }
     headers = {
-      'X-RapidAPI-Key' => "#{Rails.application.credentials.nutrition[:api_key]}",
-      'X-RapidAPI-Host' => "#{connection.url_prefix.host}"
+      'X-RapidAPI-Key' => Rails.application.credentials.nutrition[:api_key].to_s,
+      'X-RapidAPI-Host' => connection.url_prefix.host.to_s
     }
     nutrition_response = connection.get('v1/nutrition', params, headers)
     nutrition_response_body = nutrition_response.body
@@ -36,6 +36,6 @@ class NutritionApiService
       results << "メニュー：#{result['name']} カロリー：#{result['calories']} kcal グラム数：#{result['serving_size_g']} g"
     end
     results << 'すみません...見つかりませんでした' if results.empty?
-    return results
+    results
   end
 end
