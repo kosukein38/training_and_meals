@@ -84,6 +84,9 @@ gem 'sitemap_generator'
 # 登録、ログイン
 gem 'sorcery'
 
+# HTTPクライアント
+gem 'faraday'
+
 group :production do
   # Amazon S3を使用するためのパッケージ
   gem 'aws-sdk-s3', require: false
