@@ -4,16 +4,17 @@
   <% else %>
     <figure><%= image_tag('workout_sample.jpg', size: "400x400") %></figure>
   <% end %>
-  <%= link_to workout_path(workout.id) do %>
-  <div class="card-body flex flex-row ijustify-start">
-    <div class="w-44">
-      <h2 class="card-title truncate block"><%= workout.workout_title %></h2>
+  <div class="card-body flex flex-row justify-start">
+    <div class="w-6/12">
+    <%= link_to workout_path(workout.id) do %>
+      <h2 class="card-title truncate block w-36"><%= workout.workout_title %></h2>
       <p><%= workout.workout_weight %> kg /<%= workout.repetition_count %> reps /<%= workout.set_count %> sets </p>
       <p><%= workout.workout_date.strftime("%Y/%m/%d") %></p>
+    <% end %>
     </div>
-    <div class="w-auto">
+    <div class="w-4/12">
       <%=link_to user_path(workout.user) do%>
-        <div class="flex flex-col items-center mx-4">
+        <div class="flex flex-col items-center mx-auto">
           <div class="avatar">
             <div class="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
               <% if workout.user.avatar.attached? %>
@@ -23,14 +24,37 @@
               <% end %>
             </div>
           </div>
-          <div class="font-bold mx-2 items-center">
+          <div class="font-bold items-center">
             <p class="m-2"><%= workout.user.name %></p>
           </div>
         </div>
       <% end %>
     </div>
+    <!-- いいねボタン-->
+    <div class="w-2/12 flex items-center">
+      <% if workout.liked?(current_user) %>
+        <%# <%= link_to workout_like_path(workout.id, workout_like.id), data: { turbo_method: :delete} do %> 
+        <%= link_to workout_like_path(workout.id, WorkoutLike.find_by(workout_id: workout.id, like_id: workout.likes.find_by(user_id: current_user.id).id)), data: { turbo_method: :delete} do %>
+          <button class="btn btn-ghost">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-rose-500 stroke-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+            <div class="badge">
+              <span><%= workout.likes.count %></span>
+            </div>
+          </button>
+        <% end %>
+      <% else %>
+        <%= link_to workout_likes_path(workout), data: { turbo_method: :post} do %>
+          <button class="btn btn-ghost">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+            <div class="badge">
+              <span><%= workout.likes.count %></span>
+            </div>
+          </button>
+        <% end %>
+      <% end %>
+    </div>
+    <!-- いいねボタンここまで-->
   </div>
-  <% end %>
 </div>
 
 
