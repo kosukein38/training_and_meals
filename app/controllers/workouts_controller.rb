@@ -7,6 +7,8 @@ class WorkoutsController < ApplicationController
 
   def show
     @workout = Workout.find(params[:id])
+    like = @workout.likes.find_by(user_id: current_user.id)
+    @workout_like = @workout.workout_likes.find_by(like_id: like.id) unless like.nil?
     @user = User.find(@workout.user_id)
   end
 
@@ -64,7 +66,8 @@ class WorkoutsController < ApplicationController
   def workout_params
     params.require(:workout).permit(:workout_date, :workout_title, :workout_time,
                                     :workout_weight, :repetition_count,
-                                    :set_count, :workout_memo, body_part_ids: [], workout_images: []).merge(user_id: current_user.id)
+                                    :set_count, :workout_memo,
+                                    body_part_ids: [], workout_images: []).merge(user_id: current_user.id)
   end
 
   def load_workout

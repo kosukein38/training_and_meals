@@ -36,6 +36,8 @@
             <% @meal.meal_images.each do |meal_image|%>
               <%= image_tag meal_image.variant(:thumb), class: "flex items-center m-2" if meal_image.representable? %>
             <% end %>
+          <% else %>
+            <%= image_tag('meal_sample.jpg', size: "400x400") %>
           <% end %>
         </div>
         <div class="w-3/5 flex flex-col">
@@ -57,7 +59,7 @@
           </div>
           <div class="mx-8 mt-4">
             <h2 class="text-xl font-bold">メモ</h2>
-            <p class="text-base md:w-96"><%= @meal.meal_memo %></p>
+            <p class="text-base md:w-96 break-words"><%= @meal.meal_memo %></p>
           </div>
           <div class="mx-8 mt-4">
           <% if logged_in? && current_user.own?(@meal) %>

@@ -8,10 +8,12 @@ class User < ApplicationRecord
   has_many :workouts, dependent: :destroy
   has_many :meals, dependent: :destroy
   has_many :meal_details, through: :meals
-  has_many :relationships, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
-  has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy
+  has_many :relationships, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy, inverse_of: :follower
+  has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'followed_id', dependent: :destroy,
+                                      inverse_of: :followed
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
+  has_many :likes, dependent: :destroy
 
   has_one_attached :avatar do |attachable|
     attachable.variant :thumb, resize_to_limit: [200, 200]

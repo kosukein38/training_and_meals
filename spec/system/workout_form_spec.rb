@@ -25,15 +25,6 @@ RSpec.describe 'WorkoutForm', js: true do
     expect(page).to have_content '全ユーザーの筋トレ投稿'
   end
 
-  it 'サイドバーの投稿一覧をクリックすると筋トレのタイムラインが表示されること' do
-    login_as(user)
-    page.first('.to-index').click
-    page.first('.to-workouts-index').click
-    click_on '全ユーザー'
-    expect(page).to have_content '全ユーザーの筋トレ投稿'
-    expect(page).to have_current_path workouts_path, ignore_query: true
-  end
-
   it '新規筋トレ投稿画面から筋トレの記録（種目名、トレーニング時間、重量、回数、セット数）を登録できること' do
     login_as(user)
     visit new_workout_path
@@ -44,7 +35,7 @@ RSpec.describe 'WorkoutForm', js: true do
     fill_in '重量(必須)', with: 80.5
     fill_in '回数(必須)', with: 10
     fill_in 'セット数(必須)', with: 3
-    attach_file 'workout[workout_images][]', "#{Rails.root}/spec/fixtures/images/sample_man.png"
+    attach_file 'workout[workout_images][]', Rails.root.join('spec/fixtures/images/sample_man.png')
     click_button '投稿する'
     expect(page).to have_content '筋トレ投稿を作成しました'
     expect(page).to have_selector("img[src$='sample_man.png']")
@@ -54,7 +45,7 @@ RSpec.describe 'WorkoutForm', js: true do
   it 'マイページの筋トレ投稿をクリックすると筋トレ詳細画面が表示されること' do
     login_as(user)
     visit user_path(user)
-    click_button '詳細'
+    click_on 'ベンチプレス'
     expect(page).to have_content '筋トレ詳細'
     # current_pathのチェック追加
   end
@@ -62,7 +53,7 @@ RSpec.describe 'WorkoutForm', js: true do
   it '筋トレ詳細画面の編集ボタンをクリックすると編集画面に遷移すること' do
     login_as(user)
     visit user_path(user)
-    click_button '詳細'
+    click_on 'ベンチプレス'
     click_button '編集'
     expect(page).to have_content '筋トレ編集'
     # current_pathのチェック追加
@@ -71,7 +62,7 @@ RSpec.describe 'WorkoutForm', js: true do
   it '筋トレ編集から項目を入力して更新をクリックすると更新できること' do
     login_as(user)
     visit user_path(user)
-    page.first('.workout-button').click
+    click_on 'ベンチプレス'
     click_button '編集'
     fill_in '筋トレ日(必須)', with: Time.current
     fill_in '種目名(必須)', with: 'ベンチプレス'
@@ -89,7 +80,7 @@ RSpec.describe 'WorkoutForm', js: true do
   it '筋トレ編集画面で削除をクリックすると削除できること' do
     login_as(user)
     visit user_path(user)
-    click_button '詳細'
+    click_on 'ベンチプレス'
     click_button '編集'
     page.accept_confirm do
       page.first('.workout-delete').click
@@ -101,7 +92,7 @@ RSpec.describe 'WorkoutForm', js: true do
   it '筋トレ投稿編集画面から画像を変更できること' do
     login_as(user)
     visit user_path(user)
-    click_button '詳細'
+    click_on 'ベンチプレス'
     click_button '編集'
     fill_in '筋トレ日(必須)', with: Time.current
     fill_in '種目名(必須)', with: 'ベンチプレス'
@@ -111,7 +102,7 @@ RSpec.describe 'WorkoutForm', js: true do
     fill_in '重量(必須)', with: 90.4
     fill_in '回数(必須)', with: 10
     fill_in 'セット数(必須)', with: 3
-    attach_file 'workout[workout_images][]', "#{Rails.root}/spec/fixtures/images/sample.png"
+    attach_file 'workout[workout_images][]', Rails.root.join('spec/fixtures/images/sample.png')
     click_button '更新する'
     expect(page).to have_content '筋トレ投稿を更新しました'
     expect(page).to have_selector("img[src$='sample.png']")
@@ -122,13 +113,13 @@ RSpec.describe 'WorkoutForm', js: true do
     another_user = create(:user)
     login_as(another_user)
     visit workouts_path
-    click_button '詳細'
+    click_on 'ベンチプレス'
     expect(page).not_to have_content '編集'
   end
 
   it '未ログインでも投稿の詳細表示できること' do
     visit workouts_path
-    click_button '詳細'
+    click_on 'ベンチプレス'
     expect(page).to have_content '筋トレ詳細'
     # current_pathのチェック追加
   end

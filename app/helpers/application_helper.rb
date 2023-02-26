@@ -7,13 +7,11 @@ module ApplicationHelper
   def assign_meta_tags(options = {})
     defaults = t('meta_tags.defaults')
     options.reverse_merge!(defaults)
-
     site = options[:site]
     title = options[:title]
     description = options[:description]
     keywords = options[:keywords]
     image = options[:image].presence || image_url('ogp-image.png')
-
     configs = {
       separator: '|',
       reverse: true,

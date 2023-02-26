@@ -1,90 +1,45 @@
-<div class="sidebar hidden md:flex md:flex-col md:min-w-max md:p-4 md:bg-base-300 md:drop-shadow-lg md:rounded-md z-50">
-  <nav>
-    <div class="py-2">
-      <%= link_to user_path(current_user.id) do %>
-        <div class="to_mypage flex">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 m-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
-          <span class="btm-nav-label m-2 font-bold">マイページ</span>
-        </div>
-      <% end %>
-    </div>
-    <div class="menu dropdown dropdown-right py-2">
-      <div class="to-index flex">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 m-2" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 6.878V6a2.25 2.25 0 012.25-2.25h7.5A2.25 2.25 0 0118 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 004.5 9v.878m13.5-3A2.25 2.25 0 0119.5 9v.878m0 0a2.246 2.246 0 00-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0121 12v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6c0-.98.626-1.813 1.5-2.122" />
-        </svg>
-        <label tabindex="0" class="font-bold m-2">投稿一覧</label>
-      </div>
-      <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-        <li class="dropdown dropdown-right dropdown-start">
-        <span class="to-workouts-index">筋トレ投稿一覧</span>
-          <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-            <li><%= link_to 'フォローユーザー', workouts_feed_path %></li>
-            <li><%= link_to '全ユーザー', workouts_path %></li>
-          </ul>
-        </li>
-        <li class="dropdown dropdown-right dropdown-start">
-        <span class="to-meals-index">食事投稿一覧</span>
-          <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-            <li><%= link_to 'フォローユーザー', meals_feed_path %></li>
-            <li><%= link_to '全ユーザー', meals_path %></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <div class="menu dropdown dropdown-right py-2">
-      <div class="to-new-post flex">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 m-2" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" tabindex="0">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-        </svg>
-        <label tabindex="0" class="font-bold m-2">新規投稿作成</label>
-      </div>
-      <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-        <li><%= link_to '新規筋トレ投稿', new_workout_path %></li>
-        <li><%= link_to '新規食事投稿', new_meal_path %></li>
-      </ul>
-    </div>
-  </nav>
-</div>
-<div class="btm-nav z-50 md:hidden bg-base-300">
+<div class="sidebar hidden md:flex md:flex-col md:align-center md:min-w-max md:p-4 md:bg-base-300 md:drop-shadow-lg md:rounded-md md:m-2 z-50">
   <%= link_to user_path(current_user.id) do %>
-    <div class="flex flex-col items-center">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+    <div class="to_mypage flex hover:opacity-50 py-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 m-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
+      <span class="btm-nav-label m-2 font-bold">マイページ</span>
+    </div>
+  <% end %>
+  <%= link_to new_workout_path do %>
+    <div class="flex hover:opacity-50 py-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 m-2" viewBox="0 0 640 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M112 96c0-17.7 14.3-32 32-32h16c17.7 0 32 14.3 32 32V224v64V416c0 17.7-14.3 32-32 32H144c-17.7 0-32-14.3-32-32V384H64c-17.7 0-32-14.3-32-32V288c-17.7 0-32-14.3-32-32s14.3-32 32-32V160c0-17.7 14.3-32 32-32h48V96zm416 0v32h48c17.7 0 32 14.3 32 32v64c17.7 0 32 14.3 32 32s-14.3 32-32 32v64c0 17.7-14.3 32-32 32H528v32c0 17.7-14.3 32-32 32H480c-17.7 0-32-14.3-32-32V288 224 96c0-17.7 14.3-32 32-32h16c17.7 0 32 14.3 32 32zM416 224v64H224V224H416z"/></svg>
+      <span class="btm-nav-label m-2 font-bold">新規筋トレ投稿</span>
+    </div>
+  <% end %>
+  <%= link_to new_meal_path do %>
+    <div class="flex hover:opacity-50 py-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 m-2" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M416 0C400 0 288 32 288 176V288c0 35.3 28.7 64 64 64h32V480c0 17.7 14.3 32 32 32s32-14.3 32-32V352 240 32c0-17.7-14.3-32-32-32zM64 16C64 7.8 57.9 1 49.7 .1S34.2 4.6 32.4 12.5L2.1 148.8C.7 155.1 0 161.5 0 167.9c0 45.9 35.1 83.6 80 87.7V480c0 17.7 14.3 32 32 32s32-14.3 32-32V255.6c44.9-4.1 80-41.8 80-87.7c0-6.4-.7-12.8-2.1-19.1L191.6 12.5c-1.8-8-9.3-13.3-17.4-12.4S160 7.8 160 16V150.2c0 5.4-4.4 9.8-9.8 9.8c-5.1 0-9.3-3.9-9.8-9L127.9 14.6C127.2 6.3 120.3 0 112 0s-15.2 6.3-15.9 14.6L83.7 151c-.5 5.1-4.7 9-9.8 9c-5.4 0-9.8-4.4-9.8-9.8V16zm48.3 152l-.3 0-.3 0 .3-.7 .3 .7z"/></svg>
+      <span class="btm-nav-label m-2 font-bold">新規食事投稿</span>
+    </div>
+  <% end %>
+</div>
+<!-- スマホ用メニュー -->
+<div class="btm-nav z-50 md:hidden bg-base-300">
+  <%= link_to new_workout_path do %>
+    <div class="flex flex-col items-center hover:opacity-50">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5" viewBox="0 0 640 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M112 96c0-17.7 14.3-32 32-32h16c17.7 0 32 14.3 32 32V224v64V416c0 17.7-14.3 32-32 32H144c-17.7 0-32-14.3-32-32V384H64c-17.7 0-32-14.3-32-32V288c-17.7 0-32-14.3-32-32s14.3-32 32-32V160c0-17.7 14.3-32 32-32h48V96zm416 0v32h48c17.7 0 32 14.3 32 32v64c17.7 0 32 14.3 32 32s-14.3 32-32 32v64c0 17.7-14.3 32-32 32H528v32c0 17.7-14.3 32-32 32H480c-17.7 0-32-14.3-32-32V288 224 96c0-17.7 14.3-32 32-32h16c17.7 0 32 14.3 32 32zM416 224v64H224V224H416z"/></svg>
+      <span class="btm-nav-label">新規筋トレ投稿</span>
+    </div>
+  <% end %>
+
+  <%= link_to user_path(current_user.id) do %>
+    <div class="flex flex-col items-center  hover:opacity-50">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
       <span class="btm-nav-label">マイページ</span>
     </div>
   <% end %>
-  <div class="flex flex-col items-center dropdown dropdown-top dropdown-end">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M6 6.878V6a2.25 2.25 0 012.25-2.25h7.5A2.25 2.25 0 0118 6v.878m-12 0c.235-.083.487-.128.75-.128h10.5c.263 0 .515.045.75.128m-12 0A2.25 2.25 0 004.5 9v.878m13.5-3A2.25 2.25 0 0119.5 9v.878m0 0a2.246 2.246 0 00-.75-.128H5.25c-.263 0-.515.045-.75.128m15 0A2.25 2.25 0 0121 12v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6c0-.98.626-1.813 1.5-2.122" />
-    </svg>
-    <span tabindex="0" class="btm-nav-label">投稿一覧</span>
-    <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box">
-      <li class="dropdown dropdown-right dropdown-end">
-        <span>筋トレ</span>
-        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-200 rounded-box w-32">
-          <li><%= link_to 'フォロー中', workouts_feed_path %></li>
-          <li><%= link_to '全ユーザー', workouts_path %></li>
-        </ul>
-      </li>
-      <li class="dropdown dropdown-right dropdown-end">
-        <span>食事</span>
-        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-200 rounded-box w-32">
-          <li><%= link_to 'フォロー中', meals_feed_path %></li>
-          <li><%= link_to '全ユーザー', meals_path %></li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-  <div class="flex flex-col items-center dropdown dropdown-top dropdown-end">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" tabindex="0">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
-    </svg>
-    <span tabindex="0" class="btm-nav-label">新規投稿作成</span>
-      <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-        <li><%= link_to '新規筋トレ投稿', new_workout_path %></li>
-        <li><%= link_to '新規食事投稿', new_meal_path %></li>
-      </ul>
-  </div>
+
+  <%= link_to new_meal_path do %>
+    <div class="flex flex-col items-center hover:opacity-50">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M416 0C400 0 288 32 288 176V288c0 35.3 28.7 64 64 64h32V480c0 17.7 14.3 32 32 32s32-14.3 32-32V352 240 32c0-17.7-14.3-32-32-32zM64 16C64 7.8 57.9 1 49.7 .1S34.2 4.6 32.4 12.5L2.1 148.8C.7 155.1 0 161.5 0 167.9c0 45.9 35.1 83.6 80 87.7V480c0 17.7 14.3 32 32 32s32-14.3 32-32V255.6c44.9-4.1 80-41.8 80-87.7c0-6.4-.7-12.8-2.1-19.1L191.6 12.5c-1.8-8-9.3-13.3-17.4-12.4S160 7.8 160 16V150.2c0 5.4-4.4 9.8-9.8 9.8c-5.1 0-9.3-3.9-9.8-9L127.9 14.6C127.2 6.3 120.3 0 112 0s-15.2 6.3-15.9 14.6L83.7 151c-.5 5.1-4.7 9-9.8 9c-5.4 0-9.8-4.4-9.8-9.8V16zm48.3 152l-.3 0-.3 0 .3-.7 .3 .7z"/></svg>
+      <span class="btm-nav-label">新規食事投稿</span>
+    </div>
+  <% end %>
 </div>
 

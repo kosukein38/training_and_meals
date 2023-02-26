@@ -37,7 +37,7 @@ RSpec.describe 'Profiles', js: true do
     fill_in '年齢(必須)', with: user.age
     select '男性', from: '生まれた時の性別(必須)'
     select 'レベル1', from: '活動量(必須)'
-    attach_file 'user[avatar]', "#{Rails.root}/spec/fixtures/images/sample_man.png"
+    attach_file 'user[avatar]', Rails.root.join('spec/fixtures/images/sample_man.png')
     click_button '更新する'
     expect(page).to have_content 'プロフィールを更新しました'
     expect(page).to have_selector("img[src$='sample_man.png']")

@@ -6,7 +6,7 @@ class UserSessionsController < ApplicationController
   def create
     @user = login(params[:email], params[:password])
     if @user
-      redirect_back_or_to profile_path, success: t('.success')
+      redirect_back_or_to user_path(@user), success: t('.success')
     else
       flash.now[:error] = t('.fail')
       render :new, status: :unprocessable_entity
@@ -32,6 +32,6 @@ class UserSessionsController < ApplicationController
       )
     end
     auto_login(@guest_user)
-    redirect_to root_path, success: 'ゲストとしてログインしました'
+    redirect_to user_path(@guest_user), success: 'ゲストとしてログインしました'
   end
 end
