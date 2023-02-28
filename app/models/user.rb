@@ -13,7 +13,11 @@ class User < ApplicationRecord
                                       inverse_of: :followed
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
-  has_many :likes, dependent: :destroy
+  has_many :workout_likes, dependent: :destroy
+  has_many :meal_likes, dependent: :destroy
+  has_many :like_workouts, through: :workout_likes, source: :workout
+  has_many :like_meals, through: :meal_likes, source: :meal
+
 
   has_one_attached :avatar do |attachable|
     attachable.variant :thumb, resize_to_limit: [200, 200]
@@ -54,6 +58,30 @@ class User < ApplicationRecord
 
   def following?(other_user)
     followings.include?(other_user)
+  end
+
+  def like_workout(workout)
+    like_workouts << workout
+  end
+
+  def like_meal(meal)
+    like_meals << meal
+  end
+
+  def unlike_workout(workout)
+    like_workouts.destroy(workout)
+  end
+
+  def unlike_meal(meal)
+    like_meals.destroy(meal)
+  end
+
+  def like_workout?(workout)
+    like_workouts.include?(workout)
+  end
+
+  def like_meal?(meal)
+    like_meals.include?(meal)
   end
 
   private

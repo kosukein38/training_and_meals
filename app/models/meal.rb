@@ -2,7 +2,7 @@ class Meal < ApplicationRecord
   belongs_to :user
   has_many :meal_details, dependent: :destroy
   has_many :meal_likes, dependent: :destroy
-  has_many :likes, through: :meal_likes
+  has_many :like_users, through: :workout_likes, source: :user
 
   has_many_attached :meal_images do |attachable|
     attachable.variant :thumb, resize_to_limit: [400, 400]
@@ -18,9 +18,5 @@ class Meal < ApplicationRecord
   def self.meals_today
     input_date = Time.zone.today
     where(meal_date: input_date.beginning_of_day...input_date.end_of_day).order(created_at: :desc)
-  end
-
-  def liked?(user)
-    likes.where(user_id: user.id).exists?
   end
 end
