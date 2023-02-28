@@ -44,13 +44,10 @@ class UsersController < ApplicationController
 
     set_calendar_info
 
-    @input_date = params[:date_search].to_date
-    if @input_date
-      @workouts = Workout.where(workout_date: @input_date.beginning_of_day...@input_date.end_of_day, user_id:)
-      @meals = Meal.where(meal_date: @input_date.beginning_of_day...@input_date.end_of_day, user_id:)
-      @total_calorie = MealDetail.where(meal_id: @meals.pluck(:id)).pluck(:meal_calorie).sum
-    end
-
+    @input_date = params[:date_search].to_date || Time.current.to_date
+    @workouts = Workout.where(workout_date: @input_date.beginning_of_day...@input_date.end_of_day, user_id:)
+    @meals = Meal.where(meal_date: @input_date.beginning_of_day...@input_date.end_of_day, user_id:)
+    @total_calorie = MealDetail.where(meal_id: @meals.pluck(:id)).pluck(:meal_calorie).sum
     render :show
   end
 
