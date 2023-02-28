@@ -1,0 +1,28 @@
+<% if current_user.nil? %>
+  <span>
+    <button class="btn gap-2 bg-inherit border-none" disabled="disabled">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary hover" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+      <div class="badge">
+        <span><%= workout.workout_likes.count %></span>
+      </div>
+    </button>
+  </span>
+<% elsif current_user.like_workout?(workout) %>
+  <%= link_to workout_like_path(workout.id, WorkoutLike.find_by(user_id: current_user.id, workout_id: workout.id)), data: { turbo_method: :delete} do %>
+    <button class="btn gap-2 bg-inherit border-none" disabled="disabled">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-rose-500 stroke-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+      <div class="badge">
+        <span><%= workout.workout_likes.count %></span>
+      </div>
+    </button>
+  <% end %>
+<% else %>
+  <%= link_to workout_likes_path(workout), data: { turbo_method: :post} do %>
+    <button class="btn gap-2 bg-inherit border-none" disabled="disabled">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+      <div class="badge">
+        <span><%= workout.workout_likes.count %></span>
+      </div>
+    </button>
+  <% end %>
+<% end %>
