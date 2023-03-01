@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @input_date = Time.zone.today
+    @input_date = Time.current.to_date
     set_calendar_info
     @workouts = @user.workouts.workouts_today
     @meals = @user.meals.includes(:meal_details).meals_today
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
   end
 
   def set_calendar_info
-    start_date = params.fetch(:start_date, Time.zone.today).to_date
+    start_date = Time.current
     @workouts_per_month = @user.workouts.where(workout_date: start_date.all_month)
   end
 end
