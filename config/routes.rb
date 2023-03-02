@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     resources :likes, only: %i[index create destroy], controller: 'workout_likes'
   end
   resources :meals do
-    resources :likes, only: %i[create destroy], controller: 'meal_likes'
+    resources :likes, only: %i[index create destroy], controller: 'meal_likes'
   end
   resources :password_resets, only: %i[new create edit update]
 end

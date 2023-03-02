@@ -1,4 +1,9 @@
 class WorkoutLikesController < ApplicationController
+  def index
+    workout = Workout.find(params[:workout_id])
+    @users = workout.workout_like_users.page(params[:page])
+  end
+
   def create
     workout = Workout.find(params[:workout_id])
     current_user.like_workout(workout)

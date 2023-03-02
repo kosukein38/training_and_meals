@@ -2,7 +2,7 @@ class Meal < ApplicationRecord
   belongs_to :user
   has_many :meal_details, dependent: :destroy
   has_many :meal_likes, dependent: :destroy
-  has_many :like_users, through: :workout_likes, source: :user
+  has_many :meal_like_users, through: :meal_likes, source: :user
 
   has_many_attached :meal_images do |attachable|
     attachable.variant :thumb, resize_to_limit: [400, 400]
