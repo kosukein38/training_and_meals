@@ -63,7 +63,7 @@
           </div>
           <div class="flex items-center mx-8 mt-4">
             <div>
-              <%= render 'meal_like_button', meal: @meal %>
+              <%= render 'meal_likes/meal_like_button', meal: @meal %>
             </div>
             <div class="mx-4 link">
               <%= link_to (t '.to_likes_index_page'), meal_likes_path(@meal) %>

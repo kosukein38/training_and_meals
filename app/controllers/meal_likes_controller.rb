@@ -5,14 +5,20 @@ class MealLikesController < ApplicationController
   end
 
   def create
-    meal = Meal.find(params[:meal_id])
-    current_user.like_meal(meal)
-    redirect_to request.referer
+    @meal = Meal.find(params[:meal_id])
+    current_user.like_meal(@meal)
+    respond_to do |format|
+      format.html { redirect_to request.referer }
+      format.turbo_stream
+    end
   end
 
   def destroy
-    meal = current_user.meal_likes.find(params[:id]).meal
-    current_user.unlike_meal(meal)
-    redirect_to request.referer
+    @meal = current_user.meal_likes.find(params[:id]).meal
+    current_user.unlike_meal(@meal)
+    respond_to do |format|
+      format.html { redirect_to request.referer }
+      format.turbo_stream
+    end
   end
 end

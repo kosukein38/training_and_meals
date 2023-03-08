@@ -1,0 +1,6 @@
+<%= turbo_stream.update "meal-like-button-#{@meal.id}" do %>
+  <%= render partial: 'meal_likes/like', locals: { meal: @meal } %>
+<% end %>
+<%= turbo_stream.update "meal-like-count-#{@meal.id}" do %>
+  <%= @meal.meal_likes.count %>
+<% end %>
