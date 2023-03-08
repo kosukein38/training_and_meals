@@ -8,7 +8,6 @@ class WorkoutsController < ApplicationController
   def show
     @workout = Workout.find(params[:id])
     @user = @workout.user
-    #@workout_like = @workout.workout_likes.find_by(user_id: current_user.id)
   end
 
   def new

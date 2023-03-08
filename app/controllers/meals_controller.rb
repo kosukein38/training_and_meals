@@ -8,7 +8,6 @@ class MealsController < ApplicationController
   def show
     @meal = Meal.find(params[:id])
     @user = @meal.user
-    #@meal_like = @meal.meal_likes.find_by(user_id: current_user.id)
   end
 
   def new
