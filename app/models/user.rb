@@ -18,7 +18,6 @@ class User < ApplicationRecord
   has_many :like_workouts, through: :workout_likes, source: :workout
   has_many :like_meals, through: :meal_likes, source: :meal
 
-
   has_one_attached :avatar do |attachable|
     attachable.variant :thumb, resize_to_limit: [200, 200]
   end

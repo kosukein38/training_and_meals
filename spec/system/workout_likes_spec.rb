@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "MealLikes", js: true do
+RSpec.describe 'MealLikes', js: true do
   let(:user) { create(:user) }
   let(:other_user) { create(:user) }
 
@@ -53,15 +53,15 @@ RSpec.describe "MealLikes", js: true do
         login_as(user)
         visit user_path(user)
         sleep 1.5
-        expect {
+        expect do
           find("#meal-like-button-#{@my_meal.id}").click
           visit current_path
-        }.to change{ MealLike.count }.by(1)
+        end.to change(MealLike, :count).by(1)
         expect(page).to have_css '.fill-rose-500'
-        expect {
+        expect do
           find("#meal-like-button-#{@my_meal.id}").click
           visit current_path
-        }.to change{ MealLike.count }.by(-1)
+        end.to change(MealLike, :count).by(-1)
         expect(page).to have_css '.text-primary'
       end
 
@@ -69,15 +69,15 @@ RSpec.describe "MealLikes", js: true do
         login_as(user)
         visit meals_path
         sleep 1.5
-        expect {
+        expect do
           find("#meal-like-button-#{@other_meal.id}").click
           visit current_path
-        }.to change{ MealLike.count }.by(1)
+        end.to change(MealLike, :count).by(1)
         expect(page).to have_css '.fill-rose-500'
-        expect {
+        expect do
           find("#meal-like-button-#{@other_meal.id}").click
           visit current_path
-        }.to change{ MealLike.count }.by(-1)
+        end.to change(MealLike, :count).by(-1)
         expect(page).to have_css '.text-primary'
       end
 
@@ -85,15 +85,15 @@ RSpec.describe "MealLikes", js: true do
         login_as(user)
         visit meals_feed_path
         sleep 1.5
-        expect {
+        expect do
           find("#meal-like-button-#{@other_meal.id}").click
           visit current_path
-        }.to change{ MealLike.count }.by(1)
+        end.to change(MealLike, :count).by(1)
         expect(page).to have_css '.fill-rose-500'
-        expect {
+        expect do
           find("#meal-like-button-#{@other_meal.id}").click
           visit current_path
-        }.to change{ MealLike.count }.by(-1)
+        end.to change(MealLike, :count).by(-1)
         expect(page).to have_css '.text-primary'
       end
 
@@ -101,15 +101,15 @@ RSpec.describe "MealLikes", js: true do
         login_as(user)
         visit meal_path(@other_meal)
         sleep 1.5
-        expect {
+        expect do
           find("#meal-like-button-#{@other_meal.id}").click
           visit current_path
-        }.to change{ MealLike.count }.by(1)
+        end.to change(MealLike, :count).by(1)
         expect(page).to have_css '.fill-rose-500'
-        expect {
+        expect do
           find("#meal-like-button-#{@other_meal.id}").click
           visit current_path
-        }.to change{ MealLike.count }.by(-1)
+        end.to change(MealLike, :count).by(-1)
         expect(page).to have_css '.text-primary'
       end
     end
@@ -118,21 +118,23 @@ RSpec.describe "MealLikes", js: true do
       it '他人の投稿にいいねできないこと（投稿一覧）' do
         visit meals_path
         sleep 1.5
-        expect {
+        expect do
           find("#meal-like-button-#{@other_meal.id}").click
           visit current_path
-        }.to change{ MealLike.count }.by(0)
+        end.not_to change(MealLike, :count)
         expect(page).to have_css '.text-primary'
       end
+
       it '他人の投稿にいいねできないこと（投稿詳細）' do
         visit meal_path(@other_meal)
         sleep 1.5
-        expect {
+        expect do
           find("#meal-like-button-#{@other_meal.id}").click
           visit current_path
-        }.to change{ MealLike.count }.by(0)
+        end.not_to change(MealLike, :count)
         expect(page).to have_css '.text-primary'
       end
+
       it 'いいねした人一覧を見れないこと' do
         visit meal_path(@other_meal)
         click_link 'いいね'
@@ -146,11 +148,11 @@ RSpec.describe "MealLikes", js: true do
           login_as(user)
           visit meals_path
           sleep 1.5
-          expect {
+          expect do
             find("#meal-like-button-#{@other_meal.id}").click
             visit current_path
-          }.to change{ MealLike.count }.by(1)
-          click_on @other_meal.meal_date.strftime("%Y年%m月%d日")
+          end.to change(MealLike, :count).by(1)
+          click_on @other_meal.meal_date.strftime('%Y年%m月%d日')
           click_link 'いいね'
           expect(page).to have_content 'いいねしたユーザー'
           expect(page).to have_content user.name
@@ -161,7 +163,7 @@ RSpec.describe "MealLikes", js: true do
         it 'ログインユーザーに「いいねはありません」と表示されること' do
           login_as(user)
           visit meals_path
-          click_on @other_meal.meal_date.strftime("%Y年%m月%d日")
+          click_on @other_meal.meal_date.strftime('%Y年%m月%d日')
           click_link 'いいね'
           expect(page).to have_content 'いいねしたユーザー'
           expect(page).to have_content 'いいねはありません'

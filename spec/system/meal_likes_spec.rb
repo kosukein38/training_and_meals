@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "WorkoutLikes", js: true do
+RSpec.describe 'WorkoutLikes', js: true do
   let(:user) { create(:user) }
   let(:other_user) { create(:user) }
 
@@ -47,15 +47,15 @@ RSpec.describe "WorkoutLikes", js: true do
         login_as(user)
         visit user_path(user)
         sleep 1.5
-        expect {
+        expect do
           find("#workout-like-button-#{@my_workout.id}").click
           visit current_path
-        }.to change{ WorkoutLike.count }.by(1)
+        end.to change(WorkoutLike, :count).by(1)
         expect(page).to have_css '.fill-rose-500'
-        expect {
+        expect do
           find("#workout-like-button-#{@my_workout.id}").click
           visit current_path
-        }.to change{ WorkoutLike.count }.by(-1)
+        end.to change(WorkoutLike, :count).by(-1)
         expect(page).to have_css '.text-primary'
       end
 
@@ -63,15 +63,15 @@ RSpec.describe "WorkoutLikes", js: true do
         login_as(user)
         visit workouts_path
         sleep 1.5
-        expect {
+        expect do
           find("#workout-like-button-#{@other_workout.id}").click
           visit current_path
-        }.to change{ WorkoutLike.count }.by(1)
+        end.to change(WorkoutLike, :count).by(1)
         expect(page).to have_css '.fill-rose-500'
-        expect {
+        expect do
           find("#workout-like-button-#{@other_workout.id}").click
           visit current_path
-        }.to change{ WorkoutLike.count }.by(-1)
+        end.to change(WorkoutLike, :count).by(-1)
         expect(page).to have_css '.text-primary'
       end
 
@@ -79,15 +79,15 @@ RSpec.describe "WorkoutLikes", js: true do
         login_as(user)
         visit workouts_feed_path
         sleep 1.5
-        expect {
+        expect do
           find("#workout-like-button-#{@other_workout.id}").click
           visit current_path
-        }.to change{ WorkoutLike.count }.by(1)
+        end.to change(WorkoutLike, :count).by(1)
         expect(page).to have_css '.fill-rose-500'
-        expect {
+        expect do
           find("#workout-like-button-#{@other_workout.id}").click
           visit current_path
-        }.to change{ WorkoutLike.count }.by(-1)
+        end.to change(WorkoutLike, :count).by(-1)
         expect(page).to have_css '.text-primary'
       end
 
@@ -95,15 +95,15 @@ RSpec.describe "WorkoutLikes", js: true do
         login_as(user)
         visit workout_path(@other_workout)
         sleep 1.5
-        expect {
+        expect do
           find("#workout-like-button-#{@other_workout.id}").click
           visit current_path
-        }.to change{ WorkoutLike.count }.by(1)
+        end.to change(WorkoutLike, :count).by(1)
         expect(page).to have_css '.fill-rose-500'
-        expect {
+        expect do
           find("#workout-like-button-#{@other_workout.id}").click
           visit current_path
-        }.to change{ WorkoutLike.count }.by(-1)
+        end.to change(WorkoutLike, :count).by(-1)
         expect(page).to have_css '.text-primary'
       end
     end
@@ -112,21 +112,23 @@ RSpec.describe "WorkoutLikes", js: true do
       it '他人の投稿にいいねできないこと（投稿一覧）' do
         visit workouts_path
         sleep 1.5
-        expect {
+        expect do
           find("#workout-like-button-#{@other_workout.id}").click
           visit current_path
-        }.to change{ WorkoutLike.count }.by(0)
+        end.not_to change(WorkoutLike, :count)
         expect(page).to have_css '.text-primary'
       end
+
       it '他人の投稿にいいねできないこと（投稿詳細）' do
         visit workout_path(@other_workout)
         sleep 1.5
-        expect {
+        expect do
           find("#workout-like-button-#{@other_workout.id}").click
           visit current_path
-        }.to change{ WorkoutLike.count }.by(0)
+        end.not_to change(WorkoutLike, :count)
         expect(page).to have_css '.text-primary'
       end
+
       it 'いいねした人一覧を見れないこと' do
         visit workout_path(@other_workout)
         click_link 'いいね'
@@ -140,10 +142,10 @@ RSpec.describe "WorkoutLikes", js: true do
           login_as(user)
           visit workouts_path
           sleep 1.5
-          expect {
+          expect do
             find("#workout-like-button-#{@other_workout.id}").click
             visit current_path
-          }.to change{ WorkoutLike.count }.by(1)
+          end.to change(WorkoutLike, :count).by(1)
           click_on @other_workout.workout_title
           click_link 'いいね'
           expect(page).to have_content 'いいねしたユーザー'
