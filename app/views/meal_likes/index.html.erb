@@ -1,0 +1,16 @@
+<% assign_meta_tags title: (t '.title') %>
+<div class="mx-4 my-8">
+  <h1 class="text-xl font-bold"><%= (t '.title') %></h1>
+  <div>
+    <% if @users.present? %>
+      <div class="flex flex-wrap w-full justyfy-center md:justify-start">
+        <%= render partial: 'users/user', collection: @users %>
+      </div>
+    <% else %>
+      <h2 class="my-8">いいねはありません</h2>
+    <% end %>
+  </div>
+  <div class="flex justify-center btn-group m-4">
+    <%= paginate @users %>
+  </div>
+</div>

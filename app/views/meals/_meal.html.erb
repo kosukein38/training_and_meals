@@ -4,16 +4,17 @@
   <% else %>
     <figure><%= image_tag('meal_sample.jpg', size: "400x400") %></figure>
   <% end %>
-  <%= link_to meal_path(meal.id) do %>
   <div class="card-body flex flex-row justify-start">
-    <div class="w-44 self-start">
-      <h2 class="card-title truncate block"><%= meal.meal_details.pluck(:meal_title).join(',') %></h2>
+    <div class="w-6/12">
+    <%= link_to meal_path(meal.id) do %>
+      <h2 class="card-title truncate block w-36"><%= meal.meal_details.pluck(:meal_title).join(',') %></h2>
       <p><%= meal.meal_details.pluck(:meal_calorie).sum %> kcal / <%= meal.meal_period_i18n %></p>
       <p><%= meal.meal_date.strftime("%Y年%m月%d日") %></p>
+    <% end %>
     </div>
-    <div class="w-auto">
+    <div class="w-4/12">
       <%=link_to user_path(meal.user) do%>
-        <div class="flex flex-col items-center mx-4">
+        <div class="flex flex-col items-center mx-auto">
           <div class="avatar">
             <div class="w-12 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
               <% if meal.user.avatar.attached? %>
@@ -23,13 +24,15 @@
               <% end %>
             </div>
           </div>
-          <div class="font-bold mx-2 items-center">
+          <div class="font-bold items-center">
             <p class="m-2"><%= meal.user.name %></p>
           </div>
         </div>
       <% end %>
     </div>
+    <div class="w-2/12 flex items-center">
+      <%= render 'meal_likes/meal_like_button', meal: meal %>
+    </div>
   </div>
-  <% end %>
 </div>
 

@@ -61,6 +61,14 @@
             <h2 class="text-xl font-bold">メモ</h2>
             <p class="text-base md:w-96 break-words"><%= @workout.workout_memo %></p>
           </div>
+          <div class="flex items-center mx-8 mt-4">
+            <div>
+              <%= render 'workout_likes/workout_like_button', workout: @workout %>
+            </div>
+            <div class="mx-4 link">
+              <%= link_to (t '.to_likes_index_page'), workout_likes_path(@workout) %>
+            </div>
+          </div>
           <div class="mx-8 mt-4">
           <% if logged_in? && current_user.own?(@workout) %>
             <%=link_to edit_workout_path(@workout), class: "btn btn-active btn-primary" do %>
