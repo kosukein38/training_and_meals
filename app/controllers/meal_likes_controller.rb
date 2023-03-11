@@ -1,14 +1,24 @@
 class MealLikesController < ApplicationController
+  def index
+    meal = Meal.find(params[:meal_id])
+    @users = meal.meal_like_users.page(params[:page])
+  end
+
   def create
-    like = Like.create!(user_id: current_user.id)
-    @meal_like = MealLike.new(like_id: like.id, meal_id: params[:meal_id])
-    @meal_like.save!
-    redirect_to request.referer 
+    @meal = Meal.find(params[:meal_id])
+    current_user.like_meal(@meal)
+    respond_to do |format|
+      format.html { redirect_to request.referer }
+      format.turbo_stream
+    end
   end
 
   def destroy
-    @meal_like = MealLike.find(params[:id])
-    @meal_like.destroy!
-    redirect_to request.referer
+    @meal = current_user.meal_likes.find(params[:id]).meal
+    current_user.unlike_meal(@meal)
+    respond_to do |format|
+      format.html { redirect_to request.referer }
+      format.turbo_stream
+    end
   end
 end

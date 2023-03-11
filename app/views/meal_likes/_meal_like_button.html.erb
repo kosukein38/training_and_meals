@@ -1,0 +1,9 @@
+<div id="meal-like-button-<%= meal.id %>">
+  <% if current_user.nil? %>
+    <%= render 'meal_likes/fixed_like', meal: meal %>
+  <% elsif current_user.like_meal?(meal) %>
+    <%= render 'meal_likes/unlike', meal: meal %>
+  <% else %>
+    <%= render 'meal_likes/like', meal: meal %>
+  <% end %>
+</div>

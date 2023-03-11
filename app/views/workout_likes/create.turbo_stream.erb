@@ -1,0 +1,6 @@
+<%= turbo_stream.update "workout-like-button-#{@workout.id}" do %>
+  <%= render partial: 'workout_likes/unlike', locals: { workout: @workout } %>
+<% end %>
+<%= turbo_stream.update "workout-like-count-#{@workout.id}" do %>
+  <%= @workout.workout_likes.count %>
+<% end %>

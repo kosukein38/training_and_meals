@@ -71,6 +71,7 @@ ja:
     show:
       title: "筋トレ詳細"
       to_edit_page: "編集"
+      to_likes_index_page: "いいね"
     edit:
       title: "筋トレ編集"
       submit: "更新"
@@ -80,6 +81,9 @@ ja:
     workouts_feed:
       title: "フォローユーザーの筋トレ投稿"
       no_result: "投稿がありません"
+  workout_likes:
+    index:
+      title: "いいねしたユーザー"
   meals:
     index:
       title: "全ユーザーの食事投稿"
@@ -89,6 +93,7 @@ ja:
     show:
       title: "食事詳細"
       to_edit_page: "編集"
+      to_likes_index_page: "いいね"
     edit:
       title: "食事編集"
       submit: "更新"
@@ -98,6 +103,9 @@ ja:
     meals_feed:
       title: "フォローユーザーの食事投稿"
       no_result: "投稿がありません"
+  meal_likes:
+    index:
+      title: "いいねしたユーザー"
   password_resets:
     new:
       title: "パスワードリセット申請"

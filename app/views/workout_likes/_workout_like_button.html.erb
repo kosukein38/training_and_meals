@@ -1,0 +1,9 @@
+<div id="workout-like-button-<%= workout.id %>">
+  <% if current_user.nil? %>
+    <%= render 'workout_likes/fixed_like', workout: workout %>
+  <% elsif current_user.like_workout?(workout) %>
+    <%= render 'workout_likes/unlike', workout: workout %>
+  <% else %>
+    <%= render 'workout_likes/like', workout: workout %>
+  <% end %>
+</div>

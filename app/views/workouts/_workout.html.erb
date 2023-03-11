@@ -30,31 +30,9 @@
         </div>
       <% end %>
     </div>
-    <!-- いいねボタン-->
     <div class="w-2/12 flex items-center">
-      <% if workout.liked?(current_user) %>
-        <%# <%= link_to workout_like_path(workout.id, workout_like.id), data: { turbo_method: :delete} do %> 
-        <%= link_to workout_like_path(workout.id, WorkoutLike.find_by(workout_id: workout.id, like_id: workout.likes.find_by(user_id: current_user.id).id)), data: { turbo_method: :delete} do %>
-          <button class="btn btn-ghost">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 fill-rose-500 stroke-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-            <div class="badge">
-              <span><%= workout.likes.count %></span>
-            </div>
-          </button>
-        <% end %>
-      <% else %>
-        <%= link_to workout_likes_path(workout), data: { turbo_method: :post} do %>
-          <button class="btn btn-ghost">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-            <div class="badge">
-              <span><%= workout.likes.count %></span>
-            </div>
-          </button>
-        <% end %>
-      <% end %>
+      <%= render 'workout_likes/workout_like_button', workout: workout %>
     </div>
-    <!-- いいねボタンここまで-->
   </div>
 </div>
-
 
