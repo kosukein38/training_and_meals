@@ -82,6 +82,7 @@
 - パスワードリセット機能
 - プロフィール編集、更新機能
 - フォロー機能
+- いいね機能（投稿一覧/詳細画面からのいいね、いいねした人一覧）
 - 筋トレ・食事一覧機能（フォロー中/全ユーザー）
 - 利用規約、プライパシーポリシー
 - Google フォームでお問い合わせ機能
@@ -116,10 +117,10 @@
 - `rspec-rails`（テストフレームワーク）
 - `rubocop`（Lint ツール）
 - `faraday`（HTTP クライアント）
-  なお、画像アップロードには`Active Storage`を使用
+  <br>なお、画像アップロードには`Active Storage`を使用
 
 <br>
 
 # ER 図
 
-[![ER図](https://i.gyazo.com/a6bfeff3c350fc021225fcb8b185ab0a.png)](https://gyazo.com/a6bfeff3c350fc021225fcb8b185ab0a)
+[![ER図](https://i.gyazo.com/4b571bd4f7872e90b8be9f58f6cb9162.png)](https://gyazo.com/4b571bd4f7872e90b8be9f58f6cb9162)
