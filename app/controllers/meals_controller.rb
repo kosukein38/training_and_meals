@@ -2,7 +2,8 @@ class MealsController < ApplicationController
   skip_before_action :require_login, only: %i[index show]
 
   def index
-    @meals = Meal.includes(:meal_images_attachments, :meal_details, user: :avatar_attachment).order(meal_date: :desc).page(params[:page])
+    @meals = Meal.includes(:meal_images_attachments, :meal_details,
+                           user: :avatar_attachment).order(meal_date: :desc).page(params[:page])
   end
 
   def show
@@ -63,7 +64,8 @@ class MealsController < ApplicationController
   end
 
   def meals_feed
-    @feed_items = Meal.includes(:meal_images_attachments, user: :avatar_attachment).where(user_id: [*current_user.following_ids]).order(meal_date: :desc).page(params[:page])
+    @feed_items = Meal.includes(:meal_images_attachments,
+                                user: :avatar_attachment).where(user_id: [*current_user.following_ids]).order(meal_date: :desc).page(params[:page])
   end
 
   private
