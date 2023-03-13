@@ -2,7 +2,7 @@ class WorkoutsController < ApplicationController
   skip_before_action :require_login, only: %i[index show]
 
   def index
-    @workouts = Workout.includes(%i[user workout_likes]).order(workout_date: :desc).page(params[:page])
+    @workouts = Workout.includes(:workout_images_attachments, user: :avatar_attachment).order(workout_date: :desc).page(params[:page])
   end
 
   def show
@@ -56,7 +56,7 @@ class WorkoutsController < ApplicationController
   end
 
   def workouts_feed
-    @feed_items = Workout.where(user_id: [*current_user.following_ids]).order(workout_date: :desc).page(params[:page])
+    @feed_items = Workout.includes(:workout_images_attachments, user: :avatar_attachment).where(user_id: [*current_user.following_ids]).order(workout_date: :desc).page(params[:page])
   end
 
   private
