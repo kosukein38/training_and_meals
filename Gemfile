@@ -119,6 +119,8 @@ group :development do
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  # N+1問題の検出
+  gem 'bullet'
 end
 
 group :test do
