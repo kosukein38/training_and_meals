@@ -8,7 +8,6 @@ RSpec.describe 'WorkoutLikes', js: true do
     before do
       user.relationships.create!(followed_id: other_user.id)
       user.reverse_of_relationships.create!(follower_id: other_user.id)
-
       body_part_id_mune = BodyPart.find_by(body_part_name: '胸').id
       body_part_id_kata = BodyPart.find_by(body_part_name: '肩').id
       workout = WorkoutForm.new
@@ -24,7 +23,6 @@ RSpec.describe 'WorkoutLikes', js: true do
       )
       workout.save
       @my_workout = Workout.find_by!(user_id: user.id)
-
       body_part_id_mune = BodyPart.find_by(body_part_name: '胸').id
       body_part_id_kata = BodyPart.find_by(body_part_name: '肩').id
       workout = WorkoutForm.new
@@ -49,11 +47,13 @@ RSpec.describe 'WorkoutLikes', js: true do
         expect(page).to have_content 'マイページ'
         expect do
           find("#workout-like-button-#{@my_workout.id}").click
+          sleep 0.5
           visit current_path
         end.to change(WorkoutLike, :count).by(1)
         expect(page).to have_css '.fill-rose-500'
         expect do
           find("#workout-like-button-#{@my_workout.id}").click
+          sleep 0.5
           visit current_path
         end.to change(WorkoutLike, :count).by(-1)
         expect(page).to have_css '.text-primary'
@@ -81,11 +81,13 @@ RSpec.describe 'WorkoutLikes', js: true do
         expect(page).to have_content 'フォローユーザーの筋トレ投稿'
         expect do
           find("#workout-like-button-#{@other_workout.id}").click
+          sleep 0.5
           visit current_path
         end.to change(WorkoutLike, :count).by(1)
         expect(page).to have_css '.fill-rose-500'
         expect do
           find("#workout-like-button-#{@other_workout.id}").click
+          sleep 0.5
           visit current_path
         end.to change(WorkoutLike, :count).by(-1)
         expect(page).to have_css '.text-primary'
@@ -97,11 +99,13 @@ RSpec.describe 'WorkoutLikes', js: true do
         expect(page).to have_content '詳細'
         expect do
           find("#workout-like-button-#{@other_workout.id}").click
+          sleep 0.5
           visit current_path
         end.to change(WorkoutLike, :count).by(1)
         expect(page).to have_css '.fill-rose-500'
         expect do
           find("#workout-like-button-#{@other_workout.id}").click
+          sleep 0.5
           visit current_path
         end.to change(WorkoutLike, :count).by(-1)
         expect(page).to have_css '.text-primary'
@@ -141,6 +145,7 @@ RSpec.describe 'WorkoutLikes', js: true do
         it 'ログインユーザーがいいねした人の一覧が見れること' do
           login_as(user)
           visit workouts_path
+
           expect(page).to have_content '全ユーザーの筋トレ投稿'
           expect do
             find("#workout-like-button-#{@other_workout.id}").click
