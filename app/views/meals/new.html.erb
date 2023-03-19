@@ -12,16 +12,14 @@
       <div class="form-control">
         <%= f.label :meal_date, class: "text-xl pt-4 font-bold" %>
         <%= f.date_field :meal_date, value: Time.now.strftime("%Y-%m-%d"), class: "input input-bordered" %>
-
         <%= f.label :meal_period, class: "text-xl pt-4 font-bold" %>
-        <%= f.select :meal_period, Meal.meal_periods_i18n.invert.map{|key, value| [key, Meal.meal_periods[value]]}, {}, class: "select select-bordered w-ful" %>
-
+        <%= f.select :meal_period, Meal.meal_periods_i18n.invert.map{|key, value| [key, Meal.meal_periods[value]]}, {}, class: "select select-bordered w-full" %>
         <%= f.label :meal_type, class: "text-xl pt-4 font-bold" %>
-        <%= f.select :meal_type, Meal.meal_types_i18n.invert.map{|key, value| [key, Meal.meal_types[value]]}, {}, class: "select select-bordered w-ful" %>
+        <%= f.select :meal_type, Meal.meal_types_i18n.invert.map{|key, value| [key, Meal.meal_types[value]]}, {}, class: "select select-bordered w-full" %>
         <div class="m-2">
-          <p >食事メニュー, g数, カロリーを最低1つ（1の欄）入力してください</p>
-          <div class="flex-none md:flex">
-            <div class="m-2">
+          <p>食事メニュー, g数, カロリーを最低1つ（1の欄）入力してください</p>
+          <div class="flex-col md:flex" data-controller="meal-detail-form">
+            <div class="p-2 bg-base-200 rounded-lg">
               <div class="form-control">
                 <%= f.label :meal_title_first, class: "text-xl font-bold" %>
                 <%= f.text_field :meal_title_first, class: "input input-bordered" %>
@@ -35,7 +33,7 @@
                 <%= f.number_field :meal_calorie_first, class: "input input-bordered" %>
               </div>
             </div>
-            <div class="m-2">
+            <div class="my-2 p-2 bg-base-200 rounded-lg hidden meal-detail-form" data-meal-detail-form-target="mealDetailForm">
               <div class="form-control">
                 <%= f.label :meal_title_second, class: "text-xl font-bold" %>
                 <%= f.text_field :meal_title_second, class: "input input-bordered" %>
@@ -49,7 +47,7 @@
                 <%= f.number_field :meal_calorie_second, class: "input input-bordered" %>
               </div>
             </div>
-            <div class="m-2">
+            <div class="my-2 p-2 bg-base-200 rounded-lg hidden meal-detail-form" data-meal-detail-form-target="mealDetailForm">
               <div class="form-control">
                 <%= f.label :meal_title_third, class: "text-xl font-bold"%>
                 <%= f.text_field :meal_title_third, class: "input input-bordered" %>
@@ -63,15 +61,21 @@
                 <%= f.number_field :meal_calorie_third, class: "input input-bordered" %>
               </div>
             </div>
+            <div class="flex">
+              <%= button_tag type: "button", data: { action: "click->meal-detail-form#add" }, class: "add btn btn-ghost my-2" do %>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 text-primary" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"/></svg>
+              <% end %>
+              <%= button_tag type: "button", data: { action: "click->meal-detail-form#delete" }, class: "delete btn btn-ghost my-2" do %>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 text-primary" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M312 232C325.3 232 336 242.7 336 256C336 269.3 325.3 280 312 280H136C122.7 280 112 269.3 112 256C112 242.7 122.7 232 136 232H312zM0 96C0 60.65 28.65 32 64 32H384C419.3 32 448 60.65 448 96V416C448 451.3 419.3 480 384 480H64C28.65 480 0 451.3 0 416V96zM48 96V416C48 424.8 55.16 432 64 432H384C392.8 432 400 424.8 400 416V96C400 87.16 392.8 80 384 80H64C55.16 80 48 87.16 48 96z"/></svg>
+              <% end %>
+              <p class="m-2 self-center">メニュー3まで追加可能</p>
+            </div>
           </div>
         </div>
-
         <%= f.label :meal_memo, class: "text-xl pt-4 font-bold" %>
         <%= f.text_area :meal_memo, class: "textarea textarea-bordered" %>
-
         <%= f.label :meal_images, class: "text-xl pt-4 font-bold" %>
         <%= f.file_field :meal_images, class: "input input-bordered", multiple: true %>
-
         <%= f.submit '投稿する', class: "btn btn-primary my-4"%>
       </div>
     <% end %>
