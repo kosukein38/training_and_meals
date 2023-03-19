@@ -155,7 +155,6 @@ RSpec.describe 'MealLikes', js: true do
           expect do
             find("#meal-like-button-#{@other_meal.id}").click
             visit current_path
-
           end.to change(MealLike, :count).by(1)
           click_on @other_meal.meal_date.strftime('%Y年%m月%d日')
           click_link 'いいね'
