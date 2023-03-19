@@ -55,11 +55,13 @@ RSpec.describe 'MealLikes', js: true do
         expect(page).to have_content 'マイページ'
         expect do
           find("#meal-like-button-#{@my_meal.id}").click
+          sleep 0.5
           visit current_path
         end.to change(MealLike, :count).by(1)
         expect(page).to have_css '.fill-rose-500'
         expect do
           find("#meal-like-button-#{@my_meal.id}").click
+          sleep 0.5
           visit current_path
         end.to change(MealLike, :count).by(-1)
         expect(page).to have_css '.text-primary'
@@ -87,11 +89,13 @@ RSpec.describe 'MealLikes', js: true do
         expect(page).to have_content 'フォローユーザーの食事投稿'
         expect do
           find("#meal-like-button-#{@other_meal.id}").click
+          sleep 0.5
           visit current_path
         end.to change(MealLike, :count).by(1)
         expect(page).to have_css '.fill-rose-500'
         expect do
           find("#meal-like-button-#{@other_meal.id}").click
+          sleep 0.5
           visit current_path
         end.to change(MealLike, :count).by(-1)
         expect(page).to have_css '.text-primary'
