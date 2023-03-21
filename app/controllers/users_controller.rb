@@ -56,7 +56,7 @@ class UsersController < ApplicationController
   end
 
   def set_calendar_info
-    start_date = Time.zone.parse(params.fetch(:start_date, Time.current)) #ActiveSupport::TimeWithZoneクラスのインスタンス
+    start_date = Time.zone.parse(params.fetch(:start_date, Time.current)) # ActiveSupport::TimeWithZoneクラスのインスタンス
     @workouts_per_month = @user.workouts.where(workout_date: start_date.all_month)
   end
 end
