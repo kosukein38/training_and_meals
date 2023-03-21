@@ -84,7 +84,7 @@
         <% end %>
         <div class="font-bold text-lg my-4 text-center">
           <% if @workouts_per_month.present? %>
-            <p>筋トレ回数 <%= @workouts_per_month.pluck(:workout_date).uniq.size %>回/月</p>
+            <p>筋トレ回数 <%= @workouts_per_month.pluck(:workout_date).map(&:to_date).uniq.size %>回/月</p>
           <% else %>
             <p>筋トレ回数 0回/月</p>
           <% end %>

@@ -41,9 +41,7 @@ class UsersController < ApplicationController
   def date_search
     user_id = params[:user_id]
     @user = User.find(user_id)
-
     set_calendar_info
-
     @input_date = params[:date_search].to_date || Time.current.to_date
     @workouts = Workout.where(workout_date: @input_date.beginning_of_day...@input_date.end_of_day, user_id:)
     @meals = Meal.where(meal_date: @input_date.beginning_of_day...@input_date.end_of_day, user_id:)
@@ -58,7 +56,7 @@ class UsersController < ApplicationController
   end
 
   def set_calendar_info
-    start_date = Time.current
+    start_date = params.fetch(:start_date, Time.current).in_time_zone # ActiveSupport::TimeWithZoneクラスのインスタンス
     @workouts_per_month = @user.workouts.where(workout_date: start_date.all_month)
   end
 end
