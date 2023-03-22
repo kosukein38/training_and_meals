@@ -17,7 +17,7 @@ class WorkoutLikesController < ApplicationController
     @workout = current_user.workout_likes.find(params[:id]).workout
     current_user.unlike_workout(@workout)
     respond_to do |format|
-      format.html { redirect_to request.referer }
+      format.html { redirect_to request.referer, status: :see_other }
       format.turbo_stream
     end
   end
